@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+     <include layout="@layout/layout_background_top"/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        android:id="@+id/entry_account"
+        android:hint="请输入账号"
+        android:singleLine="true"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="260dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/Text_color"
+        android:layout_marginBottom="30dp"/>
+
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:maxLines="1"
+            android:id="@+id/entry_password"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:layout_gravity="center"/>
+
+        <CheckBox
+            android:checked="false"
+            android:id="@+id/entry_checkbox"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.8"
+            android:button="@mipmap/entry_eye_close"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="260dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/Text_color"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.8"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textCursorDrawable="@null"
+                android:maxLines="1"
+                android:id="@+id/entry_number"
+                android:hint="请输入验证码"
+                android:inputType="textVisiblePassword"
+                android:layout_gravity="center"/>
+
+            <View
+                android:layout_width="260dp"
+                android:layout_marginTop="3dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/Text_color" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:id="@+id/entry_image_number"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_width="240dp"
+        android:layout_height="35dp"
+        android:id="@+id/entry_button"
+        android:background="@drawable/button_background"
+        android:focusableInTouchMode="false"
+        android:layout_gravity="center"
+        android:text="登录"
+        android:textColor="@color/bg_color"/>
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/entry_register"
+                android:clickable="true"
+                android:layout_gravity="start"
+                android:text="注册"
+                android:textSize="13dp"
+                android:textColor="@color/Text_color"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/entry_forget_password"
+                android:gravity="center"
+                android:clickable="true"
+                android:layout_marginLeft="64dp"
+                android:text="忘记密码"
+                android:textSize="13dp"
+                android:textColor="@color/Text_color"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

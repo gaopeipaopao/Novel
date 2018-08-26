@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardview_item"
+    app:contentPadding="5dp"
+    app:cardBackgroundColor="@color/bg_color"
+    app:cardCornerRadius="5dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardElevation="4dp"
+    >
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/iv_book_bg"
+        android:src="@mipmap/book"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="84dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_bookname"
+            android:textSize="16sp"
+            android:textColor="@color/Text_color"
+            android:text="XXXXX"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_word_count"
+                android:textColor="@color/second_text_color"
+                android:textSize="12sp"
+                android:text="字数：12万"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:background="@color/second_text_color"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_updatenow"
+                android:textSize="12sp"
+                android:textColor="@color/second_text_color"
+                android:text="已更新至：XXXXX"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_update_time"
+            android:textSize="12sp"
+            android:textColor="@color/second_text_color"
+            android:text="最后更新时间：xxxx-xx-xx"
+            android:layout_marginTop="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_join_number"
+            android:textColor="@color/second_text_color"
+            android:textSize="12sp"
+            android:text="参与人数：xxxx"
+            android:layout_marginTop="4dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_book_brief"
+            android:textSize="12sp"
+            android:textColor="@color/second_text_color"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......"
+            />
+
+
+
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="end"-->
+        <!--android:id="@+id/tv_start_work"-->
+        <!--android:textColor="@color/second_text_color"-->
+        <!--android:textSize="12sp"-->
+        <!--android:text="@string/start_work"-->
+        <!--android:padding="4dp"-->
+        <!--android:background="@drawable/bg_text_work"-->
+        <!--/>-->
+
+
+</android.support.v7.widget.CardView>

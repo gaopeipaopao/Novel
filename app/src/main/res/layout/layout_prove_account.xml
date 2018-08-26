@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_background_top"/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        android:id="@+id/prove_account_name"
+        android:hint="昵称：2到20个字符之间"
+        android:singleLine="true"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="260dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/Text_color"
+        android:layout_marginBottom="50dp"/>
+
+
+
+
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="35dp"
+        android:id="@+id/prove_name_button"
+        android:background="@drawable/button_background"
+        android:layout_gravity="center"
+        android:text="下一步"
+        android:textColor="@color/bg_color"/>
+
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/Text_color"
+        android:textSize="12dp"
+        android:text="注意：昵称确定后，以后不能再重新修改"/>
+
+
+</LinearLayout>

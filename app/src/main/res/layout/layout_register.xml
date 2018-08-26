@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_background_top"/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        android:maxLines="1"
+        android:id="@+id/register_password"
+        android:hint="密码：6到30个字符之间"
+        android:inputType="textPassword"
+        android:layout_gravity="center"/>
+
+
+    <View
+        android:layout_width="260dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/Text_color"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        android:maxLines="1"
+        android:id="@+id/register_password_again"
+        android:hint="密码：6到30个字符之间"
+        android:inputType="textPassword"
+        android:layout_gravity="center"/>
+
+
+    <View
+        android:layout_width="260dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="@color/Text_color"
+        android:layout_marginBottom="30dp"/>
+
+
+    <Button
+        android:layout_width="240dp"
+        android:layout_height="35dp"
+        android:id="@+id/register_button"
+        android:background="@drawable/button_background"
+        android:layout_gravity="center"
+        android:text="注册"
+        android:textColor="@color/bg_color"/>
+
+
+</LinearLayout>

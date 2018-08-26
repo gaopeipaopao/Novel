@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:background="#ffffff">
+
+    <com.example.gaope.novel.View.TopBlueView
+        android:layout_width="match_parent"
+        android:layout_height="230dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:id="@+id/background_image_id"
+        android:clickable="true"
+        android:src="@drawable/entry_top_picture"
+        android:layout_gravity="center"
+        android:layout_marginBottom="21dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/background_text_id1"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_marginTop="130dp"
+        android:text="安康盛世也有冻死饿殍"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/background_text_id2"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:clickable="true"
+        android:gravity="center"
+        android:layout_marginTop="143dp"
+        android:text="动荡乱世也有荣华富贵"/>
+
+</FrameLayout>
