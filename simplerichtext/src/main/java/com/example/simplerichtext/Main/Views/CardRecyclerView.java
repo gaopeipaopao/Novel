@@ -17,6 +17,7 @@ public class CardRecyclerView extends RecyclerView {
     private float mDownX;
     private int mWidth;
     private int mCardWidth;
+    private float mMaxX = 0;
 
     private static final String TAG = "CardRecyclerView";
 
@@ -57,15 +58,23 @@ public class CardRecyclerView extends RecyclerView {
     public boolean onTouchEvent(MotionEvent e) {
         boolean result  = super.onTouchEvent(e);
 
-        if(e.getAction() == MotionEvent.ACTION_DOWN){
-            mDownX = e.getRawX();
+        if(e.getActionMasked() == MotionEvent.ACTION_DOWN){
+            mDownX = e.getX();
+
         }
 
-        if(e.getAction() == MotionEvent.ACTION_UP){
-           float delatX = mDownX - e.getRawX();
+        if(e.getActionMasked() == MotionEvent.ACTION_MOVE){
+            if(Math.abs(mMaxX)<Math.abs(mDownX-e.getX())){
+                mMaxX = mDownX-e.getX();
+            }
+        }
+
+        if(e.getActionMasked() == MotionEvent.ACTION_UP){
+           float delatX = mDownX - e.getX();
+           Log.d(TAG, "onTouchEvent: "+delatX+"---"+mMaxX);
            if(Math.abs(delatX)>=mCardWidth/3){
+
                int index = ((LinearLayoutManager)getLayoutManager()).findFirstVisibleItemPosition();
-               Log.d(TAG, "onTouchEvent: "+index);
                if(delatX<0){
                    smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30)*-1,0);
                }else {
@@ -73,8 +82,24 @@ public class CardRecyclerView extends RecyclerView {
                }
 
            }else {
+               if(Math.abs(mMaxX)<=Math.abs(delatX)){
+                   smoothScrollBy((int) Math.floor(delatX)*-1,0);
+               }else {
+                   if(mMaxX>0) {
+                       delatX = e.getX();
+                   }else {
+                       delatX = mMaxX+e.getX();
+                   }
 
-               smoothScrollBy((int) Math.floor(delatX)*-1,0);
+                   if(delatX>0){
+
+                       smoothScrollBy((int)Math.ceil(mCardWidth-delatX+30)*-1,0);
+                   }else {
+                       smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30),0);
+                   }
+
+               }
+
 
            }
         }
