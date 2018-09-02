@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#26a69a</color>
+    <color name="white">#FFFFFF</color>
+    <color name="main_color">#26a69a</color>
+    <color name="balck">#212121</color>
+    <color name="divide_color">#e0e0e0</color>
+    <color name="text_color">#212121</color>
+    <color name="text_count_color">#757575</color>
+    <color name="second_text_color">#999999</color>
+    <color name="text_hint">#bdbdbd</color>
+    <color name="green_50">#e0f2f1</color>
+    <color name="color_select">#00695c</color>
+    <color name="pink">#FFE4E1</color>
+    <color name="pink_less">#FFF0F5</color>
+    <color name="orange">#FFF8DC</color>
+    <color name="orage_less">#FFFFF0</color>
+    <color name="green">#F0FFF0</color>
+    <color name="green_less">#F5FFFA</color>
+    <color name="blue">#D1EEEE</color>
+    <color name="blue_less">#F0FFFF</color>
+    <color name="black_less">#696969</color>
+    <color name="progress_bg">#bdbdbd</color>
+    <color name="white_50">#fafafa</color>
+    <color name="white_100">#f5f5f5</color>
+    <color name="white_200">#eeeeee</color>
+    <color name="color_f2f2f2f2">#f2f2f2f2</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="gray">#e0e0e0</color>
+
+</resources>

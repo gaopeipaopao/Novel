@@ -2,6 +2,7 @@ package com.example.gaope.novel.Main.BookShelves;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.example.gaope.novel.Main.BookShelves.Collect.BookCollectFragment;
 import com.example.gaope.novel.Main.BookShelves.Join.BookJoinFragment;
 import com.example.gaope.novel.Main.BookShelves.Launch.BookLaunchFragment;
 import com.example.gaope.novel.R;
+import com.example.simplerichtext.Main.Activities.MyPublishActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class BookShelvesFragment extends BaseFragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book,container,false);
         startBook = (TextView) view.findViewById(R.id.start_book);
+        startBook.setOnClickListener(this);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager_bottom);
         tabLayout = (TabLayout) view.findViewById(R.id.tablayout_top);
         bookJoinFragment = new BookJoinFragment(context);
@@ -89,6 +92,12 @@ public class BookShelvesFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         //打开发起新书的活动
+        switch (v.getId()){
+            case R.id.start_book:
+                Intent intent = new Intent(getContext(), MyPublishActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     @Override
