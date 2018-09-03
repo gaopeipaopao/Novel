@@ -74,7 +74,6 @@ public class CardRecyclerView extends RecyclerView {
            Log.d(TAG, "onTouchEvent: "+delatX+"---"+mMaxX);
            if(Math.abs(delatX)>=mCardWidth/3){
 
-               int index = ((LinearLayoutManager)getLayoutManager()).findFirstVisibleItemPosition();
                if(delatX<0){
                    smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30)*-1,0);
                }else {
@@ -85,18 +84,17 @@ public class CardRecyclerView extends RecyclerView {
                if(Math.abs(mMaxX)<=Math.abs(delatX)){
                    smoothScrollBy((int) Math.floor(delatX)*-1,0);
                }else {
-                   if(mMaxX>0) {
-                       delatX = e.getX();
-                   }else {
-                       delatX = mMaxX+e.getX();
+
+                   int index = ((LinearLayoutManager)getLayoutManager()).
+                           findFirstVisibleItemPosition();
+
+                   if(index == -1){
+                       index = 0;
+                   }else if(index >=getChildCount()){
+                       index = getChildCount() -2;
                    }
 
-                   if(delatX>0){
-
-                       smoothScrollBy((int)Math.ceil(mCardWidth-delatX+30)*-1,0);
-                   }else {
-                       smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30),0);
-                   }
+                   smoothScrollToPosition(index+1);
 
                }
 
