@@ -1,1 +1,1 @@
-include ':app', ':simplerichtext'
+include ':app', ':simplerichtext', ':basecomponent'
