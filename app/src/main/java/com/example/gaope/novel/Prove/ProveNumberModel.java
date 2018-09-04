@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.gaope.novel.Base.BaseModel;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,6 +30,11 @@ public class ProveNumberModel implements BaseModel {
                 .addHeader("validateCode",args[1])
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+
+    }
+
+    @Override
+    public void execute(Observer observer, String... args) {
 
     }
 }

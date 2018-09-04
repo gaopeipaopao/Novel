@@ -10,6 +10,9 @@ import android.util.TimeUtils;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
+import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.HttpUtil;
+import com.example.basecomponent.Modules.LoginModule;
 import com.example.gaope.novel.Base.BaseActivity;
 import com.example.gaope.novel.Base.BaseModel;
 import com.example.gaope.novel.Base.BasePresenter;
@@ -28,6 +31,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.security.acl.LastOwnerException;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -65,6 +70,8 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
     public void sendEntry(String stringAccount, String stringPassword,
                           String stringNumber, final String imei) {
 
+        Log.d(TAG, "sendEntry: "+stringNumber+"---"+stringAccount+"---"+stringPassword);
+
         isNetwork = JudgeNetworkCoon.isNetworkAvailable(context);
         if (!isNetwork){
             if (isViewAttached()){
@@ -80,60 +87,119 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
             }
         }
 
-        DataModel.request(Token.ENTRY_MODEL).execute(new Callback() {
+//        DataModel.request(Token.ENTRY_MODEL).execute(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                if (isViewAttached()){
+//                    getView().showMistake();
+//                }
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String response1 = response.body().string();
+//                int status = 0;
+//                int statusLen = 0;
+//                String stausMessage = null;
+//                Log.d(TAG,response1);
+//                try {
+//                    JSONObject object = new JSONObject(response1);
+//                    statusLen = object.length();
+//                    if (statusLen == 2){
+//                        status =object.getInt("status");
+//                        stausMessage = object.getString("message");
+//                        Log.d(TAG,"message:"+"entry"+stausMessage);
+//                        Log.d(TAG,"statusImage:"+status);
+//                    }else if (statusLen > 2){
+//                        accessToken = object.getString("access_token");
+//                        refreshToken = object.getString("refresh_token");
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (status == 1 && stausMessage.contains("验证码")){
+//                    if (isViewAttached()){
+//                        Message message = Message.obtain();
+//                        message.what = 2;
+//                        EntryActivity.handlers.sendMessage(message);
+//                        //showMistake()方法中有更新UI的操作
+////                        getView().showMistake();
+//                    }
+//                }else if (status == 1 && stausMessage.contains("账号")){
+//                    if (isViewAttached()){
+//                        Message message = Message.obtain();
+//                        message.what = 0;
+//                        EntryActivity.handlers.sendMessage(message);
+//                    }
+//                }else if (status == 0){
+//                    if (isViewAttached()){
+//                        getView().intentNewActivity(accessToken,refreshToken);
+//                    }
+//                }
+//
+//            }
+//        },stringAccount,stringPassword,stringNumber,imei);
+
+
+        DataModel.request(Token.ENTRY_MODEL).execute(new Observer<LoginModule>() {
+
             @Override
-            public void onFailure(Call call, IOException e) {
-                if (isViewAttached()){
-                    getView().showMistake();
-                }
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG, "onSubscribe: ");
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String response1 = response.body().string();
-                int status = 0;
-                int statusLen = 0;
-                String stausMessage = null;
-                Log.d(TAG,response1);
-                try {
-                    JSONObject object = new JSONObject(response1);
-                    statusLen = object.length();
-                    if (statusLen == 2){
-                        status =object.getInt("status");
-                        stausMessage = object.getString("message");
-                        Log.d(TAG,"message:"+"entry"+stausMessage);
-                        Log.d(TAG,"statusImage:"+status);
-                    }else if (statusLen > 2){
-                        accessToken = object.getString("access_token");
-                        refreshToken = object.getString("refresh_token");
-                    }
+            public void onNext(LoginModule value) {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Log.d(TAG, "onNext: ");
 
-                if (status == 1 && stausMessage.contains("验证码")){
-                    if (isViewAttached()){
+                int status = value.getStatus();
+                String stausMessage = value.getMessage();
+                if (status == 1 && stausMessage!=null&&stausMessage.contains("验证码")) {
+                    if (isViewAttached()) {
                         Message message = Message.obtain();
                         message.what = 2;
                         EntryActivity.handlers.sendMessage(message);
                         //showMistake()方法中有更新UI的操作
 //                        getView().showMistake();
                     }
-                }else if (status == 1 && stausMessage.contains("账号")){
-                    if (isViewAttached()){
+                } else if (status == 1 && stausMessage!=null&&stausMessage.contains("账号")) {
+                    if (isViewAttached()) {
+                        Log.d(TAG, "onNext: "+stausMessage);
                         Message message = Message.obtain();
                         message.what = 0;
                         EntryActivity.handlers.sendMessage(message);
                     }
-                }else if (status == 0){
-                    if (isViewAttached()){
-                        getView().intentNewActivity(accessToken,refreshToken);
+                }else {
+                    if (isViewAttached()) {
+
+                        HttpUtil.setAccessToken(value.getAccessToken());
+                        HttpUtil.setRefreshToken(value.getRefreshToken());
+                        getView().intentNewActivity(value.getAccessToken(),
+                                value.getRefreshToken());
                     }
                 }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "onError: "+e.getMessage());
+                if (isViewAttached()){
+                    getView().showMistake();
+                }
+            }
+
+            @Override
+            public void onComplete() {
+
+                Log.d(TAG, "onComplete: ");
 
             }
-        },stringAccount,stringPassword,stringNumber,imei);
+        },imei,stringNumber,stringAccount,stringPassword);
+
+
     }
 
     @Override

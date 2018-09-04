@@ -7,6 +7,7 @@ import com.example.gaope.novel.Tool.EntryAccount;
 import com.example.gaope.novel.Tool.RegisterAccount;
 import com.google.gson.Gson;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -43,5 +44,10 @@ public class RegisterModel implements BaseModel {
                 .addHeader("key",args[3])
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+    }
+
+    @Override
+    public void execute(Observer observer, String... args) {
+
     }
 }

@@ -146,7 +146,8 @@ public class EntryActivity extends BaseActivity implements EntryView, View.OnCli
                 stringNumber = entryNumber.getText().toString();
                 Log.d(TAG,"account:"+stringAccount.length());
                 Log.d(TAG,"password:"+stringPassWord);
-                entryPresenter.sendEntry(stringAccount,stringPassWord,stringNumber,returnIMEI());
+                entryPresenter.sendEntry(stringAccount,stringPassWord,
+                        stringNumber,returnIMEI());
                 break;
             case R.id.entry_checkbox:
                 if(entryCheckBox.isChecked()){

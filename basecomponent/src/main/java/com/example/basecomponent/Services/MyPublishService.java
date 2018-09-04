@@ -14,7 +14,7 @@ import retrofit2.http.Header;
 public interface MyPublishService {
 
 
-    @GET("/user/book")
+    @GET("user/book")
     Observable<BaseModule<List<MyPublishModule>>>
             getMyPublishData(@Header("token") String token);
 }

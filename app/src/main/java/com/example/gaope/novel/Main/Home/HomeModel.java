@@ -6,6 +6,7 @@ import com.example.gaope.novel.Base.BaseModel;
 import com.example.gaope.novel.Tool.EntryAccount;
 import com.google.gson.Gson;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -32,5 +33,10 @@ public class HomeModel implements BaseModel {
                 .addHeader("Authorization","Basic YnJhbmNoOnhpeW91M2c=")
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+    }
+
+    @Override
+    public void execute(Observer observer, String... args) {
+
     }
 }

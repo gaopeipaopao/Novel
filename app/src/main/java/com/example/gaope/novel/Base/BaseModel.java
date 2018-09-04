@@ -1,7 +1,11 @@
 package com.example.gaope.novel.Base;
 
+import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.Modules.LoginModule;
+
 import java.util.concurrent.Callable;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 
 /**
@@ -9,9 +13,11 @@ import okhttp3.Callback;
  * @param
  */
 
-public interface BaseModel{
+public interface BaseModel<T>{
 
     //子类发送网络请求的接口
     void execute(Callback callback,String... args);
+
+    void  execute(Observer<T> observer, String... args);
 
 }

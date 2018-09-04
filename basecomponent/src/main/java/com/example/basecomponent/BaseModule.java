@@ -2,10 +2,15 @@ package com.example.basecomponent;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.reactivex.schedulers.Schedulers;
+
 public class  BaseModule<T> {
 
     @SerializedName("status")
     private int mStatus;
+
+    @SerializedName("message")
+    private String mMessage;
 
     @SerializedName("data")
     private T mData;
@@ -16,5 +21,9 @@ public class  BaseModule<T> {
 
     public T getData() {
         return mData;
+    }
+
+    public String getMessage() {
+        return mMessage;
     }
 }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.gaope.novel.Base.BaseModel;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,6 +22,11 @@ public class ProveAccountModel implements BaseModel {
         Request request=new Request.Builder().url(url + args[0])
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+
+    }
+
+    @Override
+    public void execute(Observer observer, String... args) {
 
     }
 }

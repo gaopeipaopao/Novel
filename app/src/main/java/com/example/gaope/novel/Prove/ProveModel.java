@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.gaope.novel.Base.BaseModel;
 import com.google.gson.Gson;
 
+import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -28,6 +29,11 @@ public class ProveModel implements BaseModel {
                 .addHeader("deviceId",imie)
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+
+    }
+
+    @Override
+    public void execute(Observer observer, String... args) {
 
     }
 }
