@@ -5,15 +5,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.simplerichtext.R;
+
+import java.util.List;
 
 public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {
 
     private Context mContext;
+    private List<MyPublishModule> mDatas;
 
-    public MyWorkAdapter(Context context) {
+    public MyWorkAdapter(Context context,List<MyPublishModule> datas) {
         mContext = context;
+        mDatas = datas;
     }
 
     @Override
@@ -32,6 +38,7 @@ public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {
 
     @Override
     public int getItemCount() {
-        return 4;
+
+        return mDatas.size();
     }
 }

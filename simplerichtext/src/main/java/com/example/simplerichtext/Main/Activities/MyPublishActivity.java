@@ -7,22 +7,32 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.simplerichtext.Add.AddActivity;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.Main.Adapters.MyWorkAdapter;
+import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
 import com.example.simplerichtext.R;
 
-public class MyPublishActivity extends BaseActivity implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyPublishActivity extends BaseActivity implements View.OnClickListener
+        ,MyPublishPresenter.myPublishViewLisnter{
 
     private ImageView mBack;
     private RecyclerView mRecyclerView;
     private TextView mAddWork;
     private MyWorkAdapter mAdapter;
+    private MyPublishPresenter  mPresenter;
+    private List<MyPublishModule> mDatas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypulish);
+        mPresenter = new MyPublishPresenter(this);
         init();
     }
 
@@ -36,7 +46,7 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
         });
 
         mRecyclerView = findViewById(R.id.recycler_view);
-        mAdapter = new MyWorkAdapter(this);
+        mAdapter = new MyWorkAdapter(this,mDatas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL,false));
         mRecyclerView.setAdapter(mAdapter);
@@ -51,5 +61,12 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
                 startActivity(new Intent(MyPublishActivity.this,
                         AddActivity.class));
         }
+    }
+
+    @Override
+    public void setMyPublishData(List<MyPublishModule> myPublishModuleList) {
+        mDatas.clear();
+        mDatas.addAll(myPublishModuleList);
+        mAdapter.notifyDataSetChanged();
     }
 }

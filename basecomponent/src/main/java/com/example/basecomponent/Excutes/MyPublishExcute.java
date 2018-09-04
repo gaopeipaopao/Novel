@@ -7,15 +7,23 @@ import com.example.basecomponent.Services.MyPublishService;
 
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.SafeObserver;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class MyPublishExcute {
 
-    public static void excute(){
+    public static void excute(Observer<BaseModule<List<MyPublishModule>>> observer){
 
 
         MyPublishService service = HttpUtil.getRetrofit().create(MyPublishService.class);
-
-        service.getMyPublishData(HttpUtil.getAccessToken());
+        service.getMyPublishData(HttpUtil.getAccessToken())
+                .subscribeOn(Schedulers.io())//IO线程加载数据
+                .observeOn(AndroidSchedulers.mainThread())//主线程显示数据
+                .subscribe(observer);
 
 
     }
