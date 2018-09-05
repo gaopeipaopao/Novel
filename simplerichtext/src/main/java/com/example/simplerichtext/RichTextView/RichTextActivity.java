@@ -81,7 +81,7 @@ public class RichTextActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_richtext);
+        setContentView(R.layout.simple_activity_richtext);
         WindowManager manager = this.getWindowManager();
         DisplayMetrics metrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(metrics);
@@ -463,28 +463,28 @@ public class RichTextActivity extends AppCompatActivity implements
     public void changeBackgound(int id) {
         if(id == R.id.iv_white) {
 
-            setBackgroudColor(getResources().getColor(R.color.white)
-                    , getResources().getColor(R.color.white), false);
+            setBackgroudColor(getResources().getColor(R.color.simple_white)
+                    , getResources().getColor(R.color.simple_white), false);
         }else if(id == R.id.iv_pink) {
 
-            setBackgroudColor(getResources().getColor(R.color.pink)
-                    , getResources().getColor(R.color.pink_less), false);
+            setBackgroudColor(getResources().getColor(R.color.simple_pink)
+                    , getResources().getColor(R.color.simple_pink_less), false);
         }else if(id == R.id.iv_yellow) {
 
-            setBackgroudColor(getResources().getColor(R.color.orange)
-                    , getResources().getColor(R.color.orage_less), false);
+            setBackgroudColor(getResources().getColor(R.color.simple_orange)
+                    , getResources().getColor(R.color.simple_orage_less), false);
         }else if(id == R.id.iv_green) {
 
-            setBackgroudColor(getResources().getColor(R.color.green)
-                    , getResources().getColor(R.color.green_less), false);
+            setBackgroudColor(getResources().getColor(R.color.simple_green)
+                    , getResources().getColor(R.color.simple_green_less), false);
         }else if(id == R.id.iv_bule) {
 
-            setBackgroudColor(getResources().getColor(R.color.blue)
-                    , getResources().getColor(R.color.blue_less), false);
+            setBackgroudColor(getResources().getColor(R.color.simple_blue)
+                    , getResources().getColor(R.color.simple_blue_less), false);
         }else if(id == R.id.iv_black){
 
-            setBackgroudColor(getResources().getColor(R.color.balck)
-                        ,getResources().getColor(R.color.black_less),true);
+            setBackgroudColor(getResources().getColor(R.color.simple_balck)
+                        ,getResources().getColor(R.color.simple_black_less),true);
         }
     }
 
@@ -494,32 +494,32 @@ public class RichTextActivity extends AppCompatActivity implements
             mScrollView.setBackgroundColor(mianColor);
             mBottom_1.setBackgroundColor(titleColor);
             if(mDrak){
-                mBack.setImageResource(R.mipmap.ic_back);
-                mTextCount.setTextColor(getResources().getColor(R.color.text_color));
-                mPulish.setTextColor(getResources().getColor(R.color.text_color));
-                mEditCapture.setTextColor(getResources().getColor(R.color.text_color));
-                mEditTitle.setTextColor(getResources().getColor(R.color.text_color));
+                mBack.setImageResource(R.mipmap.simple_ic_back);
+                mTextCount.setTextColor(getResources().getColor(R.color.simple_text_color));
+                mPulish.setTextColor(getResources().getColor(R.color.simple_text_color));
+                mEditCapture.setTextColor(getResources().getColor(R.color.simple_text_color));
+                mEditTitle.setTextColor(getResources().getColor(R.color.simple_text_color));
                // mEditTitle.setHintTextColor(getResources().getColor(R.color.text_color));
-                mDustbin.setImageResource(R.mipmap.ic_bar_trash);
-                mSetting.setImageResource(R.mipmap.ic_setting);
-                mWrite.setImageResource(R.mipmap.ic_write);
-                mHistory.setImageResource(R.mipmap.ic_history);
+                mDustbin.setImageResource(R.mipmap.simple_ic_bar_trash);
+                mSetting.setImageResource(R.mipmap.simple_ic_setting);
+                mWrite.setImageResource(R.mipmap.simple_ic_write);
+                mHistory.setImageResource(R.mipmap.simple_ic_history);
                 mDrak = false;
             }
         }else {
             mRelaTitle.setBackgroundColor(titleColor);
             mScrollView.setBackgroundColor(mianColor);
             mBottom_1.setBackgroundColor(titleColor);
-            mBack.setImageResource(R.mipmap.ic_back_dark);
-            mTextCount.setTextColor(getResources().getColor(R.color.white));
-            mPulish.setTextColor(getResources().getColor(R.color.white));
-            mEditCapture.setTextColor(getResources().getColor(R.color.white));
-            mEditTitle.setTextColor(getResources().getColor(R.color.white));
+            mBack.setImageResource(R.mipmap.simple_ic_back_dark);
+            mTextCount.setTextColor(getResources().getColor(R.color.simple_white));
+            mPulish.setTextColor(getResources().getColor(R.color.simple_white));
+            mEditCapture.setTextColor(getResources().getColor(R.color.simple_white));
+            mEditTitle.setTextColor(getResources().getColor(R.color.simple_white));
             //mEditTitle.setHintTextColor(getResources().getColor(R.color.white));
-            mDustbin.setImageResource(R.mipmap.ic_bar_trash_dark);
-            mSetting.setImageResource(R.mipmap.ic_settings_dark);
-            mWrite.setImageResource(R.mipmap.ic_write_dark);
-            mHistory.setImageResource(R.mipmap.ic_history_dark);
+            mDustbin.setImageResource(R.mipmap.simple_ic_bar_trash_dark);
+            mSetting.setImageResource(R.mipmap.simple_ic_settings_dark);
+            mWrite.setImageResource(R.mipmap.simple_ic_write_dark);
+            mHistory.setImageResource(R.mipmap.simple_ic_history_dark);
             mDrak = true;
         }
     }

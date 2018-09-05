@@ -1,16 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="simple_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/simple_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/simple_colorPrimaryDark</item>
+        <item name="colorAccent">@color/simple_colorAccent</item>
     </style>
 
-    <style name="setting_popu_anim" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/anim_pupowindow_enter</item>
-        <item name="android:windowExitAnimation">@anim/anim_pupowindow_exit</item>
+    <style name="simple_setting_popu_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/simple_anim_pupowindow_enter</item>
+        <item name="android:windowExitAnimation">@anim/simple_anim_pupowindow_exit</item>
     </style>
 
 </resources>

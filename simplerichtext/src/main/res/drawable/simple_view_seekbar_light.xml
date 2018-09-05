@@ -6,7 +6,7 @@
             <size
                 android:height="2dp" />
             <corners android:radius="5dp"/>
-            <solid android:color="@color/progress_bg" />
+            <solid android:color="@color/simple_progress_bg" />
         </shape>
     </item>
     <item
@@ -26,7 +26,7 @@
                 <size
                     android:height="2dp"/>
                 <corners android:radius="5dp"/>
-                <solid android:color="@color/main_color" />
+                <solid android:color="@color/simple_main_color" />
             </shape>
         </clip>
     </item>

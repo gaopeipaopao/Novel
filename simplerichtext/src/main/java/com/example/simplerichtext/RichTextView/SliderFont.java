@@ -56,7 +56,7 @@ public class SliderFont extends View {
     }
 
     private void init(){
-        mThumb = mContext.getResources().getDrawable(R.mipmap.ic_thumb);
+        mThumb = mContext.getResources().getDrawable(R.mipmap.simple_ic_thumb);
         mThumbPaint = new Paint();
         mProgressPaint = new Paint();
 
@@ -92,7 +92,7 @@ public class SliderFont extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        mProgressPaint.setColor(mContext.getResources().getColor(R.color.divide_color));
+        mProgressPaint.setColor(mContext.getResources().getColor(R.color.simple_divide_color));
         mProgressPaint.setStyle(Paint.Style.FILL);
         for(i = 0;i<7;i++){
             canvas.drawRect(mSpec*i+mOffsetLeft,(mHeight-30)/2,mSpec*i+3f+mOffsetLeft,

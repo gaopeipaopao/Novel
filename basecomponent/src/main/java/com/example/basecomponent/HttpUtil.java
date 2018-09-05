@@ -21,6 +21,7 @@ public class HttpUtil {
     private static String ACCESS_TOKEN = "";
     private static String REFRESH_TOKEN = "";
     public static String Authorization = "Basic YnJhbmNoOnhpeW91M2c=";
+    public static String Bearer = "Bearer ";
     private static final long DEFAULT_TIMEOUT = 60;
 
 
@@ -31,9 +32,6 @@ public class HttpUtil {
                     Request request = chain.request();
                     Request.Builder builder = request.newBuilder();
                     request = builder
-                            .addHeader("Content-Type",
-                                    "application/json;charset=UTF-8")
-                            .addHeader("Accept","application/json")
                             .build();
 
                     return chain.proceed(request);

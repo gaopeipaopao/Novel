@@ -143,6 +143,7 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
 //        },stringAccount,stringPassword,stringNumber,imei);
 
 
+
         DataModel.request(Token.ENTRY_MODEL).execute(new CallBack<LoginModule>() {
 
             @Override
@@ -156,6 +157,9 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
                     if (isViewAttached()) {
 
                         HttpUtil.setAccessToken(value.getAccessToken());
+                        Log.d(TAG, "onNext: "+value.getAccessToken());
+
+
                         HttpUtil.setRefreshToken(value.getRefreshToken());
                         getView().intentNewActivity(value.getAccessToken(),
                                 value.getRefreshToken());

@@ -16,5 +16,5 @@ public interface MyPublishService {
 
     @GET("user/book")
     Observable<BaseModule<List<MyPublishModule>>>
-            getMyPublishData(@Header("token") String token);
+            getMyPublishData(@Header("Authorization") String token);
 }

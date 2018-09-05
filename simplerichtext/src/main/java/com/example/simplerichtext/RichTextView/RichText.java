@@ -51,7 +51,8 @@ public class RichText extends AppCompatEditText {
 
                 if(mListener!=null){
 
-                    mListener.textChange( getABCCount(s.toString())+getChCount(s.toString()));
+                    mListener.textChange( getABCCount(s.toString())+
+                            getChCount(s.toString()));
                 }
 
             }

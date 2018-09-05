@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/card_back"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/simple_white"
     app:cardCornerRadius="20dp"
     android:visibility="gone"
     app:cardElevation="0dp"
@@ -30,21 +30,21 @@
             android:layout_height="50dp"
             android:textSize="14sp"
             android:id="@+id/tv_close"
-            android:textColor="@color/text_color"
-            android:text="@string/close"
+            android:textColor="@color/simple_text_color"
+            android:text="@string/simple_close"
             android:gravity="center|start"
             android:paddingLeft="10dp"
-            android:background="@color/white_50"
+            android:background="@color/simple_white_50"
             />
         
         <ImageView
             android:layout_width="120dp"
             android:layout_height="160dp"
-            android:id="@+id/iv_novel_cover"
+            android:id="@+id/iv_novel_cover_back"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/novel_bg"
+            android:src="@mipmap/simple_novel_bg"
             android:scaleType="centerCrop"
             />
 
@@ -62,17 +62,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/work_name"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_work_name"
                 android:layout_marginRight="6dp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_work_name"
+                android:id="@+id/tv_novel_name_back"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="韶华灼灼"
                 />
@@ -82,7 +82,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -100,17 +100,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/work_brief"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_work_brief"
                 android:layout_marginRight="6dp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_work_brief"
+                android:id="@+id/tv_novel_brief"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="简介简介！！！"
                 />
@@ -120,7 +120,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -137,17 +137,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/work_type"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_work_type"
                 android:layout_marginRight="6dp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_work_type"
+                android:id="@+id/tv_novel_type"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="古代言情"
                 />
@@ -157,7 +157,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -174,8 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/publish_time"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_publish_time"
                 android:layout_marginRight="6dp"
                 />
 
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_publish_time"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="2018-08-18"
                 />
@@ -194,7 +194,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:background="@color/white_200"
+            android:background="@color/simple_white_200"
             />
 
         <FrameLayout
@@ -210,17 +210,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/join_number"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_join_number"
                 android:layout_marginRight="6dp"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/yv_join_number"
+                android:id="@+id/tv_join_number"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="2"
                 />
@@ -230,7 +230,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -247,8 +247,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/write_number"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_write_number"
                 android:layout_marginRight="6dp"
                 />
 
@@ -257,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_write_number"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="3"
                 />
@@ -267,7 +267,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -284,8 +284,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/lookthrough_count"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_lookthrough_count"
                 android:layout_marginRight="6dp"
                 />
 
@@ -294,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_lookthrough_number"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="10"
                 />
@@ -304,7 +304,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_marginLeft="16dp"
             />
 
@@ -321,8 +321,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:text="@string/get_good"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_get_good"
                 android:layout_marginRight="6dp"
                 />
 
@@ -331,7 +331,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_get_good"
                 android:textSize="16sp"
-                android:textColor="@color/second_text_color"
+                android:textColor="@color/simple_second_text_color"
                 android:layout_gravity="end"
                 android:text="200"
                 />
@@ -341,14 +341,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="15dp"
-            android:background="@color/white_200"
+            android:background="@color/simple_white_200"
             />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/white_50"
+            android:background="@color/simple_white_50"
             />
 
     </LinearLayout>

@@ -13,6 +13,12 @@ public class AuthorModule {
     @SerializedName("account")
     private String mAccount;
 
+    @SerializedName("icon")
+    private String mIcon;
+
+    @SerializedName("signtext")
+    private String mSignText;
+
     public int getUserId() {
         return mUserId;
     }
@@ -23,5 +29,13 @@ public class AuthorModule {
 
     public String getAccount() {
         return mAccount;
+    }
+
+    public String getIcon() {
+        return mIcon;
+    }
+
+    public String getSignText() {
+        return mSignText;
     }
 }

@@ -19,10 +19,10 @@ public class DialogUtil {
                 .setTitle(title)
                 .setMessage(meassage)
                 .setPositiveButton(context.getResources()
-                        .getText(R.string.confirm),listener);
+                        .getText(R.string.simple_confirm),listener);
         if(cancle){
             builder.setNegativeButton(context.getResources()
-                    .getText(R.string.cancel),listener);
+                    .getText(R.string.simple_cancel),listener);
         }
 
         AlertDialog alertDialog = builder.create();

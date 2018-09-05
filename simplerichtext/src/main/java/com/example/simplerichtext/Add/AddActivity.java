@@ -11,6 +11,8 @@ public class AddActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.simple_activity_add);
+
+
     }
 }

@@ -31,9 +31,10 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mypulish);
+        setContentView(R.layout.simple_activity_mypulish);
         mPresenter = new MyPublishPresenter(this);
         init();
+        getData();
     }
 
     private void init(){
@@ -54,6 +55,11 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
         mAddWork.setOnClickListener(this);
     }
 
+    private void getData(){
+
+        mPresenter.getData();
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.tv_add){
@@ -68,5 +74,16 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
         mDatas.clear();
         mDatas.addAll(myPublishModuleList);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setDataError() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.dettachView();
+        super.onDestroy();
     }
 }

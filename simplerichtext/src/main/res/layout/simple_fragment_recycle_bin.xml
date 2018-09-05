@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="center"
-            android:src="@mipmap/ic_drafts_none"
+            android:src="@mipmap/simple_ic_recycle_bin_none"
             android:layout_above="@id/view"
             android:layout_centerHorizontal="true"
             />
@@ -33,8 +33,8 @@
             android:layout_below="@id/view"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="177dp"
-            android:text="@string/none_data"
-            android:textColor="@color/text_color"
+            android:text="@string/simple_none_data"
+            android:textColor="@color/simple_text_color"
             android:textSize="12sp" />
 
 

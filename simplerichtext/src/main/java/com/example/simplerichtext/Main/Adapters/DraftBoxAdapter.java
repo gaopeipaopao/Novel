@@ -19,7 +19,7 @@ public class DraftBoxAdapter extends RecyclerView.Adapter<DraftBoxHolder> {
     @Override
     public DraftBoxHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.fragment_draft_box,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.simple_fragment_draft_box,parent,false);
         DraftBoxHolder holder = new DraftBoxHolder(view);
 
         return holder;

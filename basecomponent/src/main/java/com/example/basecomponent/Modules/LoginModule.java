@@ -8,8 +8,10 @@ public class LoginModule {
     private int mStatus;
     @SerializedName("message")
     private String mMessage;
+
     @SerializedName("access_token")
     private String mAccessToken;
+
     @SerializedName("token_type")
     private String mTokenType;
     @SerializedName("refresh_token")

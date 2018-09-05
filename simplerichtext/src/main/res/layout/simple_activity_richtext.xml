@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/simple_white"
     tools:context=".RichTextView.RichTextActivity">
 
     <RelativeLayout
@@ -22,7 +22,7 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:scaleType="center"
-            android:src="@mipmap/ic_back" />
+            android:src="@mipmap/simple_ic_back" />
 
         <TextView
             android:id="@+id/tv_count"
@@ -32,8 +32,8 @@
             android:layout_toEndOf="@+id/iv_back"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="@string/count_0"
-            android:textColor="@color/text_count_color"
+            android:text="@string/simple_count_0"
+            android:textColor="@color/simple_text_count_color"
             android:textSize="18sp" />
 
 
@@ -43,9 +43,9 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/tv_publish"
             android:textSize="18sp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/simple_text_color"
             android:layout_alignParentEnd="true"
-            android:text="@string/publish"
+            android:text="@string/simple_publish"
             android:gravity="center"
             android:layout_marginEnd="16dp"
             />
@@ -59,7 +59,7 @@
             android:layout_marginEnd="112dp"
             android:scaleType="center"
             android:visibility="gone"
-            android:src="@mipmap/edit_chapter_undo" />
+            android:src="@mipmap/simple_edit_chapter_undo" />
 
         <ImageView
             android:id="@+id/iv_edit_redo"
@@ -70,12 +70,12 @@
             android:layout_marginEnd="68dp"
             android:scaleType="center"
             android:visibility="gone"
-            android:src="@mipmap/edit_chapter_redo" />
+            android:src="@mipmap/simple_edit_chapter_redo" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divide_color"
+            android:background="@color/simple_divide_color"
             android:layout_alignParentBottom="true"
 
             />
@@ -193,8 +193,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color" />
+        android:background="@color/simple_divide_color" />
 
-    <include layout="@layout/layout_richtext_bottom"/>
+    <include layout="@layout/simple_layout_richtext_bottom"/>
 
 </LinearLayout>

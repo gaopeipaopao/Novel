@@ -1,5 +1,7 @@
 package com.example.simplerichtext.Main.Modules;
 
+import android.util.Log;
+
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.CallBack;
 import com.example.basecomponent.Excutes.MyPublishExcute;
@@ -16,6 +18,8 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
     private MyPublishPresenter mPersenter;
 
+    private static final String TAG = "MyPulish";
+
     public MyPulish(MyPublishPresenter persenter) {
         this.mPersenter = persenter;
     }
@@ -27,10 +31,12 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
             @Override
             public void onSubscribe() {
 
+
             }
 
             @Override
             public void onNext(BaseModule<List<MyPublishModule>> value) {
+                Log.d(TAG, "onNext: "+"mmmm");
                 mPersenter.onNext(value);
             }
 

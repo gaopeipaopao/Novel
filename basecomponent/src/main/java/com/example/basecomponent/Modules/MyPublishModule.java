@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MyPublishModule {
 
-    @SerializedName("bookid")
+    @SerializedName("bookId")
     private int mBookId;
 
     @SerializedName("bookName")
@@ -13,14 +13,32 @@ public class MyPublishModule {
     @SerializedName("bookType")
     private String mBookType;
 
+    @SerializedName("bookImage")
+    private String mBookCover;
+
     @SerializedName("createTime")
     private String mCreateTime;
+
+    @SerializedName("focusOnNum")
+    private int mFocusOnNum;
+
+    @SerializedName("commentNum")
+    private int mCommentNum;
 
     @SerializedName("branchNum")
     private int  mBranchNum;
 
     @SerializedName("readNum")
     private int mReadNum;
+
+    @SerializedName("allWords")
+    private int mAllWords;
+
+    @SerializedName("maxLayer")
+    private int mMaxLayer;
+
+    @SerializedName("joinUsers")
+    private int mJoinUsers;
 
     @SerializedName("content")
     private String mContent;
@@ -58,5 +76,29 @@ public class MyPublishModule {
 
     public AuthorModule getAuthor() {
         return mAuthor;
+    }
+
+    public String getBookCover() {
+        return mBookCover;
+    }
+
+    public int getFocusOnNum() {
+        return mFocusOnNum;
+    }
+
+    public int getCommentNum() {
+        return mCommentNum;
+    }
+
+    public int getAllWords() {
+        return mAllWords;
+    }
+
+    public int getMaxLayer() {
+        return mMaxLayer;
+    }
+
+    public int getJoinUsers() {
+        return mJoinUsers;
     }
 }

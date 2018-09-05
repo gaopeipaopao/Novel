@@ -50,7 +50,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
 
     private void init(){
        mRoot =  LayoutInflater.from(mContext).inflate
-               (R.layout.layout_richtext_setting,null,false);
+               (R.layout.simple_layout_richtext_setting,null,false);
        setContentView(mRoot);
        setFocusable(true);
        setOutsideTouchable(true);
@@ -230,27 +230,27 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
         if (id == R.id.iv_white) {
 
             mWhite.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
         }else if(id == R.id.iv_pink) {
 
             mPink.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
         }else if(id == R.id.iv_yellow) {
 
             mYellow.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
         }else if(id ==R.id.iv_green ) {
 
             mGreen.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
         }else if(id == R.id.iv_bule) {
 
             mBule.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
         }else if(id == R.id.iv_black){
 
             mBlack.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_no_selection));
+                    .getDrawable(R.drawable.simple_bg_color_no_selection));
 
         }
     }
@@ -259,27 +259,27 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
         if (id == R.id.iv_white) {
 
             mWhite.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
         }else if(id ==R.id.iv_pink ) {
 
             mPink.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
         }else if(id ==R.id.iv_yellow ) {
 
             mYellow.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
         }else if(id == R.id.iv_green) {
 
             mGreen.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
         }else if(id == R.id.iv_bule) {
 
             mBule.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
         }else if(id == R.id.iv_black){
 
             mBlack.setBackground(mContext.getResources()
-                    .getDrawable(R.drawable.bg_color_selection));
+                    .getDrawable(R.drawable.simple_bg_color_selection));
 
         }
     }

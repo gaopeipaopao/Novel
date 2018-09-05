@@ -5,13 +5,13 @@
 
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/gray"/>
+            <solid android:color="@color/simple_gray"/>
         </shape>
     </item>
 
     <item android:bottom="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/white"/>
+            <solid android:color="@color/simple_white"/>
         </shape>
     </item>
 </layer-list>

@@ -26,13 +26,15 @@ public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {
     public MyWorkHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(mContext).
-                inflate(R.layout.layout_main_recycler_item,parent,false);
+                inflate(R.layout.simple_layout_main_recycler_item,parent,false);
 
         return new MyWorkHolder(mContext,view);
     }
 
     @Override
     public void onBindViewHolder(MyWorkHolder holder, int position) {
+
+        holder.setData(mDatas.get(position));
 
     }
 

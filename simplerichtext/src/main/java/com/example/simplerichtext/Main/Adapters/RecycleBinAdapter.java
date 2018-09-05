@@ -19,7 +19,7 @@ public class RecycleBinAdapter extends RecyclerView.Adapter<RecycleBinHolder> {
 
     @Override
     public RecycleBinHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_recycle_bin_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.simple_layout_recycle_bin_item,parent,false);
         RecycleBinHolder holder = new RecycleBinHolder(view);
 
         return holder;

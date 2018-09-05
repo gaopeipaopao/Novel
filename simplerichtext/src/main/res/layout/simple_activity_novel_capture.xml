@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:paddingTop="24dp"
-        android:background="@color/main_color"
+        android:background="@color/simple_main_color"
         >
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iv_back"
-            android:src="@mipmap/ic_back_dark"
+            android:src="@mipmap/simple_ic_back_dark"
             android:scaleType="center"
             />
 
@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:id="@+id/tv_novel_name"
             android:textSize="16sp"
-            android:textColor="@color/white"
+            android:textColor="@color/simple_white"
             android:layout_marginLeft="50dp"
             android:text="韶华灼灼"
             android:gravity="center"
@@ -41,10 +41,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tab_layout"
-        android:background="@color/main_color"
-        app:tabIndicatorColor="@color/white"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/white_50"
+        android:background="@color/simple_main_color"
+        app:tabIndicatorColor="@color/simple_white"
+        app:tabSelectedTextColor="@color/simple_white"
+        app:tabTextColor="@color/simple_white_50"
         app:tabMode="fixed"
         >
 
@@ -52,21 +52,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tab_draft_box"
-            android:text="@string/draft_box"
+            android:text="@string/simple_draft_box"
             />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tab_published_capture"
-            android:text="@string/published_capture"
+            android:text="@string/simple_published_capture"
             />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tab_recycle_bin"
-            android:text="@string/recycle_bin"
+            android:text="@string/simple_recycle_bin"
             />
 
 

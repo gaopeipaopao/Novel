@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/simple_white"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:layout_marginLeft="5dp"
@@ -27,7 +27,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            android:src="@mipmap/chapter_page_less_brightness" />
+            android:src="@mipmap/simple_chapter_page_less_brightness" />
 
         <SeekBar
             android:id="@+id/seekbar_light"
@@ -39,8 +39,8 @@
             android:minHeight="3dp"
             android:max="10"
             android:min="0"
-            android:progressDrawable="@drawable/view_seekbar_light"
-            android:thumb="@drawable/seekbar_thumb"
+            android:progressDrawable="@drawable/simple_view_seekbar_light"
+            android:thumb="@drawable/simple_seekbar_thumb"
             />
 
         <ImageView
@@ -48,7 +48,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            android:src="@mipmap/chapter_page_more_brightness" />
+            android:src="@mipmap/simple_chapter_page_more_brightness" />
 
     </LinearLayout>
 
@@ -65,9 +65,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            android:src="@mipmap/chapter_page_font_small" />
+            android:src="@mipmap/simple_chapter_page_font_small" />
 
-        <com.example.asus1.simplerichtext.RichTextView.SliderFont
+        <com.example.simplerichtext.RichTextView.SliderFont
             android:id="@+id/seekbar_font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -81,7 +81,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            android:src="@mipmap/chapter_page_font_large" />
+            android:src="@mipmap/simple_chapter_page_font_large" />
 
     </LinearLayout>
 
@@ -100,7 +100,7 @@
             android:id="@+id/iv_white"
             android:src="#fff"
             android:padding="5dp"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             android:clickable="true"
             android:focusable="true"
             />
@@ -111,7 +111,7 @@
             android:id="@+id/iv_pink"
             android:src="#ffcccc"
             android:padding="5dp"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="0dp"
@@ -120,7 +120,7 @@
             android:id="@+id/iv_yellow"
             android:src="#ffffcc"
             android:padding="5dp"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="0dp"
@@ -129,7 +129,7 @@
             android:id="@+id/iv_green"
             android:src="#ccffcc"
             android:padding="5dp"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="0dp"
@@ -137,7 +137,7 @@
             android:layout_height="50dp"
             android:id="@+id/iv_bule"
             android:src="#99cccc"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             android:padding="5dp"
             />
         <de.hdodenhof.circleimageview.CircleImageView
@@ -147,7 +147,7 @@
             android:id="@+id/iv_black"
             android:src="#333"
             android:padding="5dp"
-            android:background="@drawable/bg_color_no_selection"
+            android:background="@drawable/simple_bg_color_no_selection"
             />
 
     </LinearLayout>

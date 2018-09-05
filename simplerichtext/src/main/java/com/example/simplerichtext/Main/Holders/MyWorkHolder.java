@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.simplerichtext.Main.Activities.NovelCaptureActivity;
 import com.example.simplerichtext.R;
 
@@ -23,6 +26,21 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     private TextView mSeeWork;
     private TextView mClose;
     private Context mContext;
+
+    private TextView mBookName;
+    private TextView mBookNameBack;
+    private ImageView mBookCover;
+    private ImageView mBookCoverBack;
+
+    private TextView mBookType;
+    private TextView mCreateTime;
+    private TextView mBookBrief;
+    private TextView mAuthor;
+
+    private TextView mJoinNum;
+    private TextView mWriteNum;
+    private TextView mLookNum;
+    private TextView mGood;
 
     private static final String TAG = "MyWorkHolder";
 
@@ -39,7 +57,41 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         mClose.setOnClickListener(this);
         mSeeWork = mRoot.findViewById(R.id.tv_see_work);
         mSeeWork.setOnClickListener(this);
+
+        mBookName = mRoot.findViewById(R.id.tv_novel_name);
+        mBookNameBack = mRoot.findViewById(R.id.tv_novel_name_back);
+
+        mBookCover = mRoot.findViewById(R.id.iv_novel_cover);
+        mBookCoverBack = mRoot.findViewById(R.id.iv_novel_cover_back);
+        mBookBrief = mRoot.findViewById(R.id.tv_novel_brief);
+        mBookType = mRoot.findViewById(R.id.tv_novel_type);
+        mCreateTime = mRoot.findViewById(R.id.tv_publish_time);
+        mJoinNum = mRoot.findViewById(R.id.tv_join_number);
+        mWriteNum = mRoot.findViewById(R.id.tv_write_number);
+        mLookNum = mRoot.findViewById(R.id.tv_lookthrough_number);
         setCameraDistance();
+    }
+
+    public void setData(MyPublishModule data){
+
+        mBookName.setText(data.getBookName());
+        mBookNameBack.setText(data.getBookName());
+        Glide.with(mContext)
+                .load(data.getBookCover())
+                .into(mBookCover);
+
+        Glide.with(mContext)
+                .load(data.getBookCover())
+                .into(mBookCoverBack);
+        mBookBrief.setText(data.getContent().subSequence(0,data.getContent().length()>9?
+                9:data.getContent().length()-1)+"...");
+        mBookType.setText(data.getBookType());
+        mCreateTime.setText(data.getCreateTime());
+        mWriteNum.setText(data.getBranchNum());
+        mLookNum.setText(data.getReadNum());
+        mJoinNum.setText(data.getJoinUsers());
+        mAuthor.setText(data.getAuthor().getUserName());
+
     }
 
     @Override
@@ -60,9 +112,9 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     private void openBack(){
         ObjectAnimator front = (ObjectAnimator) AnimatorInflater.
-                loadAnimator(mContext, R.animator.animtor_card_front_gone);
+                loadAnimator(mContext, R.animator.simple_animtor_card_front_gone);
         ObjectAnimator back = (ObjectAnimator)AnimatorInflater.
-                loadAnimator(mContext,R.animator.animtor_card_back_show);
+                loadAnimator(mContext,R.animator.simple_animtor_card_back_show);
        front.setTarget(mFront);
        back.setTarget(mBack);
        front.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -83,9 +135,9 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     private void openFront(){
 
         ObjectAnimator front = (ObjectAnimator) AnimatorInflater.
-                loadAnimator(mContext,R.animator.animtor_card_front_show);
+                loadAnimator(mContext,R.animator.simple_animtor_card_front_show);
         ObjectAnimator back = (ObjectAnimator)AnimatorInflater.
-                loadAnimator(mContext,R.animator.animtor_card_back_gone);
+                loadAnimator(mContext,R.animator.simple_animtor_card_back_gone);
         front.setTarget(mFront);
         back.setTarget(mBack);
         back.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

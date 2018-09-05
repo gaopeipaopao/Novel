@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.basecomponent.HttpUtil;
 import com.example.gaope.novel.Base.BaseActivity;
 import com.example.gaope.novel.Main.BookShelves.BookShelvesFragment;
 import com.example.gaope.novel.Main.Find.FindFragment;
@@ -180,6 +181,8 @@ public class HomeActivity extends BaseActivity implements HomeView,BottomNavigat
     @Override
     public void setToken(String accessToken, String refreshToken) {
         Log.d(TAG,"555");
+        HttpUtil.setAccessToken(accessToken);
+        HttpUtil.setRefreshToken(refreshToken);
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }

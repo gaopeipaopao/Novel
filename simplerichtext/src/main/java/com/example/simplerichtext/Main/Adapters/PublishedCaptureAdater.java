@@ -19,7 +19,7 @@ public class PublishedCaptureAdater extends RecyclerView.Adapter<PublihedCapture
 
     @Override
     public PublihedCaptureHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_published_capture_item,
+        View view = LayoutInflater.from(mContext).inflate(R.layout.simple_layout_published_capture_item,
                 parent,false);
         PublihedCaptureHolder holder = new PublihedCaptureHolder(view);
         return holder;

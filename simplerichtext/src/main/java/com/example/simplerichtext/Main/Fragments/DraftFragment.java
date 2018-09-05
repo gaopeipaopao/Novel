@@ -25,7 +25,7 @@ public class DraftFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_draft_box,container,false);
+        mView = inflater.inflate(R.layout.simple_fragment_draft_box,container,false);
         mRecyclerView = mView.findViewById(R.id.recycler_view);
         mAdapter = new PublishedCaptureAdater(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

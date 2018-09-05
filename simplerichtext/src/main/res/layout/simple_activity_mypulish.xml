@@ -6,21 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/simple_white"
     tools:context=".Main.Activities.MyPublishActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:paddingTop="24dp"
-        android:background="@color/main_color"
+        android:background="@color/simple_main_color"
         >
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iv_back"
-            android:src="@mipmap/ic_back_dark"
+            android:src="@mipmap/simple_ic_back_dark"
             android:scaleType="center"
             />
 
@@ -29,8 +29,8 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@id/iv_back"
             android:gravity="center"
-            android:text="@string/my_work"
-            android:textColor="@color/white"
+            android:text="@string/simple_my_work"
+            android:textColor="@color/simple_white"
             android:textSize="16sp" />
 
 
@@ -39,8 +39,8 @@
             android:layout_height="match_parent"
             android:id="@+id/tv_add"
             android:textSize="16sp"
-            android:textColor="@color/white"
-            android:text="@string/add"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_add"
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:layout_marginRight="16dp"
@@ -51,14 +51,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color"
+        android:background="@color/simple_divide_color"
         />
 
     <com.example.simplerichtext.Main.Views.CardRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
-        android:background="@color/color_f2f2f2f2"
+        android:background="@color/simple_color_f2f2f2f2"
         >
 
 

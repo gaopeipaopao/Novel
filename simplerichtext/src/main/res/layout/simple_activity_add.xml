@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/simple_white"
    >
 
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:paddingTop="24dp"
-        android:background="@color/main_color"
+        android:background="@color/simple_main_color"
         android:orientation="horizontal"
         >
 
@@ -22,7 +22,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/iv_back"
-            android:src="@mipmap/ic_back_dark"
+            android:src="@mipmap/simple_ic_back_dark"
             android:scaleType="center"
             />
 
@@ -31,8 +31,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/white"
-            android:text="@string/fill_in_information"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_fill_in_information"
             android:layout_gravity="center"
             />
 
@@ -41,8 +41,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_finish"
             android:textSize="16sp"
-            android:textColor="@color/white"
-            android:text="@string/finish"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_finish"
             android:layout_gravity="center"
             android:layout_marginRight="16dp"
             />
@@ -60,7 +60,7 @@
             android:layout_width="60dp"
             android:layout_height="80dp"
             android:id="@+id/iv_book_bg"
-            android:src="@color/gray"
+            android:src="@color/simple_gray"
             android:layout_marginLeft="16dp"
             />
 
@@ -80,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_bookname"
                 android:textSize="14sp"
-                android:textColor="@color/text_color"
-                android:text="@string/book_name"
+                android:textColor="@color/simple_text_color"
+                android:text="@string/simple_book_name"
 
                 />
 
@@ -92,11 +92,11 @@
                 android:maxLines="1"
                 android:layout_marginTop="6dp"
                 android:padding="4dp"
-                android:hint="@string/max_book_name"
+                android:hint="@string/simple_max_book_name"
                 android:textSize="14sp"
-                android:textColor="@color/text_color"
+                android:textColor="@color/simple_text_color"
                 android:lines="1"
-                android:background="@drawable/bg_editext"
+                android:background="@drawable/simple_bg_editext"
 
                 />
         </LinearLayout>
@@ -107,7 +107,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:background="@color/white_100"
+        android:background="@color/simple_white_100"
         />
     
 
@@ -116,16 +116,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:background="@drawable/cilick_publish_story_item"
+        android:background="@drawable/simple_cilick_publish_story_item"
         android:id="@+id/relat_publish_type"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/publish_type"
+            android:text="@string/simple_publish_type"
             android:textSize="14sp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/simple_text_color"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -135,9 +135,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/second_text_color"
-            android:text="@string/please_select"
-            android:drawableEnd="@mipmap/ic_more"
+            android:textColor="@color/simple_second_text_color"
+            android:text="@string/simple_please_select"
+            android:drawableEnd="@mipmap/simple_ic_more"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -150,7 +150,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color"
+        android:background="@color/simple_divide_color"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         />
@@ -159,16 +159,16 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/cilick_publish_story_item"
+        android:background="@drawable/simple_cilick_publish_story_item"
         android:id="@+id/relat_book_type"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_type"
+            android:text="@string/simple_book_type"
             android:textSize="14sp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/simple_text_color"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -178,9 +178,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/second_text_color"
-            android:text="@string/please_select"
-            android:drawableEnd="@mipmap/ic_more"
+            android:textColor="@color/simple_second_text_color"
+            android:text="@string/simple_please_select"
+            android:drawableEnd="@mipmap/simple_ic_more"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -192,7 +192,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color"
+        android:background="@color/simple_divide_color"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         />
@@ -201,16 +201,16 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/cilick_publish_story_item"
+        android:background="@drawable/simple_cilick_publish_story_item"
         android:id="@+id/relat_book_writer"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_writer"
+            android:text="@string/simple_book_writer"
             android:textSize="14sp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/simple_text_color"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -220,9 +220,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/second_text_color"
-            android:text="@string/please_select"
-            android:drawableEnd="@mipmap/ic_more"
+            android:textColor="@color/simple_second_text_color"
+            android:text="@string/simple_please_select"
+            android:drawableEnd="@mipmap/simple_ic_more"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -234,23 +234,23 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color"
+        android:background="@color/simple_divide_color"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/cilick_publish_story_item"
+        android:background="@drawable/simple_cilick_publish_story_item"
         android:id="@+id/relat_book_public"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/book_public"
+            android:text="@string/simple_book_public"
             android:textSize="14sp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/simple_text_color"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -260,9 +260,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/second_text_color"
-            android:text="@string/please_select"
-            android:drawableEnd="@mipmap/ic_more"
+            android:textColor="@color/simple_second_text_color"
+            android:text="@string/simple_please_select"
+            android:drawableEnd="@mipmap/simple_ic_more"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -274,7 +274,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/divide_color"
+        android:background="@color/simple_divide_color"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         />

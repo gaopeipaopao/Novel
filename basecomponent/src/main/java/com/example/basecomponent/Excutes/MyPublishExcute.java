@@ -1,5 +1,7 @@
 package com.example.basecomponent.Excutes;
 
+import android.util.Log;
+
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.CallBack;
 import com.example.basecomponent.HttpUtil;
@@ -17,27 +19,35 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MyPublishExcute {
 
-    public static void excute(CallBack<BaseModule<List<MyPublishModule>>> callBack){
+
+    private static final String TAG = "MyPublishExcute";
+
+    public static void excute(final CallBack<BaseModule<List<MyPublishModule>>> callBack){
 
 
         MyPublishService service = HttpUtil.getRetrofit().create(MyPublishService.class);
-        service.getMyPublishData(HttpUtil.getAccessToken())
+        Log.d(TAG, "excute: "+HttpUtil.Bearer+HttpUtil.getAccessToken());
+        service.getMyPublishData(HttpUtil.Bearer+HttpUtil.getAccessToken())
                 .subscribeOn(Schedulers.io())//IO线程加载数据
                 .observeOn(AndroidSchedulers.mainThread())//主线程显示数据
                 .subscribe(new Observer<BaseModule<List<MyPublishModule>>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
+                        Log.d(TAG, "onSubscribe: ");
                     }
 
                     @Override
                     public void onNext(BaseModule<List<MyPublishModule>> value) {
 
+                        Log.d(TAG, "onNext: ");
+
+                        callBack.onNext(value);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.d(TAG, "onError: "+e.getMessage());
                     }
 
                     @Override

@@ -44,7 +44,12 @@ public class CardRecyclerView extends RecyclerView {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        mCardWidth = mWidth/getChildCount();
+        if(getChildCount() !=0){
+            mCardWidth = mWidth/getChildCount();
+        }else {
+            mCardWidth = 0;
+        }
+
 
     }
 
@@ -58,49 +63,53 @@ public class CardRecyclerView extends RecyclerView {
     public boolean onTouchEvent(MotionEvent e) {
         boolean result  = super.onTouchEvent(e);
 
-        if(e.getActionMasked() == MotionEvent.ACTION_DOWN){
-            mDownX = e.getX();
+        if(mCardWidth != 0){
+            if(e.getActionMasked() == MotionEvent.ACTION_DOWN){
+                mDownX = e.getX();
 
-        }
+            }
 
-        if(e.getActionMasked() == MotionEvent.ACTION_MOVE){
-            if(Math.abs(mMaxX)<Math.abs(mDownX-e.getX())){
-                mMaxX = mDownX-e.getX();
+            if(e.getActionMasked() == MotionEvent.ACTION_MOVE){
+                if(Math.abs(mMaxX)<Math.abs(mDownX-e.getX())){
+                    mMaxX = mDownX-e.getX();
+                }
+            }
+
+            if(e.getActionMasked() == MotionEvent.ACTION_UP){
+                float delatX = mDownX - e.getX();
+                Log.d(TAG, "onTouchEvent: "+delatX+"---"+mMaxX);
+                if(Math.abs(delatX)>=mCardWidth/3){
+
+                    if(delatX<0){
+                        smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30)*-1,0);
+                    }else {
+                        smoothScrollBy((int)Math.ceil(mCardWidth-delatX+30),0);
+                    }
+
+                }else {
+                    if(Math.abs(mMaxX)<=Math.abs(delatX)){
+                        smoothScrollBy((int) Math.floor(delatX)*-1,0);
+                    }else {
+
+                        int index = ((LinearLayoutManager)getLayoutManager()).
+                                findFirstVisibleItemPosition();
+
+                        if(index == -1){
+                            index = 0;
+                        }else if(index >=getChildCount()){
+                            index = getChildCount() -2;
+                        }
+
+                        smoothScrollToPosition(index+1);
+
+                    }
+
+
+                }
             }
         }
 
-        if(e.getActionMasked() == MotionEvent.ACTION_UP){
-           float delatX = mDownX - e.getX();
-           Log.d(TAG, "onTouchEvent: "+delatX+"---"+mMaxX);
-           if(Math.abs(delatX)>=mCardWidth/3){
 
-               if(delatX<0){
-                   smoothScrollBy((int) Math.ceil(mCardWidth+delatX+30)*-1,0);
-               }else {
-                   smoothScrollBy((int)Math.ceil(mCardWidth-delatX+30),0);
-               }
-
-           }else {
-               if(Math.abs(mMaxX)<=Math.abs(delatX)){
-                   smoothScrollBy((int) Math.floor(delatX)*-1,0);
-               }else {
-
-                   int index = ((LinearLayoutManager)getLayoutManager()).
-                           findFirstVisibleItemPosition();
-
-                   if(index == -1){
-                       index = 0;
-                   }else if(index >=getChildCount()){
-                       index = getChildCount() -2;
-                   }
-
-                   smoothScrollToPosition(index+1);
-
-               }
-
-
-           }
-        }
 
         return result;
     }

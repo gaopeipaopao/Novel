@@ -24,7 +24,7 @@
             android:layout_height="40dp"
             android:scaleType="center"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_bar_trash" />
+            android:src="@mipmap/simple_ic_bar_trash" />
 
         <ImageView
             android:id="@+id/iv_setting"
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:scaleType="center"
-            android:src="@mipmap/ic_setting"
+            android:src="@mipmap/simple_ic_setting"
             />
 
         <ImageView
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:scaleType="center"
-            android:src="@mipmap/ic_write"
+            android:src="@mipmap/simple_ic_write"
             />
 
         <ImageView
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:scaleType="center"
-            android:src="@mipmap/ic_history" />
+            android:src="@mipmap/simple_ic_history" />
 
 
     </LinearLayout>
@@ -62,7 +62,7 @@
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:background="@color/green_50"
+        android:background="@color/simple_green_50"
         android:visibility="gone"
         android:id="@+id/ll_bottom_2"
         >
@@ -73,14 +73,14 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:scaleType="center"
-            android:src="@mipmap/voice_small" />
+            android:src="@mipmap/simple_voice_small" />
 
         <ImageView
             android:id="@+id/iv_comma"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:scaleType="center"
-            android:src="@mipmap/comma"
+            android:src="@mipmap/simple_comma"
             />
 
         <ImageView
@@ -88,7 +88,7 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:scaleType="center"
-            android:src="@mipmap/fullstop"
+            android:src="@mipmap/simple_fullstop"
             />
 
         <ImageView
@@ -97,13 +97,13 @@
             android:layout_height="30dp"
             android:layout_gravity="end"
             android:scaleType="center"
-            android:src="@mipmap/colon" />
+            android:src="@mipmap/simple_colon" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:id="@+id/iv_quotation"
-            android:src="@mipmap/quotation"
+            android:src="@mipmap/simple_quotation"
             android:scaleType="center"
             />
 
@@ -118,7 +118,7 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:layout_gravity="end"
-            android:src="@mipmap/keyboard_down2" />
+            android:src="@mipmap/simple_keyboard_down2" />
 
 
     </LinearLayout>

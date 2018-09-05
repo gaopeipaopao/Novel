@@ -24,7 +24,7 @@ public class NovelCaptureActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_novel_capture);
+        setContentView(R.layout.simple_activity_novel_capture);
         init();
     }
 
@@ -35,9 +35,9 @@ public class NovelCaptureActivity extends BaseActivity {
         mFragments.add(new PublishedCaptureFragment());
         mFragments.add(new RecycleBinFragment());
         mTitles = new String[]{
-                getResources().getString(R.string.draft_box),
-                getResources().getString(R.string.published_capture),
-                getResources().getString(R.string.recycle_bin)
+                getResources().getString(R.string.simple_draft_box),
+                getResources().getString(R.string.simple_published_capture),
+                getResources().getString(R.string.simple_recycle_bin)
         };
 
         mAdater = new CaptureViewPagerAdater(getSupportFragmentManager(),

@@ -24,7 +24,7 @@ public class PublishedCaptureFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_published_capture,container,false);
+        mView = inflater.inflate(R.layout.simple_fragment_published_capture,container,false);
         mRecyclerView = mView.findViewById(R.id.recycler_view);
         mAdapter = new DraftBoxAdapter(getContext());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
