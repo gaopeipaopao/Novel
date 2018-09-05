@@ -3,12 +3,13 @@ package com.example.gaope.novel.Entry;
 import android.util.Log;
 
 import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.CallBack;
 import com.example.basecomponent.Excutes.LoginExcute;
 import com.example.gaope.novel.Base.BaseModel;
 import com.example.gaope.novel.Tool.EntryAccount;
 import com.google.gson.Gson;
 
-import io.reactivex.Observer;
+
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -36,7 +37,7 @@ public class EntryNumberModel implements BaseModel<BaseModule> {
     }
 
     @Override
-    public void execute(Observer<BaseModule> observer, String... args) {
+    public void execute(CallBack<BaseModule> observer, String... args) {
         LoginExcute.CodeExcute(observer,args[0]);
     }
 }

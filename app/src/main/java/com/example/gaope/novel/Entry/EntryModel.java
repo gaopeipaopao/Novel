@@ -3,6 +3,7 @@ package com.example.gaope.novel.Entry;
 import android.util.Log;
 
 import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.CallBack;
 import com.example.basecomponent.Excutes.LoginExcute;
 import com.example.basecomponent.Modules.LoginModule;
 import com.example.gaope.novel.Base.BaseActivity;
@@ -11,8 +12,6 @@ import com.example.gaope.novel.Base.BaseModel;
 import com.example.gaope.novel.Tool.EntryAccount;
 import com.google.gson.Gson;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -53,8 +52,7 @@ public class EntryModel implements BaseModel<LoginModule>{
     }
 
     @Override
-    public void execute(Observer<LoginModule> observer, String... args) {
-        Log.d(TAG, "execute: "+args[0]+"----"+args[1]+"----"+args[2]+"---"+args[3]);
+    public void execute(CallBack<LoginModule> observer, String... args) {
         LoginExcute.loginexecute(observer,args[0],args[1],args[2],args[3]);
     }
 }

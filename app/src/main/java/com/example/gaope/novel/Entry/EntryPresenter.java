@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.CallBack;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.LoginModule;
 import com.example.gaope.novel.Base.BaseActivity;
@@ -29,10 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.HttpRetryException;
 import java.security.acl.LastOwnerException;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -143,36 +143,16 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
 //        },stringAccount,stringPassword,stringNumber,imei);
 
 
-        DataModel.request(Token.ENTRY_MODEL).execute(new Observer<LoginModule>() {
+        DataModel.request(Token.ENTRY_MODEL).execute(new CallBack<LoginModule>() {
 
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onSubscribe() {
                 Log.d(TAG, "onSubscribe: ");
             }
 
             @Override
             public void onNext(LoginModule value) {
 
-                Log.d(TAG, "onNext: ");
-
-                int status = value.getStatus();
-                String stausMessage = value.getMessage();
-                if (status == 1 && stausMessage!=null&&stausMessage.contains("验证码")) {
-                    if (isViewAttached()) {
-                        Message message = Message.obtain();
-                        message.what = 2;
-                        EntryActivity.handlers.sendMessage(message);
-                        //showMistake()方法中有更新UI的操作
-//                        getView().showMistake();
-                    }
-                } else if (status == 1 && stausMessage!=null&&stausMessage.contains("账号")) {
-                    if (isViewAttached()) {
-                        Log.d(TAG, "onNext: "+stausMessage);
-                        Message message = Message.obtain();
-                        message.what = 0;
-                        EntryActivity.handlers.sendMessage(message);
-                    }
-                }else {
                     if (isViewAttached()) {
 
                         HttpUtil.setAccessToken(value.getAccessToken());
@@ -180,15 +160,40 @@ public class EntryPresenter extends BasePresenter<EntryView> implements IEntryPr
                         getView().intentNewActivity(value.getAccessToken(),
                                 value.getRefreshToken());
                     }
-                }
+
             }
 
             @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, "onError: "+e.getMessage());
-                if (isViewAttached()){
-                    getView().showMistake();
+            public void onError(LoginModule e) {
+
+                if(e!=null){
+                    int status = e.getStatus();
+                    String stausMessage = e.getMessage();
+                    if (status == 1 && stausMessage!=null&&stausMessage.contains("验证码")) {
+                        if (isViewAttached()) {
+                            Log.d(TAG, "onNext: "+stausMessage);
+                            Message message = Message.obtain();
+                            message.what = 2;
+                            EntryActivity.handlers.sendMessage(message);
+                            //showMistake()方法中有更新UI的操作
+//                        getView().showMistake();
+                        }
+                    } else if (status == 1 && stausMessage!=null&&stausMessage.contains("账号")) {
+                        if (isViewAttached()) {
+                            Log.d(TAG, "onNext: "+stausMessage);
+                            Message message = Message.obtain();
+                            message.what = 0;
+                            EntryActivity.handlers.sendMessage(message);
+                        }
+                    }
+                }else {
+                    Log.d(TAG, "onError: "+111111);
+                    if (isViewAttached()){
+                        getView().showMistake();
+                    }
                 }
+
+
             }
 
             @Override

@@ -1,6 +1,7 @@
 package com.example.simplerichtext.Main.Modules;
 
 import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.CallBack;
 import com.example.basecomponent.Excutes.MyPublishExcute;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
@@ -10,8 +11,6 @@ import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
@@ -24,9 +23,9 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
     @Override
     public void getMyPublishData() {
 
-        MyPublishExcute.excute(new Observer<BaseModule<List<MyPublishModule>>>() {
+        MyPublishExcute.excute(new CallBack<BaseModule<List<MyPublishModule>>>() {
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onSubscribe() {
 
             }
 
@@ -36,7 +35,7 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
             }
 
             @Override
-            public void onError(Throwable e) {
+            public void onError(BaseModule<List<MyPublishModule>> e) {
 
             }
 

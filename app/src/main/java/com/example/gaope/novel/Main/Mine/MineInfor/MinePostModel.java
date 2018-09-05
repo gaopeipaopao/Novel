@@ -1,8 +1,8 @@
 package com.example.gaope.novel.Main.Mine.MineInfor;
 
+import com.example.basecomponent.CallBack;
 import com.example.gaope.novel.Base.BaseModel;
 
-import io.reactivex.Observer;
 import okhttp3.Callback;
 
 public class MinePostModel implements BaseModel {
@@ -12,7 +12,7 @@ public class MinePostModel implements BaseModel {
     }
 
     @Override
-    public void execute(Observer observer, String... args) {
+    public void execute(CallBack observer, String... args) {
 
     }
 }

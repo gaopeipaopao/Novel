@@ -2,10 +2,10 @@ package com.example.gaope.novel.Prove;
 
 import android.util.Log;
 
+import com.example.basecomponent.CallBack;
 import com.example.gaope.novel.Base.BaseModel;
 import com.google.gson.Gson;
 
-import io.reactivex.Observer;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -33,7 +33,7 @@ public class ProveModel implements BaseModel {
     }
 
     @Override
-    public void execute(Observer observer, String... args) {
+    public void execute(CallBack observer, String... args) {
 
     }
 }
