@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.simplerichtext.Add.AddActivity;
 import com.example.simplerichtext.Base.BaseActivity;
@@ -18,6 +19,7 @@ import com.example.simplerichtext.R;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = "/simple/myPublishActivity")
 public class MyPublishActivity extends BaseActivity implements View.OnClickListener
         ,MyPublishPresenter.myPublishViewLisnter{
 

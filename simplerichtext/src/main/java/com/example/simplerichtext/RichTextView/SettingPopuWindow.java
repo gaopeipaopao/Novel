@@ -55,7 +55,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
        setFocusable(true);
        setOutsideTouchable(true);
        setTouchable(true);
-       setAnimationStyle(R.style.setting_popu_anim);
+       setAnimationStyle(R.style.simple_setting_popu_anim);
     }
 
     private void initView(){

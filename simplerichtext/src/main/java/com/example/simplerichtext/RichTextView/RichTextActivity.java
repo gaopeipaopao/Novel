@@ -277,16 +277,16 @@ public class RichTextActivity extends AppCompatActivity implements
 
             }else if(v.getId() == R.id.iv_comma) {
 
-                addPunctuation(getResources().getString(R.string.comma));
+                addPunctuation(getResources().getString(R.string.simple_comma));
             }else if(v.getId() ==R.id.iv_period ) {
 
-                addPunctuation(getResources().getString(R.string.fullSpot));
+                addPunctuation(getResources().getString(R.string.simple_fullSpot));
             }else if(v.getId() == R.id.iv_colon) {
 
-                addPunctuation(getResources().getString(R.string.colon));
+                addPunctuation(getResources().getString(R.string.simple_colon));
             }else if(v.getId() ==R.id.iv_quotation ) {
 
-                addPunctuation(getResources().getString(R.string.quotation));
+                addPunctuation(getResources().getString(R.string.simple_quotation));
             }else if(v.getId() == R.id.iv_close_soft) {
 
                 hindKeyboard();
@@ -349,14 +349,14 @@ public class RichTextActivity extends AppCompatActivity implements
         @Override
         public void textChange(int count) {
 
-            mTextCount.setText(count+getResources().getString(R.string.count));
+            mTextCount.setText(count+getResources().getString(R.string.simple_count));
         }
     };
 
     private void back(){
         String s = mTextCount.getText().toString();
         int count = Integer.valueOf(s.split(getResources()
-                .getString(R.string.count))[0]);
+                .getString(R.string.simple_count))[0]);
         if(count == 0){
 
         }else {
@@ -367,8 +367,8 @@ public class RichTextActivity extends AppCompatActivity implements
 
     private void dusbtin(){
         AlertDialog alertDialog = DialogUtil.CreateNomalDialog(this,
-                getResources().getString(R.string.dustin_title),
-                getResources().getString(R.string.dustin_meassage),
+                getResources().getString(R.string.simple_dustin_title),
+                getResources().getString(R.string.simple_dustin_meassage),
                 true, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -421,7 +421,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     private void addPunctuation(String pun){
         mEditCapture.setText(mEditCapture.getText().toString()+pun);
-        if(pun.equals(getResources().getString(R.string.quotation))){
+        if(pun.equals(getResources().getString(R.string.simple_quotation))){
             mEditCapture.setSelection(mEditCapture.length()-1);
         }else {
             mEditCapture.setSelection(mEditCapture.length());

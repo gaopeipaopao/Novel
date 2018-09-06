@@ -82,7 +82,7 @@
 
     </RelativeLayout>
 
-        <com.example.asus1.simplerichtext.RichTextView.LinearScrollView
+        <com.example.simplerichtext.RichTextView.LinearScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -106,10 +106,10 @@
                 android:id="@+id/et_title"
                 android:background="@null"
                 android:paddingLeft="16dp"
-                android:textColor="@color/text_color"
+                android:textColor="@color/simple_text_color"
                 android:textSize="19sp"
-                android:textColorHint="@color/second_text_color"
-                android:hint="@string/input_title"
+                android:textColorHint="@color/simple_second_text_color"
+                android:hint="@string/simple_input_title"
                 />
 
             <LinearLayout
@@ -123,7 +123,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:scaleType="center"
-                    android:src="@mipmap/ic_book"
+                    android:src="@mipmap/simple_ic_book"
                     />
                 
                 <TextView
@@ -131,7 +131,7 @@
                     android:layout_height="30dp"
                     android:id="@+id/tv_capture"
                     android:textSize="12sp"
-                    android:textColor="@color/text_count_color"
+                    android:textColor="@color/simple_text_count_color"
                     android:text="第一卷"
                     android:gravity="center"
                     />
@@ -139,7 +139,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/divide_color"
+                    android:background="@color/simple_divide_color"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
@@ -150,8 +150,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:textSize="12sp"
-                    android:textColor="@color/text_count_color"
-                    android:text="@string/public_ty"
+                    android:textColor="@color/simple_text_count_color"
+                    android:text="@string/simple_public_ty"
                     android:gravity="center"
                     />
             </LinearLayout>
@@ -159,12 +159,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divide_color"
+                android:background="@color/simple_divide_color"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 />
 
-    <com.example.asus1.simplerichtext.RichTextView.RichText
+    <com.example.simplerichtext.RichTextView.RichText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_capture"
@@ -179,15 +179,15 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="100dp"
         android:gravity="top"
-        android:hint="@string/pleat_input"
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/second_text_color"
+        android:hint="@string/simple_pleat_input"
+        android:textColor="@color/simple_text_color"
+        android:textColorHint="@color/simple_second_text_color"
         android:inputType="textMultiLine"
         />
 
         </LinearLayout>
 
-        </com.example.asus1.simplerichtext.RichTextView.LinearScrollView>
+        </com.example.simplerichtext.RichTextView.LinearScrollView>
 
 
     <View
