@@ -31,12 +31,14 @@ versions.toasty = "1.1.3"
 versions.logger = "1.15"
 versions.material_dialog = "0.9.6.0"
 versions.bottom_navigation_bar = "2.0.5"
+versions.takephoto_library = "4.1.0"
 //Arouter
 versions.arouter_compiler = "1.1.4"
 versions.arouter_api = "1.3.1"
 versions.junit = "4.12"
 versions.test_runner = "1.0.2"
-versions.test_espresso = "3.0.2"
+versions.matisse = "0.4.3"
+versions.easypermissions = "1.3.0"
 
 
 def deps = [:]
@@ -106,8 +108,11 @@ deps.toasty =  "com.github.GrenderG:Toasty:$versions.toasty"
 deps.logger = "com.orhanobut:logger:$versions.logger"
 deps.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"
 deps.arouter_compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+deps.glide_compiler = "annotationProcessor ‘com.github.bumptech.glide:compiler:$versions.glide"
 deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 deps.okio = "com.squareup.okio:okio:$versions.okio"
+deps.easypermissions ="pub.devrel:easypermissions:$versions.easypermissions"
+deps.matisse = "com.zhihu.android:matisse:$versions.matisse"
 
 ext.deps = deps
 

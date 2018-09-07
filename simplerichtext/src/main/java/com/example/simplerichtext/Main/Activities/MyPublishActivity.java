@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -47,6 +49,7 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
                 finish();
             }
         });
+
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mAdapter = new MyWorkAdapter(this,mDatas);

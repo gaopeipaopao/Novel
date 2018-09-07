@@ -19,7 +19,8 @@ public class FindRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_find_recycler,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_find_recycler,
+                parent,false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

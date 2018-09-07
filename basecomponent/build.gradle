@@ -37,6 +37,8 @@ dependencies {
     api deps.bottom_navigation_bar
     api deps.support.multidex
     api deps.circleImageView
+    api deps.matisse
+    api deps.easypermissions
 
     api deps.support.annotations
 

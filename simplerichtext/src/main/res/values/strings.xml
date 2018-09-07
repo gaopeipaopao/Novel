@@ -46,5 +46,7 @@
     <string name="simple_published_capture">已发布章节</string>
     <string name="simple_recycle_bin">回收站</string>
     <string name="simple_none_data">暂无数据</string>
+    <string name="simple_back">是否放弃编辑？</string>
+    <string name="simple_back_message">退出后将无法保存内容哦~</string>
 
 </resources>
