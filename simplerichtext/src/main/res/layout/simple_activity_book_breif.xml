@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/simple_white_100"
+    tools:context=".Add.BookBriefActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:paddingTop="24dp"
+        android:background="@color/simple_main_color"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_back"
+            android:src="@mipmap/simple_ic_back_dark"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/simple_book_brief"
+            android:textColor="@color/simple_white"
+            android:textSize="16sp"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_save"
+            android:textSize="16sp"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_save"
+            android:gravity="center"
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </FrameLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/et_brief"
+        android:padding="16dp"
+        android:background="@color/simple_white"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:gravity="top"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_words"
+        android:textColor="@color/simple_second_text_color"
+        android:textSize="12sp"
+        android:text="0字"
+        android:layout_gravity="end"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>

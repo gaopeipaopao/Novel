@@ -9,7 +9,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class PermissionUtil {
 
-    private static String[] STORAGES = {
+    public static String[] STORAGES = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };

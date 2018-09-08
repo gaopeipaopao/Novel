@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Add.BookTypeActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:paddingTop="24dp"
+        android:background="@color/simple_main_color"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_back"
+            android:src="@mipmap/simple_ic_back_dark"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/simple_book_type"
+            android:textColor="@color/simple_white"
+            android:textSize="16sp"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_save"
+            android:textSize="16sp"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_save"
+            android:gravity="center"
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </FrameLayout>
+    
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/radio_group"
+        android:layout_marginLeft="16dp"
+        >
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_xh"
+            android:text="@string/simple_fantasySentiment"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_xx"
+            android:text="@string/simple_ImmortalChivalry"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_gd"
+            android:text="@string/simple_AncientSentiment"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_xd"
+            android:text="@string/simple_ModernSentiment"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_qc"
+            android:text="@string/simple_RomanticYouth"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_xy"
+            android:text="@string/simple_SuspensePsychic"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_kh"
+            android:text="@string/simple_ScienceSpace"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_yx"
+            android:text="@string/simple_GameCompetition"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_dm"
+            android:text="@string/simple_ImmortalChivalry"
+            />
+
+    </RadioGroup>
+
+</LinearLayout>

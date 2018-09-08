@@ -48,5 +48,19 @@
     <string name="simple_none_data">暂无数据</string>
     <string name="simple_back">是否放弃编辑？</string>
     <string name="simple_back_message">退出后将无法保存内容哦~</string>
+    <string name="simple_permission_deined">您拒绝了该请求，请允许</string>
+    <string name="simple_save">保存</string>
+    <string name="simple_fantasySentiment">玄幻言情</string>
+    <string name="simple_ImmortalChivalry">仙侠奇缘</string>
+    <string name="simple_AncientSentiment">古代言情"</string>
+    <string name="simple_ModernSentiment">现代言情</string>
+    <string name="simple_RomanticYouth">浪漫青春</string>
+    <string name="simple_SuspensePsychic">悬疑灵异</string>
+    <string name="simple_ScienceSpace">科幻空间")</string>
+    <string name="simple_GameCompetition">游戏竞技</string>
+    <string name="simple_TanbiNovel">耽美小说</string>
+    <string name="simple_fill_type">作品类型不能为空</string>
+    <string name="simple_fill_name">作品名称不能为空</string>
+    <string name="simple_fill_brief">作品简介不能为空</string>
 
 </resources>

@@ -1,6 +1,6 @@
-if(isRunAlone.toBoolean()){
+if (isRunAlone.toBoolean()) {
     apply plugin: 'com.android.application'
-}else {
+} else {
     apply plugin: 'com.android.library'
 }
 
@@ -11,7 +11,7 @@ android {
     resourcePrefix "simple_"
 
     defaultConfig {
-        if(isRunAlone.toBoolean()){
+        if (isRunAlone.toBoolean()) {
             applicationId "com.example.simplerichtext"
         }
 
@@ -23,13 +23,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
 
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             if (isRunAlone.toBoolean()) {
                 manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
             } else {
@@ -49,6 +49,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor deps.arouter_compiler
-    implementation project (':basecomponent')
+    implementation project(':basecomponent')
 }
