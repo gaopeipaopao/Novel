@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.CallBack;
+import com.example.basecomponent.Excutes.AddExcute;
 import com.example.basecomponent.Excutes.MyPublishExcute;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
@@ -49,7 +50,7 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
             public void onComplete() {
 
             }
-        });
+        }, AddExcute.PUBLISHED);
 
     }
 }

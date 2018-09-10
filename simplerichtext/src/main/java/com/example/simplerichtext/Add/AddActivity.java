@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.basecomponent.Modules.BookModule;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.R;
@@ -31,6 +33,7 @@ import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
+import org.greenrobot.eventbus.EventBus;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -38,7 +41,7 @@ import java.util.List;
 import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class AddActivity extends BaseActivity implements View.OnClickListener{
+public class AddActivity extends BaseActivity implements View.OnClickListener,AddPersenter.AddViewInterface{
 
     private ImageView mBack;
     private ImageView mBookCover;
@@ -55,6 +58,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
     private TextView mFinish;
     private String mBrief = "";
     private int mType = -1;
+    private AddPersenter mPerseneter;
 
     private static final String TAG = "AddActivity";
 
@@ -65,6 +69,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
         DisplayMetrics metrics = new DisplayMetrics();
        getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mScreenWdith = metrics.widthPixels;
+        EventBus.getDefault().register(this);
+        mPerseneter = new AddPersenter(this);
         init();
     }
 
@@ -134,6 +140,11 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
                     if(!mBrief.equals("")){
                         //上传书
                         //上传封面
+                        BookModule book = new BookModule();
+                        book.setBookName(name);
+                        book.setBookType(type);
+                        book.setContent(mBrief);
+                        mPerseneter.upload(book,mSelectedCover);
                     }else {
                         Toast.makeText(this,getResources()
                                 .getText(R.string.simple_fill_brief),Toast.LENGTH_SHORT).show();
@@ -148,6 +159,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
             }
         }
     }
+
 
     private AlertDialog.OnClickListener mBackListener = new DialogInterface.OnClickListener() {
         @Override
@@ -205,5 +217,16 @@ public class AddActivity extends BaseActivity implements View.OnClickListener{
             mType = data.getIntExtra("type",-1);
             Log.d(TAG, "onActivityResult: "+mType);
         }
+    }
+
+    @Override
+    public void updateData(BookModule book) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

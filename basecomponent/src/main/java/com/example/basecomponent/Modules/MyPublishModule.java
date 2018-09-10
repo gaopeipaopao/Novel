@@ -101,4 +101,61 @@ public class MyPublishModule {
     public int getJoinUsers() {
         return mJoinUsers;
     }
+
+
+    public void setBookId(int mBookId) {
+        this.mBookId = mBookId;
+    }
+
+    public void setBookName(String mBookName) {
+        this.mBookName = mBookName;
+    }
+
+    public void setBookType(String mBookType) {
+        this.mBookType = mBookType;
+    }
+
+    public void setBookCover(String mBookCover) {
+        this.mBookCover = mBookCover;
+    }
+
+    public void setCreateTime(String mCreateTime) {
+        this.mCreateTime = mCreateTime;
+    }
+
+    public void setFocusOnNum(int mFocusOnNum) {
+        this.mFocusOnNum = mFocusOnNum;
+    }
+
+    public void setCommentNum(int mCommentNum) {
+        this.mCommentNum = mCommentNum;
+    }
+
+    public void setBranchNum(int mBranchNum) {
+        this.mBranchNum = mBranchNum;
+    }
+
+    public void setmReadNum(int mReadNum) {
+        this.mReadNum = mReadNum;
+    }
+
+    public void setAllWords(int mAllWords) {
+        this.mAllWords = mAllWords;
+    }
+
+    public void setMaxLayer(int mMaxLayer) {
+        this.mMaxLayer = mMaxLayer;
+    }
+
+    public void setmJoinUsers(int mJoinUsers) {
+        this.mJoinUsers = mJoinUsers;
+    }
+
+    public void setContent(String mContent) {
+        this.mContent = mContent;
+    }
+
+    public void setAuthor(AuthorModule mAuthor) {
+        this.mAuthor = mAuthor;
+    }
 }

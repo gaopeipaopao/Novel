@@ -18,6 +18,9 @@ import com.example.simplerichtext.Main.Adapters.MyWorkAdapter;
 import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
 import com.example.simplerichtext.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.simple_activity_mypulish);
         mPresenter = new MyPublishPresenter(this);
+        EventBus.getDefault().register(this);
         init();
         getData();
     }
@@ -86,9 +90,15 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+    @Subscribe
+    public void updateData(MyPublishModule module){
+
+    }
+
     @Override
     protected void onDestroy() {
         mPresenter.dettachView();
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 }

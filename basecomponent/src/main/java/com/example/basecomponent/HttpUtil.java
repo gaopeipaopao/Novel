@@ -23,6 +23,7 @@ public class HttpUtil {
     public static String Authorization = "Basic YnJhbmNoOnhpeW91M2c=";
     public static String Bearer = "Bearer ";
     private static final long DEFAULT_TIMEOUT = 60;
+    public  static final String REQUEST_CONTENT = "application/json;charset=UTF-8";
 
 
     private static OkHttpClient OKClient = new OkHttpClient.Builder()
