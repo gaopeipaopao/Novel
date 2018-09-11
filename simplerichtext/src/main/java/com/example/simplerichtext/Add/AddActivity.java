@@ -1,7 +1,6 @@
 package com.example.simplerichtext.Add;
 
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,24 +8,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.basecomponent.Modules.BookModule;
+import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
+import com.example.basecomponent.Util;
 import com.example.simplerichtext.Base.BaseActivity;
+import com.example.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.simplerichtext.R;
 import com.example.simplerichtext.Util.DialogUtil;
 import com.zhihu.matisse.Matisse;
@@ -34,7 +32,6 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import org.greenrobot.eventbus.EventBus;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -49,7 +46,6 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     private RelativeLayout mBookBrief;
     private RelativeLayout mBookType;
     private AlertDialog mBackDialog;
-    private final int STORAGE_CODE = 200;
     private final int PHOTO_CODE = 300;
     private final int BRIEF_CODE = 400;
     private final int TYPE_CODE = 500;
@@ -58,7 +54,9 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     private TextView mFinish;
     private String mBrief = "";
     private int mType = -1;
+    private String mTypeName = "";
     private AddPersenter mPerseneter;
+    private final int STORAGE_CODE = 200;
 
     private static final String TAG = "AddActivity";
 
@@ -69,7 +67,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
         DisplayMetrics metrics = new DisplayMetrics();
        getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mScreenWdith = metrics.widthPixels;
-        EventBus.getDefault().register(this);
+        //EventBus.getDefault().register(this);
         mPerseneter = new AddPersenter(this);
         init();
     }
@@ -136,15 +134,14 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
             String name = mBookName.getText().toString().trim();
             if(!name.equals("")){
                 if(mType!=-1){
-                    String type = ((RadioButton)findViewById(mType)).getText().toString();
+                    String type = Util.getTypeKey(mTypeName);
                     if(!mBrief.equals("")){
                         //上传书
-                        //上传封面
-                        BookModule book = new BookModule();
+                        MyPublishModule book = new MyPublishModule();
                         book.setBookName(name);
                         book.setBookType(type);
                         book.setContent(mBrief);
-                        mPerseneter.upload(book,mSelectedCover);
+                        mPerseneter.upload(book, Util.handleImage(this,mSelectedCover));
                     }else {
                         Toast.makeText(this,getResources()
                                 .getText(R.string.simple_fill_brief),Toast.LENGTH_SHORT).show();
@@ -159,6 +156,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
             }
         }
     }
+
 
 
     private AlertDialog.OnClickListener mBackListener = new DialogInterface.OnClickListener() {
@@ -197,36 +195,45 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PHOTO_CODE&&resultCode == RESULT_OK){
-            List<Uri> images = Matisse.obtainResult(data);
-            mSelectedCover = images.get(0);
-            if (mSelectedCover!=null){
-                Glide.with(this)
-                        .load(mSelectedCover)
-                        .asBitmap()
-                        .into(mBookCover);
-            }
-        }
 
         if(requestCode == BRIEF_CODE && resultCode == RESULT_OK){
             mBrief = data.getStringExtra("brief");
 
         }
 
+        if(requestCode == MyWorkHolder.PHOTO_CODE&&resultCode == RESULT_OK){
+            List<Uri> images = Matisse.obtainResult(data);
+                mSelectedCover = images.get(0);
+            }
+
+
         if(requestCode == TYPE_CODE && resultCode == RESULT_OK){
             mType = data.getIntExtra("type",-1);
+            mTypeName = data.getStringExtra("type_name");
             Log.d(TAG, "onActivityResult: "+mType);
         }
     }
 
-    @Override
-    public void updateData(BookModule book) {
 
+    @Override
+    public void updateData(MyPublishModule book) {
+        if(book !=null){
+            EventBus.getDefault().post(new AddBookMessage(book));
+            finish();
+        }else {
+            uploadFailed();
+        }
+    }
+
+    @Override
+    public void uploadFailed() {
+        Toast.makeText(this,getResources().
+                getText(R.string.simple_upload_failed),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        //EventBus.getDefault().unregister(this);
     }
 }

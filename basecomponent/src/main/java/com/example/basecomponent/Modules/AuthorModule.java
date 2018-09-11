@@ -38,4 +38,24 @@ public class AuthorModule {
     public String getSignText() {
         return mSignText;
     }
+
+    public void setUserId(int mUserId) {
+        this.mUserId = mUserId;
+    }
+
+    public void setUserName(String UserName) {
+        this.mUserName = mUserName;
+    }
+
+    public void setAccount(String Account) {
+        this.mAccount = mAccount;
+    }
+
+    public void setIcon(String Icon) {
+        this.mIcon = mIcon;
+    }
+
+    public void setmSignText(String SignText) {
+        this.mSignText = mSignText;
+    }
 }

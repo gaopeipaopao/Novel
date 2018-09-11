@@ -18,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpUtil {
 
     private static final String BASE_URL = "http://47.95.207.40/branch/";
+    public static final String BOOK_COVER = "http://47.95.207.40/branch/file/book/";
     private static String ACCESS_TOKEN = "";
     private static String REFRESH_TOKEN = "";
     public static String Authorization = "Basic YnJhbmNoOnhpeW91M2c=";

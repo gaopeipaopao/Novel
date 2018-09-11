@@ -37,7 +37,6 @@ public class LoginExcute {
         object.addProperty("account",account);
         object.addProperty("password",password);
         Gson gson = new Gson();
-        Log.d(TAG, "loginexecute: "+ gson.toJson(object));
         RequestBody requestBody = RequestBody.create(MediaType.
                 parse("application/json;charset=UTF-8"),gson.toJson(object));
 

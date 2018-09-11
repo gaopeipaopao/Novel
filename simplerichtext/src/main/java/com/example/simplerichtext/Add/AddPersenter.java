@@ -2,7 +2,6 @@ package com.example.simplerichtext.Add;
 
 import android.net.Uri;
 
-import com.example.basecomponent.Modules.BookModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 
 public class AddPersenter {
@@ -12,11 +11,12 @@ public class AddPersenter {
     private boolean mAttachedView = false;
 
     public interface AddViewInterface{
-        void updateData(BookModule book);
+        void updateData(MyPublishModule book);
+        void uploadFailed();
     }
 
     public interface AddModleInterface{
-        void uploadBook(BookModule book, Uri image);
+        void uploadBook(MyPublishModule book, String image);
     }
 
     public AddPersenter(AddViewInterface view) {
@@ -25,12 +25,16 @@ public class AddPersenter {
         mModle = new AddModle(this);
     }
 
-    public void upload(BookModule book,Uri image){
+    public void upload(MyPublishModule book,String image){
         mModle.uploadBook(book,image);
     }
 
-    public void updateData(BookModule book){
+    public void updateData(MyPublishModule book){
         mView.updateData(book);
+    }
+
+    public void uploadFailed(){
+        mView.uploadFailed();
     }
 
 }

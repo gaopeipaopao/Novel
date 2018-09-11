@@ -14,6 +14,8 @@ import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.HttpException;
+
 
 public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
@@ -37,7 +39,6 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
             @Override
             public void onNext(BaseModule<List<MyPublishModule>> value) {
-                Log.d(TAG, "onNext: "+"mmmm");
                 mPersenter.onNext(value);
             }
 
@@ -50,7 +51,33 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
             public void onComplete() {
 
             }
-        }, AddExcute.PUBLISHED);
+        });
 
+    }
+
+    @Override
+    public void uploadImage(int id, String image) {
+        AddExcute.uploadCover(id, image, new CallBack<BaseModule>() {
+            @Override
+            public void onSubscribe() {
+
+            }
+
+            @Override
+            public void onNext(BaseModule value) {
+
+                mPersenter.uploadImageSucssed();
+            }
+
+            @Override
+            public void onError(BaseModule e) {
+                mPersenter.uploadImageFailed();
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 }

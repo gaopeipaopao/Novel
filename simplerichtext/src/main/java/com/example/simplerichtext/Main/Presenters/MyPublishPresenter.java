@@ -21,16 +21,31 @@ public class MyPublishPresenter {
   public  interface  myPublishViewLisnter{
         void setMyPublishData(List<MyPublishModule> myPublishModuleList);
         void setDataError();
+        void uploadImageSucssed();
+        void uploadImageFailed();
 
     }
 
-  public  interface myPublishModuleLisnter{
+    public  interface myPublishModuleLisnter{
         void getMyPublishData();
+        void uploadImage(int id ,String image);
     }
 
 
     public void onSubscribe(){
 
+    }
+
+    public void uploadImage(int id,String image){
+      mModule.uploadImage(id,image);
+    }
+
+    public void uploadImageSucssed(){
+        mView.uploadImageSucssed();
+    }
+
+    public void uploadImageFailed(){
+        mView.uploadImageFailed();
     }
 
 

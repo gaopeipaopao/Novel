@@ -43,6 +43,9 @@ public class MyPublishModule {
     @SerializedName("content")
     private String mContent;
 
+    @SerializedName("status")
+    private String mStatus;
+
     @SerializedName("author")
     private AuthorModule mAuthor;
 
@@ -157,5 +160,13 @@ public class MyPublishModule {
 
     public void setAuthor(AuthorModule mAuthor) {
         this.mAuthor = mAuthor;
+    }
+
+    public String getStatus() {
+        return mStatus;
+    }
+
+    public void setStatus(String mStatus) {
+        this.mStatus = mStatus;
     }
 }

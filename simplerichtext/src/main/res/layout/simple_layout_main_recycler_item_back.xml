@@ -13,9 +13,11 @@
 
     >
 
+
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
     android:scrollbars="none"
     >
 
@@ -25,18 +27,7 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="14sp"
-            android:id="@+id/tv_close"
-            android:textColor="@color/simple_text_color"
-            android:text="@string/simple_close"
-            android:gravity="center|start"
-            android:paddingLeft="10dp"
-            android:background="@color/simple_white_50"
-            />
-        
+
         <ImageView
             android:layout_width="120dp"
             android:layout_height="160dp"
@@ -301,42 +292,7 @@
 
         </FrameLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/simple_divide_color"
-            android:layout_marginLeft="16dp"
-            />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/simple_text_color"
-                android:text="@string/simple_get_good"
-                android:layout_marginRight="6dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_get_good"
-                android:textSize="16sp"
-                android:textColor="@color/simple_second_text_color"
-                android:layout_gravity="end"
-                android:text="200"
-                />
-
-        </FrameLayout>
 
         <View
             android:layout_width="match_parent"
@@ -354,5 +310,18 @@
     </LinearLayout>
 
 </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="14sp"
+        android:id="@+id/tv_close"
+        android:textColor="@color/simple_text_color"
+        android:text="@string/simple_close"
+        android:gravity="center|start"
+        android:paddingLeft="10dp"
+        android:background="@color/simple_white_50"
+        />
+
 
 </android.support.v7.widget.CardView>

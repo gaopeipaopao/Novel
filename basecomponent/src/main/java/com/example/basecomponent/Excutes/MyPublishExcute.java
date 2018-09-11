@@ -26,14 +26,14 @@ public class MyPublishExcute {
 
     private static final String TAG = "MyPublishExcute";
 
-    public static void excute(final CallBack<BaseModule<List<MyPublishModule>>> callBack,
-                              String status){
+    public static void excute(final CallBack<BaseModule<List<MyPublishModule>>>
+                                      callBack){
 
 
         MyPublishService service = HttpUtil.getRetrofit().create(MyPublishService.class);
         Log.d(TAG, "excute: "+HttpUtil.Bearer+HttpUtil.getAccessToken());
         service.getMyPublishData(HttpUtil.Bearer+HttpUtil.
-                getAccessToken(),status)
+                getAccessToken())
                 .subscribeOn(Schedulers.io())//IO线程加载数据
                 .observeOn(AndroidSchedulers.mainThread())//主线程显示数据
                 .subscribe(new Observer<BaseModule<List<MyPublishModule>>>() {

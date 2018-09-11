@@ -4,7 +4,6 @@ import android.net.Uri;
 
 import com.example.basecomponent.CallBack;
 import com.example.basecomponent.Excutes.AddExcute;
-import com.example.basecomponent.Modules.BookModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 
 
@@ -17,28 +16,28 @@ public class AddModle implements AddPersenter.AddModleInterface {
     }
 
     @Override
-    public void uploadBook(BookModule book, Uri image) {
+    public void uploadBook(MyPublishModule book, String image) {
 
-        AddExcute.execute(new CallBack<BookModule>() {
+        AddExcute.execute(new CallBack<MyPublishModule>() {
             @Override
             public void onSubscribe() {
 
             }
 
             @Override
-            public void onNext(BookModule value) {
+            public void onNext(MyPublishModule value) {
                 mPersenter.updateData(value);
             }
 
             @Override
-            public void onError(BookModule e) {
-
+            public void onError(MyPublishModule e) {
+                mPersenter.uploadFailed();
             }
 
             @Override
             public void onComplete() {
 
             }
-        },book,AddExcute.UNPUBLISHED);
+        },book,image,AddExcute.UNPUBLISHED);
     }
 }

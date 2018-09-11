@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -54,6 +55,8 @@ public class BookTypeActivity extends BaseActivity implements View.OnClickListen
         if(v.getId() == R.id.tv_save){
             Intent intent = new Intent();
             intent.putExtra("type",mCheckedId);
+            intent.putExtra("type_name",((RadioButton)findViewById(mCheckedId))
+                    .getText().toString());
             setResult(RESULT_OK,intent);
             finish();
 

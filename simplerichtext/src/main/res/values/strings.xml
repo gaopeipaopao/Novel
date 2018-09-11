@@ -56,11 +56,12 @@
     <string name="simple_ModernSentiment">现代言情</string>
     <string name="simple_RomanticYouth">浪漫青春</string>
     <string name="simple_SuspensePsychic">悬疑灵异</string>
-    <string name="simple_ScienceSpace">科幻空间")</string>
+    <string name="simple_ScienceSpace">科幻空间</string>
     <string name="simple_GameCompetition">游戏竞技</string>
     <string name="simple_TanbiNovel">耽美小说</string>
     <string name="simple_fill_type">作品类型不能为空</string>
     <string name="simple_fill_name">作品名称不能为空</string>
     <string name="simple_fill_brief">作品简介不能为空</string>
+    <string name="simple_upload_failed">上传失败</string>
 
 </resources>
