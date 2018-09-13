@@ -34,12 +34,12 @@ public class AddExcute {
     public static  final String UNPUBLISHED = "UNPUBLISHED";
     public static final String PUBLISHED = "PUBLISH";
 
-    public static void execute(final CallBack<MyPublishModule> callBack,
+    public static void execute(final CallBack<BaseModule<MyPublishModule>> callBack,
                                final MyPublishModule bookModule, final String image, String status){
 
         AddBookService service = HttpUtil.getRetrofit().create(AddBookService.class);
 
-        Gson gson = new Gson();
+        final Gson gson = new Gson();
         JsonObject object = new JsonObject();
         object.addProperty("bookName",bookModule.getBookName());
         object.addProperty("bookType",bookModule.getBookType());
@@ -74,7 +74,7 @@ public class AddExcute {
 //                                        image,callBack);
 //
 //                            }
-                                callBack.onNext(myPublishModuleBaseModule.getData());
+                                callBack.onNext(myPublishModuleBaseModule);
 
 
                         }
@@ -82,8 +82,21 @@ public class AddExcute {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "onError: 1111   "+e.getMessage());
-                        callBack.onError(null);
+                       if(e instanceof  HttpException){
+                           try {
+                               HttpException exception = (HttpException)e;
+                               String erro = exception.response().errorBody().string();
+                               BaseModule module = gson.fromJson(erro,BaseModule.class);
+                               callBack.onError(module);
+                           }catch (IOException ee){
+                               ee.printStackTrace();
+                           }
+
+
+                       }else {
+                           callBack.onError(null);
+                       }
+
                     }
 
                     @Override

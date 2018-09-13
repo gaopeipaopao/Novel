@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
@@ -221,14 +222,19 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
             EventBus.getDefault().post(new AddBookMessage(book));
             finish();
         }else {
-            uploadFailed();
+            uploadFailed(null);
         }
     }
 
     @Override
-    public void uploadFailed() {
-        Toast.makeText(this,getResources().
-                getText(R.string.simple_upload_failed),Toast.LENGTH_SHORT).show();
+    public void uploadFailed(BaseModule module) {
+        if(module!=null){
+            Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,getResources().
+                    getText(R.string.simple_upload_failed),Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
