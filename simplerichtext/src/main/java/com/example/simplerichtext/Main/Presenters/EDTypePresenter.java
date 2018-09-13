@@ -2,33 +2,31 @@ package com.example.simplerichtext.Main.Presenters;
 
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Modules.MyPublishModule;
-import com.example.simplerichtext.Main.Modules.EDName;
+import com.example.simplerichtext.Main.Modules.EDType;
 
-public class EDNamePresenter {
+public class EDTypePresenter {
 
-    private EDNameView mView;
-    private EDNameModle mModle;
+    private EDTypeView mView;
+    private EDTypeModle mModle;
+
     private boolean mAttachView = false;
 
-    public EDNamePresenter(EDNameView view) {
+    public EDTypePresenter(EDTypeView view) {
         this.mView = view;
-        mModle = new EDName(this);
+        mModle = new EDType(this);
         mAttachView = true;
-
     }
 
-    public interface EDNameView{
-
+    public interface EDTypeView{
         void uploadScusses(MyPublishModule module);
         void uploadFailed(BaseModule module);
     }
 
-
-    public interface  EDNameModle{
+    public interface  EDTypeModle{
         void uploadName(MyPublishModule myPublishModule);
     }
 
-    public void uploadName(MyPublishModule module){
+    public void uploadBrief(MyPublishModule module){
         mModle.uploadName(module);
     }
 
@@ -46,4 +44,5 @@ public class EDNamePresenter {
             mView = null;
         }
     }
+
 }

@@ -9,22 +9,33 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
 import com.example.simplerichtext.Base.BaseActivity;
+import com.example.simplerichtext.Main.Holders.MyWorkHolder;
+import com.example.simplerichtext.Main.Presenters.EDBriefPresenter;
 import com.example.simplerichtext.R;
 
-public class BookBriefActivity extends BaseActivity implements View.OnClickListener ,TextWatcher{
+public class BookBriefActivity extends BaseActivity implements
+        View.OnClickListener ,TextWatcher,EDBriefPresenter.EDBriefView{
 
     private ImageView mBack;
     private TextView mSave;
     private EditText mBriefEd;
     private TextView mWords;
 
+    private MyPublishModule mModle;
+    private boolean mUpdate = false;
+    private EDBriefPresenter mPersenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.simple_activity_book_breif);
+        mPersenter = new EDBriefPresenter(this);
         init();
     }
 
@@ -47,17 +58,35 @@ public class BookBriefActivity extends BaseActivity implements View.OnClickListe
 
         Intent intent = getIntent();
         String brief = intent.getStringExtra("brief");
+        Bundle bundle = intent.getBundleExtra("book");
+        if(bundle!=null){
+            mModle = (MyPublishModule) bundle.getSerializable("book");
+            mUpdate = bundle.getBoolean("update");
+            brief = mModle.getContent();
+        }
+
         mBriefEd.setText(brief);
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.tv_save){
-            Intent intent = new Intent();
-            intent.putExtra("brief",mBriefEd.getText().toString());
-            setResult(RESULT_OK,intent);
+            if(!mUpdate){
+                Intent intent = new Intent();
+                intent.putExtra("brief",mBriefEd.getText().toString());
+                setResult(RESULT_OK,intent);
+                finish();
+            }else {
+                if(Util.isNetworkAvailable(this)){
+                    mModle .setContent(mBriefEd.getText().toString());
+                    mPersenter.uploadBrief(mModle);
+                }else {
+                    Toast.makeText(this,R.string.simple_no_network,Toast.LENGTH_SHORT).show();
+                }
 
-            finish();
+            }
+
+
         }
     }
 
@@ -76,5 +105,36 @@ public class BookBriefActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void afterTextChanged(Editable s) {
 
+    }
+
+    @Override
+    public void uploadScusses(MyPublishModule module) {
+        if(mModle !=null){
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("book",module);
+            intent.putExtra("book",bundle);
+            setResult(RESULT_OK,intent);
+            finish();
+        }else {
+            Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    @Override
+    public void uploadFailed(BaseModule module) {
+        if(mModle!=null){
+            Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPersenter.deAttachView();
     }
 }

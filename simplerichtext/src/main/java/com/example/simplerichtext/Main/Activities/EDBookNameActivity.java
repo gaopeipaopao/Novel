@@ -54,7 +54,6 @@ public class EDBookNameActivity extends BaseActivity implements
         mCount = findViewById(R.id.tv_count);
         mSave = findViewById(R.id.tv_save);
         mSave.setOnClickListener(this);
-        mEdName.setText(mMyPublishModule.getBookName());
         mEdName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,6 +72,7 @@ public class EDBookNameActivity extends BaseActivity implements
             }
         });
 
+        mEdName.setText(mMyPublishModule.getBookName());
     }
 
     @Override
@@ -122,5 +122,11 @@ public class EDBookNameActivity extends BaseActivity implements
         }else {
             Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.deAttachView();
     }
 }

@@ -182,6 +182,32 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
 
             }
         }
+
+        if(requestCode == MyWorkHolder.UPDATE_BRIEF&&resultCode == RESULT_OK){
+            MyPublishModule myPublishModule = (MyPublishModule) data.
+                    getBundleExtra("book").getSerializable("book");
+            if(mRefreshHolder!=null){
+                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
+                mRefreshHolder.setData(myPublishModule);
+                Log.d(TAG, "onActivityResult: "
+                        +myPublishModule.getBookName());
+                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
+
+            }
+        }
+
+        if(requestCode == MyWorkHolder.UPDATE_TYPE&&resultCode == RESULT_OK){
+            MyPublishModule myPublishModule = (MyPublishModule) data.
+                    getBundleExtra("book").getSerializable("book");
+            if(mRefreshHolder!=null){
+                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
+                mRefreshHolder.setData(myPublishModule);
+                Log.d(TAG, "onActivityResult: "
+                        +myPublishModule.getBookName());
+                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
+
+            }
+        }
     }
 
     @Override

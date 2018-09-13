@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,9 @@ import com.example.basecomponent.Excutes.AddExcute;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
+import com.example.basecomponent.Util;
+import com.example.simplerichtext.Add.BookBriefActivity;
+import com.example.simplerichtext.Add.BookTypeActivity;
 import com.example.simplerichtext.Main.Activities.EDBookNameActivity;
 import com.example.simplerichtext.Main.Activities.MyPublishActivity;
 import com.example.simplerichtext.Main.Activities.NovelCaptureActivity;
@@ -127,7 +131,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
         mBookBrief.setText(data.getContent().subSequence(0,data.getContent().length()>9?
                 9:data.getContent().length()-1)+"...");
-        mBookType.setText(data.getBookType());
+        mBookType.setText(Util.getTypeValue(data.getBookType()));
         mCreateTime.setText(data.getCreateTime());
         mLookNum.setText(String.valueOf(data.getReadNum()));
         mJoinNum.setText(String.valueOf(data.getJoinUsers()));
@@ -190,9 +194,21 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
           mContext.startActivityForResult(intent,UPDATE_NAME);
        }else if(v.getId() == R.id.tv_novel_brief){
            ((MyPublishActivity)mContext).refreshImage(this);
+           Intent intent = new Intent(mContext, BookBriefActivity.class);
+           Bundle bundle = new Bundle();
+           bundle.putSerializable("book",mData);
+           bundle.putBoolean("update",true);
+           intent.putExtra("book",bundle);
+           mContext.startActivityForResult(intent,UPDATE_BRIEF);
 
        }else if(v.getId() == R.id.tv_novel_type){
            ((MyPublishActivity)mContext).refreshImage(this);
+           Intent intent = new Intent(mContext, BookTypeActivity.class);
+           Bundle bundle = new Bundle();
+           bundle.putSerializable("book",mData);
+           bundle.putBoolean("update",true);
+           intent.putExtra("book",bundle);
+           mContext.startActivityForResult(intent,UPDATE_TYPE);
 
        }
     }
