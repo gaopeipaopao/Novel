@@ -2,9 +2,11 @@ package com.example.basecomponent;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import io.reactivex.schedulers.Schedulers;
 
-public class  BaseModule<T> {
+public class  BaseModule<T> implements Serializable {
 
     @SerializedName("status")
     private int mStatus;

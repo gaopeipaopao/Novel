@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -51,6 +53,8 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
     private MyWorkHolder mRefreshHolder;
     private String mPath;
     public static final int STORAGE_CODE = 200;
+    private PagerSnapHelper mPagerSnapHelper;
+    private static final String TAG = "MyPublishActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +75,13 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
             }
         });
 
-
         mRecyclerView = findViewById(R.id.recycler_view);
         mAdapter = new MyWorkAdapter(this,mDatas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL,false));
         mRecyclerView.setAdapter(mAdapter);
+        mPagerSnapHelper = new PagerSnapHelper();
+        mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
         mAddWork = findViewById(R.id.tv_add);
         mAddWork.setOnClickListener(this);
 
@@ -149,6 +154,7 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
 
     public void refreshImage(MyWorkHolder holder){
         mRefreshHolder = holder;
+
     }
 
     @Override
@@ -162,7 +168,19 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
                 mPresenter.uploadImage(mRefreshHolder.getData().getBookId(),mPath);
 
             }
+        }
 
+        if(requestCode == MyWorkHolder.UPDATE_NAME &&resultCode == RESULT_OK){
+            MyPublishModule myPublishModule = (MyPublishModule) data.
+                    getBundleExtra("book").getSerializable("book");
+            if(mRefreshHolder!=null){
+                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
+                mRefreshHolder.setData(myPublishModule);
+                Log.d(TAG, "onActivityResult: "
+                        +myPublishModule.getBookName());
+                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
+
+            }
         }
     }
 
@@ -186,6 +204,8 @@ public class MyPublishActivity extends BaseActivity implements View.OnClickListe
             }
         }
     }
+
+
 
     @Override
     protected void onDestroy() {

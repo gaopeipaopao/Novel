@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -24,6 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.HttpException;
 
 public class AddExcute {
 
@@ -129,7 +131,65 @@ public class AddExcute {
 
                         }
                     });
+    }
 
+    public static void updateBook(MyPublishModule bookModule, String status,
+                                  final CallBack<BaseModule<MyPublishModule>> callBack){
+
+        AddBookService service = HttpUtil.getRetrofit().create(AddBookService.class);
+
+        final Gson gson = new Gson();
+        JsonObject object = new JsonObject();
+        object.addProperty("bookId",bookModule.getBookId());
+        object.addProperty("bookName",bookModule.getBookName());
+        object.addProperty("bookType",bookModule.getBookType());
+        object.addProperty("bookIntroduce",bookModule.getContent());
+        object.addProperty("firstTitle","");
+        object.addProperty("firstContent","");
+        object.addProperty("firstSummary","");
+        object.addProperty("status",status);
+        String s = gson.toJson(object);
+
+
+        RequestBody body =  RequestBody.create(MediaType.
+                parse("application/json;charset=UTF-8"),s);
+
+        service.putBook(HttpUtil.Bearer+HttpUtil.getAccessToken(),body)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<BaseModule<MyPublishModule>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseModule<MyPublishModule> myPublishModuleBaseModule) {
+                        callBack.onNext(myPublishModuleBaseModule);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if(e instanceof HttpException){
+                            try {
+                                HttpException httpException = (HttpException)e;
+                                String erro = httpException.response().errorBody().string();
+
+                                BaseModule module
+                                        = gson.fromJson(erro,BaseModule.class);
+                                callBack.onError(module);
+                            }catch (IOException e1){
+                                e1.printStackTrace();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 }

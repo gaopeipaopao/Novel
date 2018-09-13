@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.basecomponent.Excutes.AddExcute;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
+import com.example.simplerichtext.Main.Activities.EDBookNameActivity;
 import com.example.simplerichtext.Main.Activities.MyPublishActivity;
 import com.example.simplerichtext.Main.Activities.NovelCaptureActivity;
 import com.example.simplerichtext.R;
@@ -55,6 +58,9 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     private MyPublishModule mData;
 
     private static final String TAG = "MyWorkHolder";
+    public static final int UPDATE_NAME = 500;
+    public static final int UPDATE_BRIEF = 600;
+    public static final int UPDATE_TYPE = 700;
     public static final int PHOTO_CODE = 200;
 
 
@@ -72,13 +78,22 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         mSeeWork.setOnClickListener(this);
 
         mBookName = mRoot.findViewById(R.id.tv_novel_name);
+
+
         mBookNameBack = mRoot.findViewById(R.id.tv_novel_name_back);
+        mBookNameBack.setOnClickListener(this);
 
         mBookCover = mRoot.findViewById(R.id.iv_novel_cover);
-        mBookCover.setOnClickListener(this);
+
         mBookCoverBack = mRoot.findViewById(R.id.iv_novel_cover_back);
+        mBookCoverBack.setOnClickListener(this);
+
         mBookBrief = mRoot.findViewById(R.id.tv_novel_brief);
+        mBookBrief.setOnClickListener(this);
+
         mBookType = mRoot.findViewById(R.id.tv_novel_type);
+        mBookType.setOnClickListener(this);
+
         mCreateTime = mRoot.findViewById(R.id.tv_publish_time);
         mJoinNum = mRoot.findViewById(R.id.tv_join_number);
         mWriteNum = mRoot.findViewById(R.id.tv_write_number);
@@ -88,6 +103,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     public void setData(MyPublishModule data){
         mData = data;
+        Log.d(TAG, "setData: "+data.getBookName());
         mBookName.setText(data.getBookName());
         mBookNameBack.setText(data.getBookName());
         if(data.getBookCover() == null ||data.getBookCover().equals("")){
@@ -138,10 +154,13 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
            openFront();
        }else if(v.getId() == R.id.tv_see_work){
 
-                mContext.startActivity(new Intent(mContext, NovelCaptureActivity.class));
+           Intent intent = new Intent(mContext, NovelCaptureActivity.class);
+           intent.putExtra("name",mData.getBookName());
+           intent.putExtra("status", AddExcute.UNPUBLISHED);
+           mContext.startActivity(intent);
 
-        }else if(v.getId() == R.id.iv_novel_cover || v.getId() == R.id.iv_novel_cover_back){
-
+        }else if(v.getId() == R.id.iv_novel_cover_back){
+           ((MyPublishActivity)mContext).refreshImage(this);
            if(!EasyPermissions.hasPermissions(mContext, PermissionUtil.STORAGES)) {
                PermissionUtil.
                        requestStoragePersmission(mContext,
@@ -162,6 +181,18 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
            ((MyPublishActivity)mContext).refreshImage(this);
 
+       }else if(v.getId() == R.id.tv_novel_name_back){
+           ((MyPublishActivity)mContext).refreshImage(this);
+           Intent intent = new Intent(mContext, EDBookNameActivity.class);
+           Bundle bundle = new Bundle();
+           bundle.putSerializable("book",mData);
+           intent.putExtra("book",bundle);
+          mContext.startActivityForResult(intent,UPDATE_NAME);
+       }else if(v.getId() == R.id.tv_novel_brief){
+           ((MyPublishActivity)mContext).refreshImage(this);
+
+       }else if(v.getId() == R.id.tv_novel_type){
+           ((MyPublishActivity)mContext).refreshImage(this);
 
        }
     }
@@ -201,7 +232,6 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 float value = (float)animation.getAnimatedValue();
-                Log.d(TAG, "onAnimationUpdate: "+value);
                 if(value <= -90){
                     mFront.setVisibility(View.VISIBLE);
                     mBack.setVisibility(View.GONE);

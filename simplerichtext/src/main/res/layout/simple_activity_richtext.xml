@@ -112,10 +112,9 @@
                 android:hint="@string/simple_input_title"
                 />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:paddingLeft="16dp"
                 >
 
@@ -133,18 +132,19 @@
                     android:textSize="12sp"
                     android:textColor="@color/simple_text_count_color"
                     android:text="第一卷"
+                    android:layout_marginLeft="30dp"
                     android:gravity="center"
                     />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/simple_divide_color"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toEndOf="@id/tv_capture"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:layout_marginEnd="5dp"
-                    />
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/simple_divide_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -152,9 +152,23 @@
                     android:textSize="12sp"
                     android:textColor="@color/simple_text_count_color"
                     android:text="@string/simple_public_ty"
+                    android:layout_toEndOf="@id/tv_capture"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_capture_brief"
+                    android:textSize="12sp"
+                    android:textColor="@color/simple_second_text_color"
+                    android:text="@string/simple_capture_brief"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="16dp"
                     android:gravity="center"
                     />
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

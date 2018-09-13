@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/simple_white_50"
+    tools:context=".Main.Activities.EDBookNameActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@color/simple_main_color"
+        android:paddingTop="24dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_back"
+            android:src="@mipmap/simple_ic_back_dark"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_book_name"
+            android:gravity="center"
+            android:layout_marginLeft="53dp"
+            android:layout_marginStart="53dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_save"
+            android:textSize="16sp"
+            android:textColor="@color/simple_white"
+            android:text="@string/simple_save"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            />
+
+
+    </FrameLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/et_name"
+        android:padding="10dp"
+        android:lines="1"
+        android:singleLine="true"
+        android:maxLength="15"
+        android:background="@color/simple_white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_count"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/simple_second_text_color"
+        android:textSize="12sp"
+        android:text="0字"
+        android:layout_marginEnd="16dp"
+        />
+
+</LinearLayout>

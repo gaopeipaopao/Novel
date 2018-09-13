@@ -24,4 +24,5 @@ public interface AddBookService {
     @Multipart
     Observable<BaseModule> putCover(@Path("bookId") int bookId,
                                     @Part MultipartBody.Part file);
+
 }

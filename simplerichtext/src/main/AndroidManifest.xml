@@ -25,7 +25,8 @@
         </provider>
 
         <activity android:name=".Add.BookBriefActivity" />
-        <activity android:name=".Add.BookTypeActivity"></activity>
+        <activity android:name=".Add.BookTypeActivity" />
+        <activity android:name=".Main.Activities.EDBookNameActivity"></activity>
     </application>
 
 </manifest>

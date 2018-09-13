@@ -63,5 +63,9 @@
     <string name="simple_fill_name">作品名称不能为空</string>
     <string name="simple_fill_brief">作品简介不能为空</string>
     <string name="simple_upload_failed">上传失败</string>
+    <string name="simple_capture_brief">章节简介</string>
+    <string name="simple_name_empty">作品名称不能为空</string>
+    <string name="simple_no_network">网络不可用</string>
+    <string name="simple_update_failed">更新失败</string>
 
 </resources>

@@ -2,7 +2,9 @@ package com.example.basecomponent.Modules;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MyPublishModule {
+import java.io.Serializable;
+
+public class MyPublishModule implements Serializable{
 
     @SerializedName("bookId")
     private int mBookId;
