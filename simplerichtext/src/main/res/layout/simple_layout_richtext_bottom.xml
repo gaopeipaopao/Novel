@@ -45,12 +45,12 @@
             />
 
         <ImageView
-            android:id="@+id/iv_history"
+            android:id="@+id/iv_save"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
             android:scaleType="center"
-            android:src="@mipmap/simple_ic_history" />
+            android:src="@mipmap/simple_ic_save" />
 
 
     </LinearLayout>

@@ -38,4 +38,10 @@ public class AddPersenter {
         mView.uploadFailed(module);
     }
 
+    public void dettachView(){
+        mAttachedView = false;
+        mView = null;
+        mModle = null;
+    }
+
 }

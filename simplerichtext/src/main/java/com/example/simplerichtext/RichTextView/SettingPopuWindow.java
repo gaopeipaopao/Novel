@@ -16,7 +16,8 @@ import com.example.simplerichtext.Util.ConstantUtil;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SettingPopuWindow extends PopupWindow implements View.OnTouchListener,View.OnClickListener{
+public class SettingPopuWindow extends PopupWindow implements
+        View.OnTouchListener,View.OnClickListener{
     private Activity mContext;
     private View mRoot;
     private SeekBar mLightSeekBar;
@@ -62,6 +63,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
         mLightSeekBar = mRoot.findViewById(R.id.seekbar_light);
         mFontSlider = mRoot.findViewById(R.id.seekbar_font);
         mFontSlider.setScreemWidth(mScrennWidth);
+        //mFontSlider.setOnTouchListener(this);
         mFontP = mRoot.findViewById(R.id.ll_font);
         mWhite = mRoot.findViewById(R.id.iv_white);
         mWhite.setOnClickListener(this);
@@ -150,6 +152,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
                 mFontSlider.move(specX);
                 mLastX = x;
                 mFontSlider.invalidate();
+                return true;
             }
 
         }else if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -159,6 +162,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
                 mFontSlider.setCenter(x);
                 mLastX = x;
                 mFontSlider.invalidate();
+                return true;
             }
 
         }else if(event.getAction() == MotionEvent.ACTION_UP){
@@ -167,12 +171,16 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
                float fontSize = mFontSlider.getFontSize(mFontIndex);
                mCallBack.setFontSize(fontSize, mFontIndex);
                 mLastX = x;
+                return true;
             }
             mChangeFont = false;
 
+        }else if(event.getAction() == MotionEvent.ACTION_OUTSIDE){
 
+            dismiss();
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

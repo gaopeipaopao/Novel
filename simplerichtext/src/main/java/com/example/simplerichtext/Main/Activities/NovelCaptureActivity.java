@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NovelCaptureActivity extends BaseActivity implements
-        View.OnClickListener,ViewPager.OnPageChangeListener{
+        View.OnClickListener,ViewPager.OnPageChangeListener,DraftFragment.AddCallBackInterface{
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -32,8 +32,10 @@ public class NovelCaptureActivity extends BaseActivity implements
     private ImageView mBack;
     private TextView mBookName;
     private ImageView mAdd;
+    private boolean mCanAdd = true;
     private String mStatus;
     private String mName;
+    private String mCaptureBrief = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +96,7 @@ public class NovelCaptureActivity extends BaseActivity implements
     @Override
     public void onPageSelected(int position) {
         if(mStatus.equals( AddExcute.UNPUBLISHED)){
-            if(position == 0){
+            if(position == 0&&mCanAdd){
                 mAdd.setVisibility(View.VISIBLE);
             }else {
                 mAdd.setVisibility(View.GONE);
@@ -106,5 +108,15 @@ public class NovelCaptureActivity extends BaseActivity implements
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void setAdd(boolean canAdd) {
+        mCanAdd = canAdd;
+        if(mCanAdd){
+            mAdd.setVisibility(View.VISIBLE);
+        }else {
+            mAdd.setVisibility(View.GONE);
+        }
     }
 }

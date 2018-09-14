@@ -1,7 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/capture_name"
+        android:textSize="14sp"
+        android:textColor="@color/simple_text_color"
+        android:text="这个大傻逼"
+        android:layout_marginLeft="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_capture_brief"
+        android:layout_marginLeft="16dp"
+        android:maxLines="2"
+        android:maxLength="30"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="12sp"
+        android:textColor="@color/simple_second_text_color"
+        android:text="asdadcaddafasdcdsvdfsvdfa..."
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        >
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/simple_ic_like"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_like_num"
+            android:textSize="12sp"
+            android:textColor="@color/simple_second_text_color"
+            android:layout_marginLeft="5dp"
+            android:text="100"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_capture_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第一章"
+            android:textColor="@color/simple_second_text_color"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/simple_second_text_color" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="288字"
+            android:textColor="@color/simple_second_text_color"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tv_edit_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="15dp"
+            android:layout_gravity="end"
+            android:text="08-22 12:22"
+            android:gravity="end"
+            android:paddingRight="16dp"
+            android:textColor="@color/simple_second_text_color"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/simple_divide_color"
+        android:layout_marginLeft="16dp"
+        />
+
+</LinearLayout>

@@ -5,16 +5,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.basecomponent.Modules.WriteModule;
 import com.example.simplerichtext.Main.Holders.RecycleBinHolder;
 import com.example.simplerichtext.R;
+
+import java.util.List;
 
 public class RecycleBinAdapter extends RecyclerView.Adapter<RecycleBinHolder> {
 
 
     private Context mContext;
+    private  List<WriteModule> mDatas;
 
-    public RecycleBinAdapter(Context context) {
+    public RecycleBinAdapter(Context context,List<WriteModule> datas) {
         mContext = context;
+        mDatas = datas;
     }
 
     @Override
@@ -32,6 +38,6 @@ public class RecycleBinAdapter extends RecyclerView.Adapter<RecycleBinHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDatas.size();
     }
 }

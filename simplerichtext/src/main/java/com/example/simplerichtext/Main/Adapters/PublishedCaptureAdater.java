@@ -6,15 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.basecomponent.Modules.WriteModule;
 import com.example.simplerichtext.Main.Holders.PublihedCaptureHolder;
 import com.example.simplerichtext.R;
+
+import java.util.List;
 
 public class PublishedCaptureAdater extends RecyclerView.Adapter<PublihedCaptureHolder>{
 
     private Context mContext;
+    private List<WriteModule> mDatas;
 
-    public PublishedCaptureAdater(Context context) {
+    public PublishedCaptureAdater(Context context,List<WriteModule> datsa) {
         mContext = context;
+        mDatas = datsa;
     }
 
     @Override
@@ -32,6 +37,6 @@ public class PublishedCaptureAdater extends RecyclerView.Adapter<PublihedCapture
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDatas.size();
     }
 }

@@ -26,7 +26,8 @@
 
         <activity android:name=".Add.BookBriefActivity" />
         <activity android:name=".Add.BookTypeActivity" />
-        <activity android:name=".Main.Activities.EDBookNameActivity"></activity>
+        <activity android:name=".Main.Activities.EDBookNameActivity" />
+        <activity android:name=".RichTextView.CaptureBriefActivity"></activity>
     </application>
 
 </manifest>

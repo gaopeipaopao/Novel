@@ -23,6 +23,11 @@ public class HttpUtil {
     private static String REFRESH_TOKEN = "";
     public static String Authorization = "Basic YnJhbmNoOnhpeW91M2c=";
     public static String Bearer = "Bearer ";
+    public static String STATUS_ONLINE = "STATUS_ONLINE";
+    public static String STATUS_APPROVAL = "STATUS_APPROVAL";
+    public static String STATUS_DRAFT = "STATUS_DRAFT";
+    public static String STATUS_RECYCLE = "STATUS_RECYCLE";
+    public static String STATUS_BANNED = "STATUS_BANNED";
     private static final long DEFAULT_TIMEOUT = 60;
     public  static final String REQUEST_CONTENT = "application/json;charset=UTF-8";
 

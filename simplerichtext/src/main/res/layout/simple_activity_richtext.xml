@@ -159,7 +159,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="30dp"
                     android:id="@+id/tv_capture_brief"
                     android:textSize="12sp"
                     android:textColor="@color/simple_second_text_color"

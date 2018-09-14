@@ -67,5 +67,10 @@
     <string name="simple_name_empty">作品名称不能为空</string>
     <string name="simple_no_network">网络不可用</string>
     <string name="simple_update_failed">更新失败</string>
+    <string name="simple_getdata_failed">获取数据失败</string>
+    <string name="simple_brief_limit">章节介绍不能少于10个字</string>
+    <string name="simple_title_limit">章节名称不能为空且少于15字</string>
+    <string name="simple_capture_limit">内容不能为空且不少于100字</string>
+
 
 </resources>

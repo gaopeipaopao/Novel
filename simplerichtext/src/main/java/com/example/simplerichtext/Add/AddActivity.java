@@ -241,5 +241,6 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     protected void onDestroy() {
         super.onDestroy();
         //EventBus.getDefault().unregister(this);
+        mPerseneter.dettachView();
     }
 }

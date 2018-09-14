@@ -4,6 +4,7 @@ package com.example.simplerichtext.RichTextView;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
@@ -29,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.simplerichtext.R;
 import com.example.simplerichtext.Util.ConstantUtil;
@@ -41,6 +43,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     private RichText mEditCapture;
     private static String SUB = "\u3000\u3000";
+    private final  int CAPUTRE_BRIEF = 200;
     private static final String TAG = "RichTextActivity";
     private int mScreenHeight;
     private int mScreenWidth;
@@ -59,17 +62,22 @@ public class RichTextActivity extends AppCompatActivity implements
     private ImageView mUndo;
     private ImageView mRedo;
     private TextView mPulish;
+    private TextView mCapture;
 
     private ImageView mDustbin;
     private ImageView mSetting;
     private ImageView mWrite;
-    private ImageView mHistory;
+    private ImageView mSave;
     private ImageView mRecordInput;
     private ImageView mComma;
     private ImageView mFullSport;
     private ImageView mColon;
     private ImageView mQuotaition;
     private ImageView mSoftDwon;
+
+    private TextView mCaptureBrief;
+    private String mCaptureNum;
+    private String mCapureString = "";
 
     private RelativeLayout mRelaTitle;
     private boolean mDrak = false;
@@ -90,6 +98,7 @@ public class RichTextActivity extends AppCompatActivity implements
         content = this.findViewById(android.R.id.content);
         content.getViewTreeObserver().addOnGlobalLayoutListener(this);
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mCaptureNum = getIntent().getStringExtra("capture");
         setWindow();
         init();
 
@@ -152,8 +161,8 @@ public class RichTextActivity extends AppCompatActivity implements
         mSetting.setOnClickListener(this);
         mWrite = findViewById(R.id.iv_write);
         mWrite.setOnClickListener(this);
-        mHistory = findViewById(R.id.iv_history);
-        mHistory.setOnClickListener(this);
+        mSave = findViewById(R.id.iv_save);
+        mSave.setOnClickListener(this);
         mRecordInput = findViewById(R.id.iv_record);
         mRecordInput.setOnClickListener(this);
         mComma = findViewById(R.id.iv_comma);
@@ -170,6 +179,10 @@ public class RichTextActivity extends AppCompatActivity implements
         mBottom_2 = findViewById(R.id.ll_bottom_2);
         mEditCapture.setTextChangeListenr(mTextChangeListener);
         mRelaTitle = findViewById(R.id.rela_title);
+        mCaptureBrief = findViewById(R.id.tv_capture_brief);
+        mCaptureBrief.setOnClickListener(this);
+        mCapture = findViewById(R.id.tv_capture);
+        mCapture.setText("第"+mCaptureNum+"章");
         mEditCapture.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -271,8 +284,8 @@ public class RichTextActivity extends AppCompatActivity implements
             } else if (v.getId() == R.id.iv_setting) {
 
                 setting();
-            } else if (v.getId() == R.id.iv_history) {
-                openHistory();
+            } else if (v.getId() == R.id.iv_save) {
+                saveCapure();
             } else if (v.getId() == R.id.iv_record) {
 
             }else if(v.getId() == R.id.iv_comma) {
@@ -294,6 +307,11 @@ public class RichTextActivity extends AppCompatActivity implements
             }else if(v.getId() ==R.id.tv_publish ) {
 
                 publish();
+            }else if(v.getId() == R.id.tv_capture_brief){
+
+                Intent intent = new Intent(this,CaptureBriefActivity.class);
+                intent.putExtra("brief",mCapureString);
+                startActivityForResult(intent,CAPUTRE_BRIEF);
             }
 
     }
@@ -307,6 +325,13 @@ public class RichTextActivity extends AppCompatActivity implements
             }
         }
         return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == CAPUTRE_BRIEF && resultCode == RESULT_OK){
+            mCapureString = data.getStringExtra("brief");
+        }
     }
 
     private void keyboardOpen(){
@@ -411,8 +436,26 @@ public class RichTextActivity extends AppCompatActivity implements
     }
 
 
-    private void openHistory(){
+    private void saveCapure(){
+        String captureName = mEditTitle.getText().toString();
+        if(!captureName.equals("")&& captureName.length()>0&&captureName.length()<=15){
+            String content = mEditCapture.getText().toString();
+            if(!content.equals("")&&content.length()>=200){
+                if(!mCapureString.equals("")&&mCapureString.length()>10){
 
+
+
+                }else {
+                    Toast.makeText(this,R.string.simple_brief_limit,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(this,R.string.simple_capture_limit,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this,R.string.simple_title_limit,Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void publish(){
@@ -503,7 +546,7 @@ public class RichTextActivity extends AppCompatActivity implements
                 mDustbin.setImageResource(R.mipmap.simple_ic_bar_trash);
                 mSetting.setImageResource(R.mipmap.simple_ic_setting);
                 mWrite.setImageResource(R.mipmap.simple_ic_write);
-                mHistory.setImageResource(R.mipmap.simple_ic_history);
+                mSave.setImageResource(R.mipmap.simple_ic_save);
                 mDrak = false;
             }
         }else {
@@ -519,7 +562,7 @@ public class RichTextActivity extends AppCompatActivity implements
             mDustbin.setImageResource(R.mipmap.simple_ic_bar_trash_dark);
             mSetting.setImageResource(R.mipmap.simple_ic_settings_dark);
             mWrite.setImageResource(R.mipmap.simple_ic_write_dark);
-            mHistory.setImageResource(R.mipmap.simple_ic_history_dark);
+            mSave.setImageResource(R.mipmap.simple_ic_save_dark);
             mDrak = true;
         }
     }
