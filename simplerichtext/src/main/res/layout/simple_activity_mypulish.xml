@@ -9,10 +9,11 @@
     android:background="@color/simple_white"
     tools:context=".Main.Activities.MyPublishActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:paddingTop="24dp"
+        android:orientation="horizontal"
         android:background="@color/simple_main_color"
         >
 
@@ -24,14 +25,35 @@
             android:scaleType="center"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TabLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_toEndOf="@id/iv_back"
-            android:gravity="center"
-            android:text="@string/simple_my_work"
-            android:textColor="@color/simple_white"
-            android:textSize="16sp" />
+            android:background="@color/simple_main_color"
+            android:id="@+id/tab_layout"
+            app:tabIndicatorColor="@color/simple_white"
+            app:tabSelectedTextColor="@color/simple_white"
+            app:tabTextColor="@color/simple_white_50"
+            app:tabGravity="center"
+            app:tabMode="fixed"
+            >
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_published"
+                android:text="@string/simple_published"
+                />
+
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_no_published"
+                android:text="@string/simple_no_published"
+
+                />
+        </android.support.design.widget.TabLayout>
+
 
 
         <TextView
@@ -46,22 +68,17 @@
             android:layout_marginRight="16dp"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/simple_divide_color"
-        />
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_view"
+        android:id="@+id/viewpager"
         android:background="@color/simple_color_f2f2f2f2"
         >
 
 
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

@@ -152,7 +152,7 @@ public class SettingPopuWindow extends PopupWindow implements
                 mFontSlider.move(specX);
                 mLastX = x;
                 mFontSlider.invalidate();
-                return true;
+
             }
 
         }else if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -162,7 +162,7 @@ public class SettingPopuWindow extends PopupWindow implements
                 mFontSlider.setCenter(x);
                 mLastX = x;
                 mFontSlider.invalidate();
-                return true;
+
             }
 
         }else if(event.getAction() == MotionEvent.ACTION_UP){
@@ -171,7 +171,7 @@ public class SettingPopuWindow extends PopupWindow implements
                float fontSize = mFontSlider.getFontSize(mFontIndex);
                mCallBack.setFontSize(fontSize, mFontIndex);
                 mLastX = x;
-                return true;
+
             }
             mChangeFont = false;
 

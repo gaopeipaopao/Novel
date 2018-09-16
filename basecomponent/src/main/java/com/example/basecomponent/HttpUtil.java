@@ -28,6 +28,8 @@ public class HttpUtil {
     public static String STATUS_DRAFT = "STATUS_DRAFT";
     public static String STATUS_RECYCLE = "STATUS_RECYCLE";
     public static String STATUS_BANNED = "STATUS_BANNED";
+    public static String STATUS_PUBLISHED = "PUBLISH";
+    public static String STATUS_UNPUBLISHED = "UNPUBLISHED";
     private static final long DEFAULT_TIMEOUT = 60;
     public  static final String REQUEST_CONTENT = "application/json;charset=UTF-8";
 

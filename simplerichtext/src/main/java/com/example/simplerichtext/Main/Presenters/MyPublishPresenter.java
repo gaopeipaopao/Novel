@@ -27,7 +27,7 @@ public class MyPublishPresenter {
     }
 
     public  interface myPublishModuleLisnter{
-        void getMyPublishData();
+        void getMyPublishData(String status);
         void uploadImage(int id ,String image);
     }
 
@@ -61,8 +61,8 @@ public class MyPublishPresenter {
       mView.setDataError();
     }
 
-    public void getData(){
-        mModule.getMyPublishData();
+    public void getData(String status){
+        mModule.getMyPublishData(status);
     }
 
     public void dettachView(){

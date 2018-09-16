@@ -71,6 +71,8 @@
     <string name="simple_brief_limit">章节介绍不能少于10个字</string>
     <string name="simple_title_limit">章节名称不能为空且少于15字</string>
     <string name="simple_capture_limit">内容不能为空且不少于100字</string>
+    <string name="simple_published">已发布</string>
+    <string name="simple_no_published">未发布</string>
 
 
 </resources>

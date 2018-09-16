@@ -28,7 +28,7 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
     }
 
     @Override
-    public void getMyPublishData() {
+    public void getMyPublishData(String status) {
 
         MyPublishExcute.excute(new CallBack<BaseModule<List<MyPublishModule>>>() {
             @Override
@@ -51,7 +51,7 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
             public void onComplete() {
 
             }
-        });
+        },status);
 
     }
 
