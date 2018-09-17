@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="10dp"
     >
 
     <TextView
@@ -13,7 +13,7 @@
         android:id="@+id/capture_name"
         android:textSize="14sp"
         android:textColor="@color/simple_text_color"
-        android:text="这个大傻逼"
+        android:text="@string/simple_no_title"
         android:layout_marginLeft="16dp"
         />
 
@@ -45,7 +45,7 @@
             android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="288字"
+            android:text="@string/simple_count_0"
             android:textColor="@color/simple_second_text_color"
             android:textSize="12sp" />
 

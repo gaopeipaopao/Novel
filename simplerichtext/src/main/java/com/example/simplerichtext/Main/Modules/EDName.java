@@ -17,7 +17,8 @@ public class EDName implements EDNamePresenter.EDNameModle{
     @Override
     public void uploadName(MyPublishModule myPublishModule) {
 
-        AddExcute.updateBook(myPublishModule, AddExcute.UNPUBLISHED, new CallBack<BaseModule<MyPublishModule>>() {
+        AddExcute.updateBook(myPublishModule, AddExcute.UNPUBLISHED,
+                new CallBack<BaseModule<MyPublishModule>>() {
             @Override
             public void onSubscribe() {
 
@@ -33,6 +34,7 @@ public class EDName implements EDNamePresenter.EDNameModle{
 
             @Override
             public void onError(BaseModule<MyPublishModule> e) {
+
                 mPresenter.uploadFailed(e);
             }
 

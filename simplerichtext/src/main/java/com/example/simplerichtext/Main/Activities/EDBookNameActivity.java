@@ -85,6 +85,7 @@ public class EDBookNameActivity extends BaseActivity implements
 //                intent.putExtra("bookname",mEdName.getText().toString());
 //                setResult(RESULT_OK,intent);
                     Log.d(TAG, "onClick: ");
+                    mSave.setClickable(false);
                     mMyPublishModule.setBookName(mEdName.getText().toString());
                     mPresenter.uploadName(mMyPublishModule);
 
@@ -103,6 +104,7 @@ public class EDBookNameActivity extends BaseActivity implements
 
     @Override
     public void uploadScusses(MyPublishModule module) {
+        mSave.setClickable(true);
         if(module!=null){
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
@@ -111,11 +113,14 @@ public class EDBookNameActivity extends BaseActivity implements
             intent.putExtra("book",bundle);
             setResult(RESULT_OK,intent);
             finish();
+        }else {
+            Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void uploadFailed(BaseModule module) {
+        mSave.setClickable(true);
         if(module!=null){
             Log.d(TAG, "uploadFailed: "+module.getMessage());
             Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();

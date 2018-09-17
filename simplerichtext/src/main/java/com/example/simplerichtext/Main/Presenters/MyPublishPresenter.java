@@ -11,6 +11,7 @@ public class MyPublishPresenter {
   private myPublishViewLisnter mView;
   private myPublishModuleLisnter mModule;
   private boolean mIsAttachView = false;
+  private String mStatus;
 
   public MyPublishPresenter(myPublishViewLisnter viewLisnter) {
     mView = viewLisnter;
@@ -51,6 +52,10 @@ public class MyPublishPresenter {
 
     public void onNext(BaseModule<List<MyPublishModule>> value) {
       if(mIsAttachView){
+          List<MyPublishModule> modules = value.getData();
+          for(int i =0;i<modules.size();i++){
+              modules.get(i).setStatus(mStatus);
+          }
         mView.setMyPublishData(value.getData());
       }
 
@@ -61,7 +66,8 @@ public class MyPublishPresenter {
       mView.setDataError();
     }
 
-    public void getData(String status){
+    public void getData(String status) {
+      mStatus = status;
         mModule.getMyPublishData(status);
     }
 

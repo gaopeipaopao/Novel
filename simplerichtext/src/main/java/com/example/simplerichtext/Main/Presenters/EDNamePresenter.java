@@ -33,10 +33,12 @@ public class EDNamePresenter {
     }
 
     public void uploadSucsses(MyPublishModule module){
+
         mView.uploadScusses(module);
     }
 
     public void uploadFailed(BaseModule module){
+
         mView.uploadFailed(module);
     }
 

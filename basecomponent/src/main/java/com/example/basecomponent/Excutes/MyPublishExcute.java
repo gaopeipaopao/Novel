@@ -40,13 +40,10 @@ public class MyPublishExcute {
                     @Override
                     public void onSubscribe(Disposable d) {
 
-                        Log.d(TAG, "onSubscribe: ");
                     }
 
                     @Override
                     public void onNext(BaseModule<List<MyPublishModule>> value) {
-
-                        Log.d(TAG, "onNext: ");
 
                         callBack.onNext(value);
                     }

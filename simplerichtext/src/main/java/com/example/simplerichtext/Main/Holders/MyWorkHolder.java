@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.example.simplerichtext.Add.BookTypeActivity;
 import com.example.simplerichtext.Main.Activities.EDBookNameActivity;
 import com.example.simplerichtext.Main.Activities.MyPublishActivity;
 import com.example.simplerichtext.Main.Activities.NovelCaptureActivity;
+import com.example.simplerichtext.Main.Fragments.PublishedFragment;
 import com.example.simplerichtext.R;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -42,7 +44,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     private ImageView mSetting;
     private TextView mSeeWork;
     private TextView mClose;
-    private Activity mContext;
+    private Fragment mContext;
 
     private TextView mBookName;
     private TextView mBookNameBack;
@@ -68,7 +70,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     public static final int PHOTO_CODE = 200;
 
 
-    public MyWorkHolder(Activity context, View itemView) {
+    public MyWorkHolder(Fragment context, View itemView) {
         super(itemView);
         mRoot = itemView;
         mContext = context;
@@ -82,26 +84,22 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         mSeeWork.setOnClickListener(this);
 
         mBookName = mRoot.findViewById(R.id.tv_novel_name);
-
-
         mBookNameBack = mRoot.findViewById(R.id.tv_novel_name_back);
-        mBookNameBack.setOnClickListener(this);
-
         mBookCover = mRoot.findViewById(R.id.iv_novel_cover);
-
         mBookCoverBack = mRoot.findViewById(R.id.iv_novel_cover_back);
-        mBookCoverBack.setOnClickListener(this);
-
-        mBookBrief = mRoot.findViewById(R.id.tv_novel_brief);
-        mBookBrief.setOnClickListener(this);
-
         mBookType = mRoot.findViewById(R.id.tv_novel_type);
-        mBookType.setOnClickListener(this);
-
         mCreateTime = mRoot.findViewById(R.id.tv_publish_time);
         mJoinNum = mRoot.findViewById(R.id.tv_join_number);
         mWriteNum = mRoot.findViewById(R.id.tv_write_number);
         mLookNum = mRoot.findViewById(R.id.tv_lookthrough_number);
+        mBookBrief = mRoot.findViewById(R.id.tv_novel_brief);
+
+        mBookNameBack.setOnClickListener(this);
+        mBookCoverBack.setOnClickListener(this);
+        mBookBrief.setOnClickListener(this);
+        mBookType.setOnClickListener(this);
+
+
         setCameraDistance();
     }
 
@@ -143,81 +141,106 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     }
 
+    public void updateImage(String path){
+        mData.setBookCover(path);
+        Glide.with(mContext)
+                .load(HttpUtil.BOOK_COVER+path)
+
+                .into(mBookCover);
+
+        Glide.with(mContext)
+                .load(HttpUtil.BOOK_COVER+path)
+                .into(mBookCoverBack);
+
+    }
+
     public MyPublishModule getData(){
         return mData;
     }
 
     @Override
     public void onClick(View v) {
-       if(v.getId() == R.id.iv_setting) {
 
-           openBack();
-       }else  if(v.getId() == R.id.tv_close) {
+        if(v.getId() == R.id.iv_setting) {
+
+            openBack();
+        }else  if(v.getId() == R.id.tv_close) {
 
 
-           openFront();
-       }else if(v.getId() == R.id.tv_see_work){
+            openFront();
+        }else if(v.getId() == R.id.tv_see_work){
 
-           Intent intent = new Intent(mContext, NovelCaptureActivity.class);
-           intent.putExtra("name",mData.getBookName());
-           intent.putExtra("status", AddExcute.UNPUBLISHED);
-           mContext.startActivity(intent);
+            Intent intent = new Intent(mContext.getContext(),
+                    NovelCaptureActivity.class);
+            intent.putExtra("name",mData.getBookName());
+            intent.putExtra("status", AddExcute.UNPUBLISHED);
+            mContext.startActivity(intent);
 
-        }else if(v.getId() == R.id.iv_novel_cover_back){
-           ((MyPublishActivity)mContext).refreshImage(this);
-           if(!EasyPermissions.hasPermissions(mContext, PermissionUtil.STORAGES)) {
-               PermissionUtil.
-                       requestStoragePersmission(mContext,
-                               MyPublishActivity.STORAGE_CODE);
-           }else {
-               Matisse.from(mContext)
-                       .choose(MimeType.allOf())
-                       .countable(true)
-                       .maxSelectable(1)
-                       .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                       .spanCount(3)
-                       .thumbnailScale(0.85f) // 缩略图的比例
-                       .theme(R.style.Matisse_Dracula)
-                       .imageEngine(new GlideEngine()) // 使用的图片加载引擎
-                       .forResult(PHOTO_CODE); // 设置作为标记的请求码
+        }else if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
+            if(v.getId() == R.id.iv_novel_cover_back){
+                ((PublishedFragment)mContext).setFreshHolder(this);
+                if(!EasyPermissions.hasPermissions(mContext.getContext(),
+                        PermissionUtil.STORAGES)) {
+                    PermissionUtil.
+                            requestStoragePersmission(mContext.getActivity(),
+                                    MyPublishActivity.STORAGE_CODE);
+                }else {
+                    Matisse.from(mContext)
+                            .choose(MimeType.allOf())
+                            .countable(true)
+                            .maxSelectable(1)
+                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                            .spanCount(3)
+                            .thumbnailScale(0.85f) // 缩略图的比例
+                            .theme(R.style.Matisse_Dracula)
+                            .imageEngine(new GlideEngine()) // 使用的图片加载引擎
+                            .forResult(PHOTO_CODE); // 设置作为标记的请求码
 
-           }
+                }
 
-           ((MyPublishActivity)mContext).refreshImage(this);
+                ((PublishedFragment)mContext).setFreshHolder(this);
 
-       }else if(v.getId() == R.id.tv_novel_name_back){
-           ((MyPublishActivity)mContext).refreshImage(this);
-           Intent intent = new Intent(mContext, EDBookNameActivity.class);
-           Bundle bundle = new Bundle();
-           bundle.putSerializable("book",mData);
-           intent.putExtra("book",bundle);
-          mContext.startActivityForResult(intent,UPDATE_NAME);
-       }else if(v.getId() == R.id.tv_novel_brief){
-           ((MyPublishActivity)mContext).refreshImage(this);
-           Intent intent = new Intent(mContext, BookBriefActivity.class);
-           Bundle bundle = new Bundle();
-           bundle.putSerializable("book",mData);
-           bundle.putBoolean("update",true);
-           intent.putExtra("book",bundle);
-           mContext.startActivityForResult(intent,UPDATE_BRIEF);
+            }else if(v.getId() == R.id.tv_novel_name_back){
+                ((PublishedFragment)mContext).setFreshHolder(MyWorkHolder.this);
 
-       }else if(v.getId() == R.id.tv_novel_type){
-           ((MyPublishActivity)mContext).refreshImage(this);
-           Intent intent = new Intent(mContext, BookTypeActivity.class);
-           Bundle bundle = new Bundle();
-           bundle.putSerializable("book",mData);
-           bundle.putBoolean("update",true);
-           intent.putExtra("book",bundle);
-           mContext.startActivityForResult(intent,UPDATE_TYPE);
+                Intent intent = new Intent(mContext.getContext(),
+                        EDBookNameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book",mData);
+                intent.putExtra("book",bundle);
+                mContext.startActivityForResult(intent,UPDATE_NAME);
+            }else if(v.getId() == R.id.tv_novel_brief){
+                ((PublishedFragment)mContext).setFreshHolder(this);
+                Intent intent = new Intent(mContext.getContext(),
+                        BookBriefActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book",mData);
+                bundle.putBoolean("update",true);
+                intent.putExtra("book",bundle);
+                mContext.startActivityForResult(intent,UPDATE_BRIEF);
 
-       }
+            }else if(v.getId() == R.id.tv_novel_type){
+                ((PublishedFragment)mContext).setFreshHolder(this);
+                Intent intent = new Intent(mContext.getContext(),
+                        BookTypeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book",mData);
+                bundle.putBoolean("update",true);
+                intent.putExtra("book",bundle);
+                mContext.startActivityForResult(intent,UPDATE_TYPE);
+
+            }
+        }
+
     }
 
     private void openBack(){
         ObjectAnimator front = (ObjectAnimator) AnimatorInflater.
-                loadAnimator(mContext, R.animator.simple_animtor_card_front_gone);
+                loadAnimator(mContext.getContext(),
+                        R.animator.simple_animtor_card_front_gone);
         ObjectAnimator back = (ObjectAnimator)AnimatorInflater.
-                loadAnimator(mContext,R.animator.simple_animtor_card_back_show);
+                loadAnimator(mContext.getContext(),
+                        R.animator.simple_animtor_card_back_show);
        front.setTarget(mFront);
        back.setTarget(mBack);
        front.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -238,9 +261,9 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     private void openFront(){
 
         ObjectAnimator front = (ObjectAnimator) AnimatorInflater.
-                loadAnimator(mContext,R.animator.simple_animtor_card_front_show);
+                loadAnimator(mContext.getContext(),R.animator.simple_animtor_card_front_show);
         ObjectAnimator back = (ObjectAnimator)AnimatorInflater.
-                loadAnimator(mContext,R.animator.simple_animtor_card_back_gone);
+                loadAnimator(mContext.getContext(),R.animator.simple_animtor_card_back_gone);
         front.setTarget(mFront);
         back.setTarget(mBack);
         back.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

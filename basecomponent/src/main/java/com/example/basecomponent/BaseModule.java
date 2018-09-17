@@ -28,4 +28,9 @@ public class  BaseModule<T> implements Serializable {
     public String getMessage() {
         return mMessage;
     }
+
+
+    public void setData(T mData) {
+        this.mData = mData;
+    }
 }

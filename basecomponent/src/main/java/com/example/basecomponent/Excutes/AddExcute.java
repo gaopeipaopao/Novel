@@ -146,7 +146,7 @@ public class AddExcute {
                     });
     }
 
-    public static void updateBook(MyPublishModule bookModule, String status,
+    public static void updateBook(final MyPublishModule bookModule, String status,
                                   final CallBack<BaseModule<MyPublishModule>> callBack){
 
         AddBookService service = HttpUtil.getRetrofit().create(AddBookService.class);
@@ -178,11 +178,13 @@ public class AddExcute {
 
                     @Override
                     public void onNext(BaseModule<MyPublishModule> myPublishModuleBaseModule) {
+                        myPublishModuleBaseModule.setData(bookModule);
                         callBack.onNext(myPublishModuleBaseModule);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                         if(e instanceof HttpException){
                             try {
                                 HttpException httpException = (HttpException)e;
@@ -195,6 +197,8 @@ public class AddExcute {
                                 e1.printStackTrace();
                             }
 
+                        }else {
+                            callBack.onError(null);
                         }
                     }
 

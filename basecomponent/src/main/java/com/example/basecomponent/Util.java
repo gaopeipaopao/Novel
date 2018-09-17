@@ -75,6 +75,9 @@ public class Util {
 
     public static String handleImage(Context context, Uri uri) {
         String filePath = null;
+        if(uri == null){
+            return null;
+        }
         if (DocumentsContract.isDocumentUri(context, uri)) {
             // 如果是document类型的 uri, 则通过document id来进行处理
             String documentId = DocumentsContract.getDocumentId(uri);

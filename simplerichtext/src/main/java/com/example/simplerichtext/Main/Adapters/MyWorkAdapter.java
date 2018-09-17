@@ -2,6 +2,7 @@ package com.example.simplerichtext.Main.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {
 
-    private Activity mContext;
+    private Fragment mContext;
     private List<MyPublishModule> mDatas;
 
-    public MyWorkAdapter(Activity context, List<MyPublishModule> datas) {
+    public MyWorkAdapter(Fragment context, List<MyPublishModule> datas) {
         mContext = context;
         mDatas = datas;
     }
@@ -26,7 +27,7 @@ public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {
     @Override
     public MyWorkHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mContext).
+        View view = LayoutInflater.from(mContext.getContext()).
                 inflate(R.layout.simple_layout_main_recycler_item,parent,false);
 
         return new MyWorkHolder(mContext,view);

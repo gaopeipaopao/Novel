@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,11 +32,16 @@ public class NovelCaptureActivity extends BaseActivity implements
     private String[] mTitles;
     private ImageView mBack;
     private TextView mBookName;
-    private ImageView mAdd;
+    private TextView mPublish;
     private boolean mCanAdd = true;
     private String mStatus;
     private String mName;
     private String mCaptureBrief = "";
+    private DraftFragment mDraftFragment;
+    private PublishedCaptureFragment mPublishedFragment;
+    private RecycleBinFragment mReccyleBinFragment;
+    private static final String TAG = "NovelCaptureActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +62,11 @@ public class NovelCaptureActivity extends BaseActivity implements
         });
         mBookName = findViewById(R.id.tv_novel_name);
         mBookName.setText(mName);
-        mAdd = findViewById(R.id.iv_add);
-        mAdd.setOnClickListener(this);
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);
-        mFragments.add(new DraftFragment());
-        mFragments.add(new PublishedCaptureFragment());
-        mFragments.add(new RecycleBinFragment());
+        mFragments.add(mDraftFragment=new DraftFragment());
+        mFragments.add(mPublishedFragment=new PublishedCaptureFragment());
+        mFragments.add(mReccyleBinFragment=new RecycleBinFragment());
         mTitles = new String[]{
                 getResources().getString(R.string.simple_draft_box),
                 getResources().getString(R.string.simple_published_capture),
@@ -74,6 +78,10 @@ public class NovelCaptureActivity extends BaseActivity implements
         mViewPager.setAdapter(mAdater);
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(this);
+        Log.d(TAG, "init: "+mStatus);
+        Bundle bundle = new Bundle();
+        bundle.putString("status",mStatus);
+        mDraftFragment.setArguments(bundle);
 
 
     }
@@ -81,11 +89,6 @@ public class NovelCaptureActivity extends BaseActivity implements
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == R.id.iv_add){
-            Intent intent = new Intent(this, RichTextActivity.class);
-            intent.putExtra("capture","1");
-            startActivity(intent);
-        }
     }
 
     @Override
@@ -97,9 +100,9 @@ public class NovelCaptureActivity extends BaseActivity implements
     public void onPageSelected(int position) {
         if(mStatus.equals( AddExcute.UNPUBLISHED)){
             if(position == 0&&mCanAdd){
-                mAdd.setVisibility(View.VISIBLE);
+
             }else {
-                mAdd.setVisibility(View.GONE);
+
             }
         }
 
@@ -114,9 +117,9 @@ public class NovelCaptureActivity extends BaseActivity implements
     public void setAdd(boolean canAdd) {
         mCanAdd = canAdd;
         if(mCanAdd){
-            mAdd.setVisibility(View.VISIBLE);
+
         }else {
-            mAdd.setVisibility(View.GONE);
+
         }
     }
 }

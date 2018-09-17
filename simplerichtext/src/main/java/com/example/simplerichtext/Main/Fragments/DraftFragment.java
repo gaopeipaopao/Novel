@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.WriteModule;
 import com.example.basecomponent.Util;
+import com.example.simplerichtext.Main.Adapters.DraftBoxAdapter;
 import com.example.simplerichtext.Main.Adapters.PublishedCaptureAdater;
 import com.example.simplerichtext.Main.Presenters.NovelCaputrePresenter;
 import com.example.simplerichtext.R;
@@ -29,11 +31,24 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
 
     private View mView;
     private RecyclerView mRecyclerView;
-    private PublishedCaptureAdater mAdapter;
+    private DraftBoxAdapter mAdapter;
     private RelativeLayout mRelativeBg;
     private NovelCaputrePresenter mPresenter;
     private List<WriteModule> mDatas = new ArrayList<>();
     private AddCallBackInterface mAddCall;
+    private String mStatus;
+    private static final String TAG = "DraftFragment";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        mStatus = bundle.getString("status");
+        if (mStatus.equals(HttpUtil.STATUS_UNPUBLISHED)){
+            mDatas.add(new WriteModule());
+        }
+
+    }
 
     @Nullable
     @Override
@@ -42,12 +57,23 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
                              @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.simple_fragment_draft_box,container,false);
         mRecyclerView = mView.findViewById(R.id.recycler_view);
-        mAdapter = new PublishedCaptureAdater(getContext(),mDatas);
+
+        mRelativeBg = mView.findViewById(R.id.fragment_no_data);
+        mRelativeBg.setVisibility(View.GONE);
+        mPresenter = new NovelCaputrePresenter(this);
+        Bundle bundle = getArguments();
+        mStatus = bundle.getString("status");
+        Log.d(TAG, "onCreateView: "+mDatas.size());
+        mAdapter = new DraftBoxAdapter(getContext(),mDatas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        mRelativeBg = mView.findViewById(R.id.fragment_no_data);
-        mPresenter = new NovelCaputrePresenter(this);
-        getData();
+        if(mDatas.size()>0){
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
+        if(mStatus.equals(HttpUtil.STATUS_PUBLISHED)){
+            getData();
+        }
+
         return mView;
     }
 

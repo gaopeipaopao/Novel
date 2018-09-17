@@ -59,7 +59,7 @@ public class MyPublishActivity extends BaseActivity implements
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private Fragment mPublishedFragment;
-    private Fragment mNoPublishedFragment;
+    private PublishedFragment mNoPublishedFragment;
     private List<Fragment> mFragments = new ArrayList<>();
     private List<String> mNames = new ArrayList<>();
     private PublishViewPagerAdapter mAdapter;
@@ -85,6 +85,7 @@ public class MyPublishActivity extends BaseActivity implements
         });
         mAddWork = findViewById(R.id.tv_add);
         mAddWork.setOnClickListener(this);
+        mAddWork.setVisibility(View.INVISIBLE);
         mPublishedFragment = new PublishedFragment();
         Bundle bundle = new Bundle();
         bundle.putString("status", HttpUtil.STATUS_PUBLISHED);
@@ -129,72 +130,15 @@ public class MyPublishActivity extends BaseActivity implements
     }
 
 
-    public void refreshImage(MyWorkHolder holder){
-        mRefreshHolder = holder;
-
-    }
-
     @Subscribe
     public void updateData(AddBookMessage message){
         if(message!=null){
-
+            mNoPublishedFragment.AddData(message.getModule());
         }
 
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == MyWorkHolder.PHOTO_CODE&&resultCode == RESULT_OK){
-            List<Uri> images = Matisse.obtainResult(data);
-            if(mRefreshHolder!=null){
-                Uri uri = images.get(0);
-               mPath = Util.handleImage(this,uri);
-
-
-            }
-        }
-
-        if(requestCode == MyWorkHolder.UPDATE_NAME &&resultCode == RESULT_OK){
-            MyPublishModule myPublishModule = (MyPublishModule) data.
-                    getBundleExtra("book").getSerializable("book");
-            if(mRefreshHolder!=null){
-                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
-                mRefreshHolder.setData(myPublishModule);
-                Log.d(TAG, "onActivityResult: "
-                        +myPublishModule.getBookName());
-                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
-
-            }
-        }
-
-        if(requestCode == MyWorkHolder.UPDATE_BRIEF&&resultCode == RESULT_OK){
-            MyPublishModule myPublishModule = (MyPublishModule) data.
-                    getBundleExtra("book").getSerializable("book");
-            if(mRefreshHolder!=null){
-                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
-                mRefreshHolder.setData(myPublishModule);
-                Log.d(TAG, "onActivityResult: "
-                        +myPublishModule.getBookName());
-                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
-
-            }
-        }
-
-        if(requestCode == MyWorkHolder.UPDATE_TYPE&&resultCode == RESULT_OK){
-            MyPublishModule myPublishModule = (MyPublishModule) data.
-                    getBundleExtra("book").getSerializable("book");
-            if(mRefreshHolder!=null){
-                //mDatas.set((int) mRefreshHolder.getItemId(),myPublishModule);
-                mRefreshHolder.setData(myPublishModule);
-                Log.d(TAG, "onActivityResult: "
-                        +myPublishModule.getBookName());
-                //mAdapter.notifyItemChanged((int) mRefreshHolder.getItemId());
-
-            }
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
