@@ -32,6 +32,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.basecomponent.BaseModule;
+import com.example.basecomponent.Excutes.AddExcute;
+import com.example.basecomponent.HttpUtil;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.simplerichtext.R;
 import com.example.simplerichtext.Util.ConstantUtil;
 import com.example.simplerichtext.Util.DialogUtil;
@@ -39,7 +43,8 @@ import com.example.simplerichtext.Util.DialogUtil;
 
 public class RichTextActivity extends AppCompatActivity implements
         ViewTreeObserver.OnGlobalLayoutListener,
-        View.OnClickListener ,View.OnTouchListener,SettingPopuWindow.callBack{
+        View.OnClickListener ,View.OnTouchListener,SettingPopuWindow.callBack ,
+        RichTextPresenter.RichTextViewInterface{
 
     private RichText mEditCapture;
     private static String SUB = "\u3000\u3000";
@@ -85,6 +90,10 @@ public class RichTextActivity extends AppCompatActivity implements
     private static final int EIDT_CAPURE = 1;
     private static final int EIDT_TITLE = 2;
     public static int mIndex = 3;
+    private String mStatus;
+    private MyPublishModule mBook;
+    private RichTextPresenter mPresenter;
+    private int mParentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +108,21 @@ public class RichTextActivity extends AppCompatActivity implements
         content.getViewTreeObserver().addOnGlobalLayoutListener(this);
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mCaptureNum = getIntent().getStringExtra("capture");
+        Bundle bundle = getIntent().getBundleExtra("book");
+        mBook = (MyPublishModule) bundle.getSerializable("book");
+        mParentId = getIntent().getIntExtra("parent",-1);
+        if(mBook!=null){
+            mStatus = mBook.getStatus();
+            Log.d(TAG, "onCreate: "+mBook.getBookType());
+        }
+        mPresenter = new RichTextPresenter(this);
         setWindow();
         init();
+        if(mStatus.equals(HttpUtil.STATUS_UNPUBLISHED)){
+            getUnData();
+            showLoading();
+            mCapureString = mBook.getFirstSummaray();
+        }
 
     }
 
@@ -183,23 +205,6 @@ public class RichTextActivity extends AppCompatActivity implements
         mCaptureBrief.setOnClickListener(this);
         mCapture = findViewById(R.id.tv_capture);
         mCapture.setText("第"+mCaptureNum+"章");
-        mEditCapture.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
         mEditCapture.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -223,6 +228,17 @@ public class RichTextActivity extends AppCompatActivity implements
         });
     }
 
+    public void getUnData(){
+        mPresenter.getUnpublishedData(mBook);
+    }
+
+    public void showLoading(){
+
+    }
+
+    public void dismissLoading(){
+
+    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -317,6 +333,143 @@ public class RichTextActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void saveUnPublishedSuceese(BaseModule<MyPublishModule> module) {
+
+        if(module!=null){
+            mBook = module.getData();
+            Toast.makeText(this,R.string.simple_save_scueese,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            Toast.makeText(this,R.string.simple_save_fail,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void saveUnPublishedFailed(BaseModule module) {
+        if(module!=null){
+
+            Toast.makeText(this,module.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+
+            Log.d(TAG, "saveUnPublishedFailed: "+module.getMessage());
+
+        }else {
+            Toast.makeText(this,R.string.simple_save_fail,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void savePublishedSuceese(BaseModule<MyPublishModule> module) {
+        if(module!=null){
+            mBook = module.getData();
+            Toast.makeText(this,R.string.simple_save_scueese,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            Toast.makeText(this,R.string.simple_save_fail,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void savePublishedFailed(BaseModule module) {
+        if(module!=null){
+
+            Toast.makeText(this,module.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this,R.string.simple_save_fail,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void publishBookSuceese(BaseModule<MyPublishModule> module) {
+
+        if(module!=null){
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            module.getData().setStatus(HttpUtil.STATUS_PUBLISHED);
+            bundle.putSerializable("book",module.getData());
+            intent.putExtra("book",bundle);
+            setResult(RESULT_OK,intent);
+            Toast.makeText(this,R.string.simple_publish_scueese,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+
+        }else {
+            Toast.makeText(this,R.string.simple_publish_failed,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void publishBookFailed(BaseModule module) {
+        if(module!=null){
+
+            Toast.makeText(this,module.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this,R.string.simple_publish_failed,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void publishCaptureSuceese(BaseModule module) {
+
+    }
+
+    @Override
+    public void publishCaptureFailed(BaseModule module) {
+        if(module!=null){
+
+            Toast.makeText(this,module.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this,R.string.simple_publish_failed,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getUnPublishedDataSuceese(BaseModule<MyPublishModule> module) {
+        if(module!=null){
+            mBook.setFirstTitle(module.getData().getFirstTitle());
+            mBook.setFirstContent(module.getData().getFirstContent());
+            mBook.setFirstSummaray(module.getData().getFirstSummaray());
+            mCapureString = mBook.getFirstSummaray();
+            if(mBook.getFirstTitle()!=null&&!mBook.getFirstTitle().equals("")){
+                mEditTitle.setText(mBook.getFirstTitle());
+            }
+            if(mBook.getFirstContent()!=null&&!mBook.getFirstContent().equals("")) {
+                mEditCapture.setText(mBook.getFirstContent());
+            }
+            dismissLoading();
+        }else {
+            Toast.makeText(this,R.string.simple_getdata_failed,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getUnPublishedDataFailed(BaseModule module) {
+        if(module!=null){
+            Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,R.string.simple_getdata_failed,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public boolean onTouch(View v, MotionEvent event) {
         if(v.getId() == R.id.et_capture && mEditCapture.canScrollVertically(0)){
             v.getParent().requestDisallowInterceptTouchEvent(true);
@@ -382,29 +535,38 @@ public class RichTextActivity extends AppCompatActivity implements
         String s = mTextCount.getText().toString();
         int count = Integer.valueOf(s.split(getResources()
                 .getString(R.string.simple_count))[0]);
-        if(count == 0){
-
-        }else {
-
-        }
+        String title = mEditTitle.getText().toString();
+        String content = mEditCapture.getText().toString();
+        Intent intent = new Intent();
+        intent.putExtra("count",count);
+        intent.putExtra("title",title);
+        intent.putExtra("content",content);
+        setResult(RESULT_OK,intent);
+        finish();
 
     }
 
     private void dusbtin(){
-        AlertDialog alertDialog = DialogUtil.CreateNomalDialog(this,
-                getResources().getString(R.string.simple_dustin_title),
-                getResources().getString(R.string.simple_dustin_meassage),
-                true, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(which == DialogInterface.BUTTON_POSITIVE){
+        if(mStatus.equals(HttpUtil.STATUS_PUBLISHED)){
+            AlertDialog alertDialog = DialogUtil.CreateNomalDialog(this,
+                    getResources().getString(R.string.simple_dustin_title),
+                    getResources().getString(R.string.simple_dustin_meassage),
+                    true, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(which == DialogInterface.BUTTON_POSITIVE){
 
-                        }else if(which == DialogInterface.BUTTON_NEGATIVE){
+                            }else if(which == DialogInterface.BUTTON_NEGATIVE){
 
+                            }
                         }
-                    }
-                });
-        alertDialog.show();
+                    });
+            alertDialog.show();
+        }else if(mStatus .equals( HttpUtil.STATUS_UNPUBLISHED)) {
+            Toast.makeText(this,R.string.simple_cannot_delete,
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void setting(){
@@ -438,27 +600,52 @@ public class RichTextActivity extends AppCompatActivity implements
 
     private void saveCapure(){
         String captureName = mEditTitle.getText().toString();
-        if(!captureName.equals("")&& captureName.length()>0&&captureName.length()<=15){
+        if(!captureName.equals("")&& captureName.length()>0
+                &&captureName.length()<=15){
             String content = mEditCapture.getText().toString();
-            if(!content.equals("")&&content.length()>=200){
-                if(!mCapureString.equals("")&&mCapureString.length()>10){
 
+                    Log.d(TAG, "saveCapure: "+mBook.getStatus());
+                    if(mStatus.equals(HttpUtil.STATUS_PUBLISHED)){
+                        Log.d(TAG, "saveCapure: "+mBook.getStatus());
 
+                    }else if(mStatus.equals(HttpUtil.STATUS_UNPUBLISHED)){
 
-                }else {
-                    Toast.makeText(this,R.string.simple_brief_limit,
-                            Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "saveCapure: "+mBook.getBookType());
+                        mBook.setFirstTitle(captureName);
+                        mBook.setFirstContent(content);
+                        mBook.setFirstSummaray(mCapureString);
+                        mPresenter.saveUnPublished(mBook);
+
                 }
             }else {
                 Toast.makeText(this,R.string.simple_capture_limit,
                         Toast.LENGTH_SHORT).show();
             }
-        }else {
-            Toast.makeText(this,R.string.simple_title_limit,Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     private void publish(){
+            String captureName = mEditTitle.getText().toString();
+            if(!captureName.equals("")&& captureName.length()>0&&captureName.length()<=15){
+                String content = mEditCapture.getText().toString();
+                if(!content.equals("")&&content.length()>=200){
+                    if(!mCapureString.equals("")&&mCapureString.length()>10){
+                        mBook.setFirstTitle(captureName);
+                        mBook.setFirstContent(content);
+                        mBook.setFirstSummaray(mCapureString);
+                        mPresenter.publish(mBook,mParentId);
+
+                    }else {
+                        Toast.makeText(this,R.string.simple_brief_limit,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(this,R.string.simple_capture_limit,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(this,R.string.simple_title_limit,Toast.LENGTH_SHORT).show();
+            }
 
     }
 
@@ -571,5 +758,11 @@ public class RichTextActivity extends AppCompatActivity implements
     protected void onRestart() {
         super.onRestart();
         setWindow();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.dettachView();
+        super.onDestroy();
     }
 }

@@ -23,9 +23,11 @@ import com.example.simplerichtext.Add.AddBookMessage;
 import com.example.simplerichtext.Main.Adapters.MyWorkAdapter;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
+import com.example.simplerichtext.Main.PublishBookMessage;
 import com.example.simplerichtext.R;
 import com.zhihu.matisse.Matisse;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.sql.ResultSet;
@@ -47,6 +49,11 @@ public class PublishedFragment extends Fragment implements
     private static final String TAG = "PublishedFragment";
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     @Nullable
     @Override
@@ -163,5 +170,22 @@ public class PublishedFragment extends Fragment implements
 
 
         }
+
+        if(requestCode == MyWorkHolder.PUBLISH_BOOK&&
+                resultCode == Activity.RESULT_OK){
+            //getData();
+            EventBus.getDefault().post(new PublishBookMessage());
+        }
+    }
+
+    @Subscribe
+    public void publishBook(PublishBookMessage message){
+        getData();
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

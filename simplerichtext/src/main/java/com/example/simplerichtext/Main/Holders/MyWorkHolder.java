@@ -30,6 +30,7 @@ import com.example.simplerichtext.Main.Activities.MyPublishActivity;
 import com.example.simplerichtext.Main.Activities.NovelCaptureActivity;
 import com.example.simplerichtext.Main.Fragments.PublishedFragment;
 import com.example.simplerichtext.R;
+import com.example.simplerichtext.RichTextView.RichTextActivity;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -68,6 +69,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
     public static final int UPDATE_BRIEF = 600;
     public static final int UPDATE_TYPE = 700;
     public static final int PHOTO_CODE = 200;
+    public static final int PUBLISH_BOOK = 800;
 
 
     public MyWorkHolder(Fragment context, View itemView) {
@@ -108,6 +110,11 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         Log.d(TAG, "setData: "+data.getBookName());
         mBookName.setText(data.getBookName());
         mBookNameBack.setText(data.getBookName());
+        if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
+            mSeeWork.setText(mContext.getResources().getText(R.string.simple_not_edit));
+        }else {
+            mSeeWork.setText(mContext.getResources().getText(R.string.simple_see_novel_published));
+        }
         if(data.getBookCover() == null ||data.getBookCover().equals("")){
             Glide.with(mContext)
                     .load(R.mipmap.simple_book_cover)
@@ -129,7 +136,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
         mBookBrief.setText(data.getContent().subSequence(0,data.getContent().length()>9?
                 9:data.getContent().length()-1)+"...");
-        mBookType.setText(Util.getTypeValue(data.getBookType()));
+        mBookType.setText(Util.getTypeValue(mData.getBookType()));
         mCreateTime.setText(data.getCreateTime());
         mLookNum.setText(String.valueOf(data.getReadNum()));
         mJoinNum.setText(String.valueOf(data.getJoinUsers()));
@@ -170,11 +177,17 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
             openFront();
         }else if(v.getId() == R.id.tv_see_work){
 
-            Intent intent = new Intent(mContext.getContext(),
-                    NovelCaptureActivity.class);
-            intent.putExtra("name",mData.getBookName());
-            intent.putExtra("status", AddExcute.UNPUBLISHED);
-            mContext.startActivity(intent);
+            if(mData.getStatus().equals(HttpUtil.STATUS_PUBLISHED)){
+
+            }else {
+                Intent intent = new Intent(mContext.getContext(),
+                        RichTextActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("book",mData);
+                intent.putExtra("capture","1");
+                intent.putExtra("book",bundle);
+                mContext.startActivityForResult(intent,PUBLISH_BOOK);
+            }
 
         }else if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
             if(v.getId() == R.id.iv_novel_cover_back){

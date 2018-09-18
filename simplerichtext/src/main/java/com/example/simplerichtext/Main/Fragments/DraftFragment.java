@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.HttpUtil;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Modules.WriteModule;
 import com.example.basecomponent.Util;
 import com.example.simplerichtext.Main.Adapters.DraftBoxAdapter;
@@ -44,9 +45,6 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         mStatus = bundle.getString("status");
-        if (mStatus.equals(HttpUtil.STATUS_UNPUBLISHED)){
-            mDatas.add(new WriteModule());
-        }
 
     }
 
@@ -59,19 +57,17 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
         mRecyclerView = mView.findViewById(R.id.recycler_view);
 
         mRelativeBg = mView.findViewById(R.id.fragment_no_data);
-        mRelativeBg.setVisibility(View.GONE);
         mPresenter = new NovelCaputrePresenter(this);
         Bundle bundle = getArguments();
         mStatus = bundle.getString("status");
-        Log.d(TAG, "onCreateView: "+mDatas.size());
         mAdapter = new DraftBoxAdapter(getContext(),mDatas);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        if(mDatas.size()>0){
-            mRecyclerView.setVisibility(View.VISIBLE);
-        }
+
         if(mStatus.equals(HttpUtil.STATUS_PUBLISHED)){
             getData();
+        }else if (mStatus.equals(HttpUtil.STATUS_UNPUBLISHED)){
+            getUnData();
         }
 
         return mView;
@@ -83,6 +79,10 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
         }else {
             Toast.makeText(getContext(),R.string.simple_no_network,Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    private void getUnData(){
 
     }
 
@@ -106,6 +106,13 @@ public class DraftFragment extends Fragment implements NovelCaputrePresenter.Cap
             }
         }else {
             Toast.makeText(getContext(),R.string.simple_getdata_failed,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void getUnpublishedSuccses(BaseModule<MyPublishModule> module) {
+        if(module!=null){
+
         }
     }
 

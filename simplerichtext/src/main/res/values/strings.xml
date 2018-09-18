@@ -70,9 +70,15 @@
     <string name="simple_getdata_failed">获取数据失败</string>
     <string name="simple_brief_limit">章节介绍不能少于10个字</string>
     <string name="simple_title_limit">章节名称不能为空且少于15字</string>
-    <string name="simple_capture_limit">内容不能为空且不少于100字</string>
+    <string name="simple_capture_limit">内容不能为空且不少于200字</string>
     <string name="simple_published">已发布</string>
     <string name="simple_no_published">未发布</string>
+    <string name="simple_cannot_delete">该章节不放入回收站</string>
+    <string name="simple_not_edit">编辑作品(未发布)</string>
+    <string name="simple_save_scueese">保存成功</string>
+    <string name="simple_save_fail">保存失败</string>
+    <string name="simple_publish_scueese">发布成功</string>
+    <string name="simple_publish_failed">发布失败</string>
 
 
 </resources>

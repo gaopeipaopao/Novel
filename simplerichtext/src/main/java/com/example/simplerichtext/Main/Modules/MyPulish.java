@@ -28,7 +28,7 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
     }
 
     @Override
-    public void getMyPublishData(String status) {
+    public void getMyPublishData(final String status) {
 
         MyPublishExcute.excute(new CallBack<BaseModule<List<MyPublishModule>>>() {
             @Override
@@ -39,6 +39,13 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
             @Override
             public void onNext(BaseModule<List<MyPublishModule>> value) {
+                List<MyPublishModule> modules = value.getData();
+                if(modules!=null){
+                    for(int i = 0;i<modules.size();i++){
+                        modules.get(i).setStatus(status);
+                    }
+                    value.setData(modules);
+                }
                 mPersenter.onNext(value);
             }
 

@@ -14,7 +14,7 @@ public class WriteModule {
     @SerializedName("myWriteBranchDTOS")
     private List<myWrite> mMyWrites;
 
-    private class simpleBook{
+    public class simpleBook{
 
         @SerializedName("bookId")
         private int mBookId;
@@ -105,7 +105,7 @@ public class WriteModule {
         }
     }
 
-    private class myWrite{
+    public class myWrite{
 
         @SerializedName("branchId")
         private int mBranchId;

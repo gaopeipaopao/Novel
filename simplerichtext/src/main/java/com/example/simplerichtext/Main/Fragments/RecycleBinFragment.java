@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.HttpUtil;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Modules.WriteModule;
 import com.example.basecomponent.Util;
 import com.example.simplerichtext.Main.Adapters.RecycleBinAdapter;
@@ -82,4 +83,8 @@ public class RecycleBinFragment extends Fragment implements NovelCaputrePresente
         }
     }
 
+    @Override
+    public void getUnpublishedSuccses(BaseModule<MyPublishModule> module) {
+
+    }
 }

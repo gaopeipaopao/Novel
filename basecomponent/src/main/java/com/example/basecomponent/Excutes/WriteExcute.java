@@ -3,6 +3,7 @@ package com.example.basecomponent.Excutes;
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.CallBack;
 import com.example.basecomponent.HttpUtil;
+import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Modules.WriteModule;
 import com.example.basecomponent.Services.WriteService;
 import com.google.gson.Gson;
@@ -61,6 +62,56 @@ public class WriteExcute {
                             callBack.onError(null);
                         }
 
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public static void ecxcuteUnpublish(int bookId,
+                                        final CallBack<BaseModule<MyPublishModule>> callBack){
+
+        WriteService service = HttpUtil.getRetrofit().create(WriteService.class);
+        service.getUnpublish(HttpUtil.Bearer+HttpUtil.getAccessToken(),
+                bookId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseModule<MyPublishModule>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseModule<MyPublishModule> myPublishModuleBaseModule) {
+                        callBack.onNext(myPublishModuleBaseModule);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if(e instanceof HttpException) {
+                            try {
+                                HttpException httpException = (HttpException) e;
+                                Gson gson = new Gson();
+                                ResponseBody body = httpException.response().errorBody();
+                                if (body != null) {
+                                    String erro = body.string();
+                                    BaseModule module = gson.fromJson(erro, BaseModule.class);
+                                    callBack.onError(module);
+                                } else {
+                                    callBack.onError(null);
+                                }
+                            } catch (IOException ee) {
+                                ee.printStackTrace();
+                                callBack.onError(null);
+                            }
+
+                        }else {
+                            callBack.onError(null);
+                        }
                     }
 
                     @Override

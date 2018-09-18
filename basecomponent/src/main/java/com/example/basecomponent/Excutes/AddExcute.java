@@ -157,9 +157,12 @@ public class AddExcute {
         object.addProperty("bookName",bookModule.getBookName());
         object.addProperty("bookType",bookModule.getBookType());
         object.addProperty("bookIntroduce",bookModule.getContent());
-        object.addProperty("firstTitle","");
-        object.addProperty("firstContent","");
-        object.addProperty("firstSummary","");
+        object.addProperty("firstTitle",bookModule.getFirstTitle() == null?
+                "":bookModule.getFirstTitle());
+        object.addProperty("firstContent",bookModule.getFirstContent() == null?
+                "":bookModule.getFirstContent());
+        object.addProperty("firstSummary",bookModule.getFirstSummaray() == null?
+                "":bookModule.getFirstSummaray());
         object.addProperty("status",status);
         String s = gson.toJson(object);
 
@@ -184,10 +187,12 @@ public class AddExcute {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.d(TAG, "onError: "+e.getMessage());
 
                         if(e instanceof HttpException){
                             try {
                                 HttpException httpException = (HttpException)e;
+                                Log.d(TAG, "onError: "+httpException.message());
                                 String erro = httpException.response().errorBody().string();
 
                                 BaseModule module
@@ -207,6 +212,12 @@ public class AddExcute {
 
                     }
                 });
+    }
+
+    public static void publishCapture(MyPublishModule module,int parentId,
+                                      CallBack<BaseModule> callBack){
+
+
 
     }
 }

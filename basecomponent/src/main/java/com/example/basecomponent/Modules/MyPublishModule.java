@@ -51,6 +51,15 @@ public class MyPublishModule implements Serializable{
     @SerializedName("author")
     private AuthorModule mAuthor;
 
+    @SerializedName("firstTitle")
+    private String mFirstTitle;
+
+    @SerializedName("firstContent")
+    private String mFirstContent;
+
+    @SerializedName("firstSummary")
+    private String mFirstSummaray;
+
     public int getBookId() {
         return mBookId;
     }
@@ -170,5 +179,29 @@ public class MyPublishModule implements Serializable{
 
     public void setStatus(String mStatus) {
         this.mStatus = mStatus;
+    }
+
+    public String getFirstTitle() {
+        return mFirstTitle;
+    }
+
+    public void setFirstTitle(String mFirstTitle) {
+        this.mFirstTitle = mFirstTitle;
+    }
+
+    public String getFirstContent() {
+        return mFirstContent;
+    }
+
+    public void setFirstContent(String mFirstContent) {
+        this.mFirstContent = mFirstContent;
+    }
+
+    public String getFirstSummaray() {
+        return mFirstSummaray;
+    }
+
+    public void setFirstSummaray(String mFirstSummaray) {
+        this.mFirstSummaray = mFirstSummaray;
     }
 }
