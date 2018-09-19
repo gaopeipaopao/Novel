@@ -58,6 +58,8 @@ dependencies {
     api deps.glide
     api deps.arouter_api
 
+    api deps.loading
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.test_espresso

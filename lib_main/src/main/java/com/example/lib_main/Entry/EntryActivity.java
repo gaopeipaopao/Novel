@@ -1,5 +1,6 @@
 package com.example.lib_main.Entry;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.basecomponent.loading.showLoading;
 import com.example.lib_main.Base.BaseActivity;
 import com.example.lib_main.Main.Home.HomeActivity;
 import com.example.lib_main.Prove.ProveActivity;
@@ -54,6 +57,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
     private CheckBox entryCheckBox;
     private boolean entryFrist;
     private ImageView entryImageRefresh;
+    private Dialog mLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +139,20 @@ public class EntryActivity extends BaseActivity implements EntryView,
         entryPresenter.detachView();
     }
 
+    private void showLoading(){
+        if(mLoading == null){
+            mLoading = showLoading.showLoadingView(this);
+        }
+
+        mLoading.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoading!=null){
+            mLoading.dismiss();
+        }
+    }
+
     @Override
     public void onClick(View v) {
             if(v.getId() == R.id.entry_button) {
@@ -147,6 +165,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
                 Log.d(TAG, "password:" + stringPassWord);
                 entryPresenter.sendEntry(stringAccount, stringPassWord,
                         stringNumber, returnIMEI());
+                showLoading();
             }else if (v.getId() == R.id.entry_checkbox) {
                 if (entryCheckBox.isChecked()) {
                     entryPassword.setTransformationMethod(HideReturnsTransformationMethod.
@@ -181,6 +200,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
     public void showGetNumber() {
         entryNumber.setText(null);
         Toast.makeText(getContexts(),"先要获得验证码",Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -190,6 +210,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
         entryNumber.setText(null);
         entryPresenter.imageNumber(returnIMEI());
         Toast.makeText(getContexts(),"用户名或密码错误",Toast.LENGTH_LONG).show();
+        dismissLoading();
     }
 
     @Override
@@ -197,6 +218,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
         entryNumber.setText(null);
         entryPresenter.imageNumber(returnIMEI());
         Toast.makeText(getContexts(),"验证码错误",Toast.LENGTH_LONG).show();
+        dismissLoading();
     }
 
     @Override
@@ -206,6 +228,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
         intent.putExtra("access_token",accessToken);
         intent.putExtra("refresh_token",refreshToken);
         startActivity(intent);
+        dismissLoading();
         finish();
     }
 
@@ -221,6 +244,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
         Log.d(TAG,"base");
         Toast.makeText(getContexts(),"当前网络不可用，请检查网络连接",
                 Toast.LENGTH_SHORT).show();
+        dismissLoading();
     }
 
     @Override

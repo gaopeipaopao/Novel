@@ -39,6 +39,7 @@ versions.junit = "4.12"
 versions.test_runner = "1.0.2"
 versions.matisse = "0.4.3"
 versions.easypermissions = "1.3.0"
+versions.loading = "2.1.3"
 
 
 def deps = [:]
@@ -113,6 +114,7 @@ deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 deps.okio = "com.squareup.okio:okio:$versions.okio"
 deps.easypermissions ="pub.devrel:easypermissions:$versions.easypermissions"
 deps.matisse = "com.zhihu.android:matisse:$versions.matisse"
+deps.loading = "com.wang.avi:library:$versions.loading"
 
 ext.deps = deps
 
