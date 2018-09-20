@@ -1,5 +1,6 @@
 package com.example.simplerichtext.Add;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.Main.Presenters.EDTypePresenter;
 import com.example.simplerichtext.R;
@@ -29,6 +31,7 @@ public class BookTypeActivity extends BaseActivity implements
     private MyPublishModule mModle;
     private boolean mUpdate = false;
     private EDTypePresenter mPresenter;
+    private Dialog mLoadingView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,19 @@ public class BookTypeActivity extends BaseActivity implements
         }
     }
 
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(this);
+        }
+        mLoadingView.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -81,6 +97,7 @@ public class BookTypeActivity extends BaseActivity implements
                     mModle.setBookType(Util.getTypeKey(((RadioButton)findViewById(mCheckedId))
                             .getText().toString()));
                     mPresenter.uploadBrief(mModle);
+                    showLoading();
                 }else {
                     Toast.makeText(this,R.string.simple_no_network,Toast.LENGTH_SHORT).show();
                 }
@@ -104,14 +121,17 @@ public class BookTypeActivity extends BaseActivity implements
             bundle.putSerializable("book",module);
             intent.putExtra("book",bundle);
             setResult(RESULT_OK,intent);
+            dismissLoading();
             finish();
         }else {
+            dismissLoading();
             Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void uploadFailed(BaseModule module) {
+        dismissLoading();
         if(mModle!=null){
             Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
         }else {

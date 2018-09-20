@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.basecomponent.loading.showLoading;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.lib_main.Base.BaseActivity;
 import com.example.lib_main.Main.Home.HomeActivity;
 import com.example.lib_main.Prove.ProveActivity;
@@ -141,7 +141,7 @@ public class EntryActivity extends BaseActivity implements EntryView,
 
     private void showLoading(){
         if(mLoading == null){
-            mLoading = showLoading.showLoadingView(this);
+            mLoading = LoadingUtil.showLoadingView(this);
         }
 
         mLoading.show();

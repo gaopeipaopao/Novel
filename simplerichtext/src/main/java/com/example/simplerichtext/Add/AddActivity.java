@@ -1,6 +1,7 @@
 package com.example.simplerichtext.Add;
 
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,6 +25,7 @@ import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
 import com.example.basecomponent.Util;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.simplerichtext.R;
@@ -58,6 +60,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     private String mTypeName = "";
     private AddPersenter mPerseneter;
     private final int STORAGE_CODE = 200;
+    private Dialog mLoadingView;
 
     private static final String TAG = "AddActivity";
 
@@ -86,6 +89,19 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
         mFinish = findViewById(R.id.tv_finish);
         mFinish.setOnClickListener(this);
 
+    }
+
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(this);
+        }
+        mLoadingView.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
     }
 
     @Override
@@ -143,6 +159,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
                         book.setBookType(type);
                         book.setContent(mBrief);
                         mPerseneter.upload(book, Util.handleImage(this,mSelectedCover));
+                        showLoading();
                     }else {
                         Toast.makeText(this,getResources()
                                 .getText(R.string.simple_fill_brief),Toast.LENGTH_SHORT).show();
@@ -220,8 +237,10 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     public void updateData(MyPublishModule book) {
         if(book !=null){
             EventBus.getDefault().post(new AddBookMessage(book));
+            dismissLoading();
             finish();
         }else {
+            dismissLoading();
             uploadFailed(null);
         }
     }
@@ -234,6 +253,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
             Toast.makeText(this,getResources().
                     getText(R.string.simple_upload_failed),Toast.LENGTH_SHORT).show();
         }
+
+        dismissLoading();
 
     }
 

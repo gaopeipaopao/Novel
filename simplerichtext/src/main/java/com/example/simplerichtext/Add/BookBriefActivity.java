@@ -1,5 +1,6 @@
 package com.example.simplerichtext.Add;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.simplerichtext.Main.Presenters.EDBriefPresenter;
@@ -30,6 +32,7 @@ public class BookBriefActivity extends BaseActivity implements
     private MyPublishModule mModle;
     private boolean mUpdate = false;
     private EDBriefPresenter mPersenter;
+    private Dialog mLoadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class BookBriefActivity extends BaseActivity implements
                 if(Util.isNetworkAvailable(this)){
                     mModle .setContent(mBriefEd.getText().toString());
                     mPersenter.uploadBrief(mModle);
+                    showLoading();
                 }else {
                     Toast.makeText(this,R.string.simple_no_network,Toast.LENGTH_SHORT).show();
                 }
@@ -115,12 +119,27 @@ public class BookBriefActivity extends BaseActivity implements
             bundle.putSerializable("book",module);
             intent.putExtra("book",bundle);
             setResult(RESULT_OK,intent);
+            dismissLoading();
             finish();
         }else {
             Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
+            dismissLoading();
         }
 
 
+    }
+
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(this);
+        }
+        mLoadingView.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
     }
 
     @Override
@@ -130,6 +149,7 @@ public class BookBriefActivity extends BaseActivity implements
         }else {
             Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
         }
+        dismissLoading();
     }
 
     @Override

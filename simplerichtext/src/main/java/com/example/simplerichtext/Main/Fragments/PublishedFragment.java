@@ -1,6 +1,7 @@
 package com.example.simplerichtext.Main.Fragments;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Add.AddBookMessage;
 import com.example.simplerichtext.Main.Adapters.MyWorkAdapter;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
@@ -47,7 +49,7 @@ public class PublishedFragment extends Fragment implements
     private  String mStatus;
     private MyWorkHolder mFreshHodler;
     private static final String TAG = "PublishedFragment";
-
+    private Dialog mLoadingView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +76,21 @@ public class PublishedFragment extends Fragment implements
         Bundle bundle = getArguments();
         mStatus = bundle.getString("status");
         getData();
+        showLoading();
         return view;
+    }
+
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(getContext());
+        }
+        mLoadingView.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
     }
 
     private void getData(){
@@ -96,6 +112,7 @@ public class PublishedFragment extends Fragment implements
 
     @Override
     public void uploadImageSucssed() {
+        dismissLoading();
         if(mFreshHodler!=null){
             MyPublishModule myPublishModule = mFreshHodler.getData();
             myPublishModule.setBookCover(mPath);
@@ -105,7 +122,7 @@ public class PublishedFragment extends Fragment implements
 
     @Override
     public void uploadImageFailed() {
-
+        dismissLoading();
         Toast.makeText(getContext(),getResources().getText(R.string.simple_upload_failed)
                 ,Toast.LENGTH_SHORT).show();
     }
@@ -180,7 +197,9 @@ public class PublishedFragment extends Fragment implements
 
     @Subscribe
     public void publishBook(PublishBookMessage message){
+
         getData();
+        showLoading();
     }
 
     @Override

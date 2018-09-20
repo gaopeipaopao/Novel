@@ -12,21 +12,21 @@ import android.view.WindowManager;
 
 import com.example.basecomponent.R;
 
-public class loadingView extends Dialog {
+public class LoadingView extends Dialog {
 
     private Context mContext;
 
-    public loadingView(@NonNull Context context) {
+    public LoadingView(@NonNull Context context) {
         super(context);
         mContext = context;
     }
 
-    public loadingView(@NonNull Context context, int themeResId) {
+    public LoadingView(@NonNull Context context, int themeResId) {
         super(context, themeResId);
         mContext = context;
     }
 
-    public loadingView(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    public LoadingView(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         mContext = context;
     }

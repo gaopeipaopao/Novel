@@ -1,6 +1,7 @@
 package com.example.simplerichtext.RichTextView;
 
 
+import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,6 +37,7 @@ import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Excutes.AddExcute;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.R;
 import com.example.simplerichtext.Util.ConstantUtil;
 import com.example.simplerichtext.Util.DialogUtil;
@@ -94,6 +96,7 @@ public class RichTextActivity extends AppCompatActivity implements
     private MyPublishModule mBook;
     private RichTextPresenter mPresenter;
     private int mParentId;
+    private Dialog mLoadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +128,18 @@ public class RichTextActivity extends AppCompatActivity implements
         }
 
     }
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(this);
+        }
+        mLoadingView.show();
+    }
 
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
+    }
 
     protected void setWindow(){
         Window window  = getWindow();
@@ -230,15 +244,10 @@ public class RichTextActivity extends AppCompatActivity implements
 
     public void getUnData(){
         mPresenter.getUnpublishedData(mBook);
-    }
-
-    public void showLoading(){
 
     }
 
-    public void dismissLoading(){
 
-    }
     @Override
     protected void onPause() {
         super.onPause();
@@ -334,7 +343,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void saveUnPublishedSuceese(BaseModule<MyPublishModule> module) {
-
+        dismissLoading();
         if(module!=null){
             mBook = module.getData();
             Toast.makeText(this,R.string.simple_save_scueese,
@@ -348,6 +357,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void saveUnPublishedFailed(BaseModule module) {
+        dismissLoading();
         if(module!=null){
 
             Toast.makeText(this,module.getMessage(),
@@ -363,6 +373,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void savePublishedSuceese(BaseModule<MyPublishModule> module) {
+        dismissLoading();
         if(module!=null){
             mBook = module.getData();
             Toast.makeText(this,R.string.simple_save_scueese,
@@ -377,6 +388,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void savePublishedFailed(BaseModule module) {
+        dismissLoading();
         if(module!=null){
 
             Toast.makeText(this,module.getMessage(),
@@ -390,7 +402,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void publishBookSuceese(BaseModule<MyPublishModule> module) {
-
+        dismissLoading();
         if(module!=null){
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
@@ -411,6 +423,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void publishBookFailed(BaseModule module) {
+        dismissLoading();
         if(module!=null){
 
             Toast.makeText(this,module.getMessage(),
@@ -424,11 +437,12 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void publishCaptureSuceese(BaseModule module) {
-
+        dismissLoading();
     }
 
     @Override
     public void publishCaptureFailed(BaseModule module) {
+        dismissLoading();
         if(module!=null){
 
             Toast.makeText(this,module.getMessage(),
@@ -455,6 +469,7 @@ public class RichTextActivity extends AppCompatActivity implements
             }
             dismissLoading();
         }else {
+            dismissLoading();
             Toast.makeText(this,R.string.simple_getdata_failed,
                     Toast.LENGTH_SHORT).show();
         }
@@ -462,6 +477,7 @@ public class RichTextActivity extends AppCompatActivity implements
 
     @Override
     public void getUnPublishedDataFailed(BaseModule module) {
+        dismissLoading();
         if(module!=null){
             Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
         }else {
@@ -615,6 +631,7 @@ public class RichTextActivity extends AppCompatActivity implements
                         mBook.setFirstContent(content);
                         mBook.setFirstSummaray(mCapureString);
                         mPresenter.saveUnPublished(mBook);
+                        showLoading();
 
                 }
             }else {
@@ -634,7 +651,7 @@ public class RichTextActivity extends AppCompatActivity implements
                         mBook.setFirstContent(content);
                         mBook.setFirstSummaray(mCapureString);
                         mPresenter.publish(mBook,mParentId);
-
+                        showLoading();
                     }else {
                         Toast.makeText(this,R.string.simple_brief_limit,
                                 Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package com.example.simplerichtext.Main.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
+import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Base.BaseActivity;
 import com.example.simplerichtext.Main.Presenters.EDNamePresenter;
 import com.example.simplerichtext.R;
@@ -27,6 +29,7 @@ public class EDBookNameActivity extends BaseActivity implements
     private TextView mSave;
     private EDNamePresenter mPresenter;
     private MyPublishModule mMyPublishModule;
+    private Dialog mLoadingView;
 
     private static final String TAG = "EDBookNameActivity";
 
@@ -75,6 +78,19 @@ public class EDBookNameActivity extends BaseActivity implements
         mEdName.setText(mMyPublishModule.getBookName());
     }
 
+    private void showLoading(){
+        if(mLoadingView== null){
+            mLoadingView = LoadingUtil.showLoadingView(this);
+        }
+        mLoadingView.show();
+    }
+
+    private void dismissLoading(){
+        if(mLoadingView!=null){
+            mLoadingView.dismiss();
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -88,6 +104,7 @@ public class EDBookNameActivity extends BaseActivity implements
                     mSave.setClickable(false);
                     mMyPublishModule.setBookName(mEdName.getText().toString());
                     mPresenter.uploadName(mMyPublishModule);
+                    showLoading();
 
                 }else {
                     Toast.makeText(this,R.string.simple_name_empty,
@@ -112,14 +129,17 @@ public class EDBookNameActivity extends BaseActivity implements
             bundle.putSerializable("book",module);
             intent.putExtra("book",bundle);
             setResult(RESULT_OK,intent);
+            dismissLoading();
             finish();
         }else {
+            dismissLoading();
             Toast.makeText(this,R.string.simple_update_failed,Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void uploadFailed(BaseModule module) {
+        dismissLoading();
         mSave.setClickable(true);
         if(module!=null){
             Log.d(TAG, "uploadFailed: "+module.getMessage());

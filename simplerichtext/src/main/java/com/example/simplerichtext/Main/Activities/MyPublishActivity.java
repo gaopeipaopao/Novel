@@ -125,9 +125,7 @@ public class MyPublishActivity extends BaseActivity implements
 
 
 
-    private void showLoading(){
 
-    }
 
 
     @Subscribe
