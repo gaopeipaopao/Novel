@@ -23,6 +23,7 @@ public interface AddBookService {
     @POST("upload/book_image/{bookId}")
     @Multipart
     Observable<BaseModule> putCover(@Path("bookId") int bookId,
-                                    @Part MultipartBody.Part file);
+                                    @Part MultipartBody.Part file,
+                                    @Header("Authorization") String authorization);
 
 }

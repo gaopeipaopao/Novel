@@ -3,6 +3,8 @@ package com.example.simplerichtext.Main.Fragments;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
+import com.example.basecomponent.PermissionUtil;
 import com.example.basecomponent.Util;
 import com.example.basecomponent.loading.LoadingUtil;
 import com.example.simplerichtext.Add.AddBookMessage;
@@ -32,6 +36,7 @@ import com.zhihu.matisse.Matisse;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +105,7 @@ public class PublishedFragment extends Fragment implements
 
     @Override
     public void setMyPublishData(List<MyPublishModule> myPublishModuleList) {
+        dismissLoading();
         mDatas.clear();
         mDatas.addAll(myPublishModuleList);
         mAdapter.notifyDataSetChanged();
@@ -107,7 +113,7 @@ public class PublishedFragment extends Fragment implements
 
     @Override
     public void setDataError() {
-
+        dismissLoading();
     }
 
     @Override
@@ -121,10 +127,15 @@ public class PublishedFragment extends Fragment implements
     }
 
     @Override
-    public void uploadImageFailed() {
+    public void uploadImageFailed(BaseModule module) {
         dismissLoading();
-        Toast.makeText(getContext(),getResources().getText(R.string.simple_upload_failed)
-                ,Toast.LENGTH_SHORT).show();
+        if(module!=null){
+            Toast.makeText(getContext(),module.getMessage(),Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getContext(),getResources().getText(R.string.simple_upload_failed)
+                    ,Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void setFreshHolder(MyWorkHolder holder){
@@ -159,7 +170,9 @@ public class PublishedFragment extends Fragment implements
             if(mFreshHodler!=null){
                 Uri uri = images.get(0);
                 mPath = Util.handleImage(getContext(),uri);
-
+                Log.d(TAG, "onActivityResult:11111 "+mFreshHodler.getData().getBookId());
+                mPresenter.uploadImage(mFreshHodler.getData().getBookId(),mPath);
+                showLoading();
             }
         }
 
@@ -193,6 +206,7 @@ public class PublishedFragment extends Fragment implements
             //getData();
             EventBus.getDefault().post(new PublishBookMessage());
         }
+
     }
 
     @Subscribe

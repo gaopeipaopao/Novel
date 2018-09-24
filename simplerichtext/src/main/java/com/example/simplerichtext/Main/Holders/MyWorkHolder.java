@@ -190,6 +190,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
             }
 
         }else if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
+            ((PublishedFragment)mContext).setFreshHolder(this);
             if(v.getId() == R.id.iv_novel_cover_back){
                 ((PublishedFragment)mContext).setFreshHolder(this);
                 if(!EasyPermissions.hasPermissions(mContext.getContext(),
@@ -211,7 +212,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
 
                 }
 
-                ((PublishedFragment)mContext).setFreshHolder(this);
+
 
             }else if(v.getId() == R.id.tv_novel_name_back){
                 ((PublishedFragment)mContext).setFreshHolder(MyWorkHolder.this);

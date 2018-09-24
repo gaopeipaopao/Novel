@@ -23,7 +23,7 @@ public class MyPublishPresenter {
         void setMyPublishData(List<MyPublishModule> myPublishModuleList);
         void setDataError();
         void uploadImageSucssed();
-        void uploadImageFailed();
+        void uploadImageFailed(BaseModule module);
 
     }
 
@@ -33,9 +33,6 @@ public class MyPublishPresenter {
     }
 
 
-    public void onSubscribe(){
-
-    }
 
     public void uploadImage(int id,String image){
       mModule.uploadImage(id,image);
@@ -45,8 +42,8 @@ public class MyPublishPresenter {
         mView.uploadImageSucssed();
     }
 
-    public void uploadImageFailed(){
-        mView.uploadImageFailed();
+    public void uploadImageFailed(BaseModule module){
+        mView.uploadImageFailed(module);
     }
 
 

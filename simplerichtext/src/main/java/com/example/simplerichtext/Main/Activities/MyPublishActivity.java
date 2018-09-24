@@ -142,17 +142,17 @@ public class MyPublishActivity extends BaseActivity implements
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == STORAGE_CODE){
             if(EasyPermissions.hasPermissions(this,
-                    PermissionUtil.STORAGES)&&mRefreshHolder!=null                            ){
-                Matisse.from(this)
-                        .choose(MimeType.of(MimeType.valueOf("image")))
-                        .countable(true)
-                        .maxSelectable(1)
-                        .gridExpectedSize(getResources().
-                                getDimensionPixelSize(R.dimen.simple_book_cover_expected_size))
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f) // 缩略图的比例
-                        .imageEngine(new GlideEngine()) // 使用的图片加载引擎
-                        .forResult(MyWorkHolder.PHOTO_CODE); // 设置作为标记的请求码
+                    PermissionUtil.STORAGES)){
+//                Matisse.from(this)
+//                        .choose(MimeType.of(MimeType.valueOf("image")))
+//                        .countable(true)
+//                        .maxSelectable(1)
+//                        .gridExpectedSize(getResources().
+//                                getDimensionPixelSize(R.dimen.simple_book_cover_expected_size))
+//                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+//                        .thumbnailScale(0.85f) // 缩略图的比例
+//                        .imageEngine(new GlideEngine()) // 使用的图片加载引擎
+//                        .forResult(MyWorkHolder.PHOTO_CODE); // 设置作为标记的请求码
             }else {
                 Toast.makeText(this,R.string.simple_permission_deined,Toast.LENGTH_SHORT).show();
             }

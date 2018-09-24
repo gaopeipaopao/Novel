@@ -8,13 +8,22 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
+
+import io.reactivex.internal.schedulers.IoScheduler;
+import okio.Buffer;
+import okio.Okio;
+import okio.Sink;
 
 public class Util {
 
@@ -174,7 +183,43 @@ public class Util {
             return false;
         }
 
+    public static byte[] convertImage(String path){
 
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bitmap = BitmapFactory.decodeFile(path,options);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+        try {
+            outputStream.flush();
+            outputStream.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
+        return outputStream.toByteArray();
+    }
+
+    public static File createBinFile(byte[] data){
+        File file = new File(Environment.getExternalStorageDirectory()+
+                "image.bin");
+
+        try {
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            Sink sink = Okio.sink(file);
+            Buffer buffer = new Buffer();
+            buffer.read(data);
+            sink.write(buffer,data.length);
+            return file;
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 }

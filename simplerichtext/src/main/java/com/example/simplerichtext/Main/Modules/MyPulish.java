@@ -78,7 +78,8 @@ public class MyPulish implements MyPublishPresenter.myPublishModuleLisnter {
 
             @Override
             public void onError(BaseModule e) {
-                mPersenter.uploadImageFailed();
+
+                mPersenter.uploadImageFailed(e);
             }
 
             @Override

@@ -10,6 +10,7 @@ import com.example.basecomponent.CallBack;
 import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Services.AddBookService;
+import com.example.basecomponent.Util;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -21,10 +22,13 @@ import java.net.URISyntaxException;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.schedulers.IoScheduler;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okio.Okio;
+import okio.Sink;
 import retrofit2.HttpException;
 
 public class AddExcute {
@@ -111,11 +115,18 @@ public class AddExcute {
         AddBookService service = HttpUtil.getRetrofit().create(AddBookService.class);
 
             File file = new File(image);
+//            byte[] images = Util.convertImage(image);
+//            File file = Util.createBinFile(images);
+//            if(file==null){
+//                callBack.onError(null);
+//                return;
+//            }
+
             RequestBody requestBody = RequestBody.create(MediaType.
                     parse("multipart/form-data"),file);
             MultipartBody.Part body = MultipartBody.Part.
-                    createFormData("image",file.getName(),requestBody);
-            service.putCover(bookid,body)
+                    createFormData("file","\"image.png\"",requestBody);
+            service.putCover(bookid,body,HttpUtil.Bearer+HttpUtil.getAccessToken())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<BaseModule>() {
@@ -136,7 +147,22 @@ public class AddExcute {
                         @Override
                         public void onError(Throwable e) {
                             Log.d(TAG, "onError: "+e.getMessage());
-                            callBack.onError(null);
+                            if(e instanceof HttpException){
+                                HttpException exception = (HttpException)e;
+                                try {
+                                    String s = exception.response().errorBody().string();
+                                    Gson gson = new Gson();
+                                    BaseModule module = gson.fromJson(s,BaseModule.class);
+                                    Log.d(TAG, "onError: "+module.getMessage());
+                                    callBack.onError(module);
+                                }catch (IOException e1){
+                                    e1.printStackTrace();
+                                }
+
+                            }else {
+                                callBack.onError(null);
+                            }
+
                         }
 
                         @Override
@@ -144,6 +170,7 @@ public class AddExcute {
 
                         }
                     });
+
     }
 
     public static void updateBook(final MyPublishModule bookModule, String status,
