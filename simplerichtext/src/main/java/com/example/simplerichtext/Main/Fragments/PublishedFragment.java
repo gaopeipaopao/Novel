@@ -169,7 +169,9 @@ public class PublishedFragment extends Fragment implements
             List<Uri> images = Matisse.obtainResult(data);
             if(mFreshHodler!=null){
                 Uri uri = images.get(0);
+                Log.d(TAG, "onActivityResult: "+uri.getPath());
                 mPath = Util.handleImage(getContext(),uri);
+                Log.d(TAG, "onActivityResult: "+mPath);
                 Log.d(TAG, "onActivityResult:11111 "+mFreshHodler.getData().getBookId());
                 mPresenter.uploadImage(mFreshHodler.getData().getBookId(),mPath);
                 showLoading();

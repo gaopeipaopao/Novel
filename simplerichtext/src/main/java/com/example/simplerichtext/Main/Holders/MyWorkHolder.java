@@ -123,7 +123,19 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
             Glide.with(mContext)
                     .load(R.mipmap.simple_book_cover)
                     .into(mBookCoverBack);
-        }else {
+        }else if(data.getBookCover().contains("storage")){
+
+
+            Glide.with(mContext)
+                    .load(data.getBookCover())
+
+                    .into(mBookCover);
+
+            Glide.with(mContext)
+                    .load(data.getBookCover())
+                    .into(mBookCoverBack);
+
+        } else {
             Glide.with(mContext)
                     .load(HttpUtil.BOOK_COVER+data.getBookCover())
 
@@ -177,6 +189,8 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
             openFront();
         }else if(v.getId() == R.id.tv_see_work){
 
+            ((PublishedFragment)mContext).setFreshHolder(this);
+
             if(mData.getStatus().equals(HttpUtil.STATUS_PUBLISHED)){
 
             }else {
@@ -189,32 +203,29 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
                 mContext.startActivityForResult(intent,PUBLISH_BOOK);
             }
 
-        }else if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
+        }else  if(v.getId() == R.id.iv_novel_cover_back){
             ((PublishedFragment)mContext).setFreshHolder(this);
-            if(v.getId() == R.id.iv_novel_cover_back){
-                ((PublishedFragment)mContext).setFreshHolder(this);
-                if(!EasyPermissions.hasPermissions(mContext.getContext(),
-                        PermissionUtil.STORAGES)) {
-                    PermissionUtil.
-                            requestStoragePersmission(mContext.getActivity(),
-                                    MyPublishActivity.STORAGE_CODE);
-                }else {
-                    Matisse.from(mContext)
-                            .choose(MimeType.allOf())
-                            .countable(true)
-                            .maxSelectable(1)
-                            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                            .spanCount(3)
-                            .thumbnailScale(0.85f) // 缩略图的比例
-                            .theme(R.style.Matisse_Dracula)
-                            .imageEngine(new GlideEngine()) // 使用的图片加载引擎
-                            .forResult(PHOTO_CODE); // 设置作为标记的请求码
+            if(!EasyPermissions.hasPermissions(mContext.getContext(),
+                    PermissionUtil.STORAGES)) {
+                PermissionUtil.
+                        requestStoragePersmission(mContext.getActivity(),
+                                MyPublishActivity.STORAGE_CODE);
+            }else {
+                Matisse.from(mContext)
+                        .choose(MimeType.allOf())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .spanCount(3)
+                        .thumbnailScale(0.85f) // 缩略图的比例
+                        .theme(R.style.Matisse_Dracula)
+                        .imageEngine(new GlideEngine()) // 使用的图片加载引擎
+                        .forResult(PHOTO_CODE); // 设置作为标记的请求码
 
-                }
+            }
+        }else if(mData.getStatus().equals(HttpUtil.STATUS_UNPUBLISHED)){
 
-
-
-            }else if(v.getId() == R.id.tv_novel_name_back){
+           if(v.getId() == R.id.tv_novel_name_back){
                 ((PublishedFragment)mContext).setFreshHolder(MyWorkHolder.this);
 
                 Intent intent = new Intent(mContext.getContext(),

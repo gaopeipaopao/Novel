@@ -73,13 +73,33 @@ public class AddExcute {
                     public void onNext(BaseModule<MyPublishModule> myPublishModuleBaseModule) {
                         if(myPublishModuleBaseModule.getStatus() == 0
                                 &&myPublishModuleBaseModule.getData()!=null){
-//                            if(image!=null){
-//                                uploadCover(myPublishModuleBaseModule.getData().getBookId(),
-//                                        image,callBack);
-//
-//                            }
-                                callBack.onNext(myPublishModuleBaseModule);
+                            if(image!=null){
+                                uploadCover(myPublishModuleBaseModule.getData().getBookId(),
+                                        image, new CallBack<BaseModule>() {
+                                            @Override
+                                            public void onSubscribe() {
 
+                                            }
+
+                                            @Override
+                                            public void onNext(BaseModule value) {
+
+                                            }
+
+                                            @Override
+                                            public void onError(BaseModule e) {
+
+                                            }
+
+                                            @Override
+                                            public void onComplete() {
+
+                                            }
+                                        });
+
+                            }
+
+                            callBack.onNext(myPublishModuleBaseModule);
 
                         }
                     }
@@ -114,18 +134,22 @@ public class AddExcute {
     public static void uploadCover(final int bookid, final String image, final CallBack<BaseModule> callBack){
         AddBookService service = HttpUtil.getRetrofit().create(AddBookService.class);
 
+
             File file = new File(image);
-//            byte[] images = Util.convertImage(image);
-//            File file = Util.createBinFile(images);
-//            if(file==null){
-//                callBack.onError(null);
-//                return;
-//            }
+            Log.d(TAG, "uploadCover: "+file.toString());
+
 
             RequestBody requestBody = RequestBody.create(MediaType.
                     parse("multipart/form-data"),file);
-            MultipartBody.Part body = MultipartBody.Part.
-                    createFormData("file","\"image.png\"",requestBody);
+            MultipartBody.Part body;
+            if(image.contains(".jpg")){
+                body = MultipartBody.Part.
+                        createFormData("file","image.jpg",requestBody);
+            }else {
+                body = MultipartBody.Part.
+                        createFormData("file","image.png",requestBody);
+            }
+
             service.putCover(bookid,body,HttpUtil.Bearer+HttpUtil.getAccessToken())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

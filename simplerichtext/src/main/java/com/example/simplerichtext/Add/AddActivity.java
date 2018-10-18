@@ -54,6 +54,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     private final int TYPE_CODE = 500;
     private int mScreenWdith;
     private Uri mSelectedCover;
+    private String mCoverPath = "";
     private TextView mFinish;
     private String mBrief = "";
     private int mType = -1;
@@ -158,7 +159,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
                         book.setBookName(name);
                         book.setBookType(type);
                         book.setContent(mBrief);
-                        mPerseneter.upload(book, Util.handleImage(this,mSelectedCover));
+                        mCoverPath = Util.handleImage(AddActivity.this,mSelectedCover);
+                        mPerseneter.upload(book, mCoverPath);
                         showLoading();
                     }else {
                         Toast.makeText(this,getResources()
@@ -219,9 +221,14 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
 
         }
 
-        if(requestCode == MyWorkHolder.PHOTO_CODE&&resultCode == RESULT_OK){
+        if(requestCode == PHOTO_CODE&&resultCode == RESULT_OK){
             List<Uri> images = Matisse.obtainResult(data);
                 mSelectedCover = images.get(0);
+            Log.d(TAG, "onActivityResult: "+mSelectedCover.toString());
+                Glide.with(this)
+                        .load(mSelectedCover)
+                        .into(mBookCover);
+
             }
 
 
@@ -248,6 +255,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener,Ad
     @Override
     public void uploadFailed(BaseModule module) {
         if(module!=null){
+            Log.d(TAG, "uploadFailed: "+module.getMessage());
             Toast.makeText(this,module.getMessage(),Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(this,getResources().
