@@ -1,42 +1,26 @@
 package com.example.simplerichtext.Main.Activities;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-                import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.basecomponent.Excutes.AddExcute;
 import com.example.basecomponent.HttpUtil;
-import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.PermissionUtil;
-import com.example.basecomponent.Util;
 import com.example.simplerichtext.Add.AddActivity;
 import com.example.simplerichtext.Add.AddBookMessage;
-import com.example.simplerichtext.Base.BaseActivity;
-import com.example.simplerichtext.Main.Adapters.MyWorkAdapter;
+import com.example.basecomponent.BaseActivity;
 import com.example.simplerichtext.Main.Adapters.PublishViewPagerAdapter;
 import com.example.simplerichtext.Main.Fragments.PublishedFragment;
 import com.example.simplerichtext.Main.Holders.MyWorkHolder;
-import com.example.simplerichtext.Main.Presenters.MyPublishPresenter;
 import com.example.simplerichtext.R;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

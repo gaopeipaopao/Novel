@@ -1,4 +1,4 @@
-package com.example.simplerichtext.Base;
+package com.example.basecomponent;
 
 import android.graphics.Color;
 import android.os.Build;

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/account_ic_user"
+                android:id="@+id/iv_user_icon"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_chapter_name"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_color"
+                android:layout_toEndOf="@id/iv_user_icon"
+                android:text="大猪蹄子"
+                android:layout_marginLeft="8dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_author_name"
+                android:textSize="12sp"
+                android:textColor="@color/color_text_color"
+                android:layout_toEndOf="@id/iv_user_icon"
+                android:layout_below="@id/tv_chapter_name"
+                android:text="vivian"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_chapter_brief"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="那个阿迪擦对我说"
+            android:layout_marginTop="6dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

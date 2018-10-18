@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white_100"
+    tools:context=".MyInfoActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:paddingTop="24dp"
+        android:background="@color/account_main_color"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_back"
+            android:src="@mipmap/account_ic_back_dark"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/account_edit_info"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_save"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:text="@string/account_save"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="16dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_user_name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_user_name"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="学习学习"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_brief"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_brief"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="新时代游戏大学生"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_level"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_level"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="Lv 0"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_user_name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_experience"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="0"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_sex"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_sex"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="女"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_location"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_location"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_fill"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_school"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_school"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_fill_school"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal"
+        android:background="@color/color_white"
+        android:layout_marginBottom="1dp"
+        >
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/color_second_text_color"
+            android:text="@string/account_user_name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_company"
+            android:textSize="12sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_fill_company"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

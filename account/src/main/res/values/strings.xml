@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Account</string>
+
+    <string name="account_edit_info">编辑资料</string>
+    <string name="account_save">保存</string>
+    <string name="account_user_name">用户名</string>
+    <string name="account_brief">简介</string>
+    <string name="account_level">等级</string>
+    <string name="account_experience">经验值</string>
+    <string name="account_sex">性别</string>
+    <string name="account_location">所在地</string>
+    <string name="account_school">所在地</string>
+    <string name="account_company">公司</string>
+    <string name="account_fill">填写</string>
+    <string name="account_fill_school">填写你的学校，发现校友</string>
+    <string name="account_fill_company">填写你的公司，发现同事</string>
+    <string name="account_edit_brief">编辑简介</string>
+    <string name="account_my_brief">一句话介绍自己</string>
+    <string name="account_my_collection">我的收藏</string>
+
+
 </resources>

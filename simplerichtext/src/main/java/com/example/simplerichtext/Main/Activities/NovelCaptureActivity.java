@@ -11,13 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.basecomponent.Excutes.AddExcute;
-import com.example.simplerichtext.Base.BaseActivity;
+import com.example.basecomponent.BaseActivity;
 import com.example.simplerichtext.Main.Adapters.CaptureViewPagerAdater;
 import com.example.simplerichtext.Main.Fragments.DraftFragment;
 import com.example.simplerichtext.Main.Fragments.PublishedCaptureFragment;
 import com.example.simplerichtext.Main.Fragments.RecycleBinFragment;
 import com.example.simplerichtext.R;
-import com.example.simplerichtext.RichTextView.RichTextActivity;
 
 import java.util.ArrayList;
 import java.util.List;

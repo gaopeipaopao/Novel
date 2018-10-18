@@ -16,7 +16,7 @@ import com.example.basecomponent.BaseModule;
 import com.example.basecomponent.Modules.MyPublishModule;
 import com.example.basecomponent.Util;
 import com.example.basecomponent.loading.LoadingUtil;
-import com.example.simplerichtext.Base.BaseActivity;
+import com.example.basecomponent.BaseActivity;
 import com.example.simplerichtext.Main.Presenters.EDNamePresenter;
 import com.example.simplerichtext.R;
 

@@ -10,9 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.basecomponent.HttpUtil;
 import com.example.basecomponent.Util;
-import com.example.simplerichtext.Base.BaseActivity;
+import com.example.basecomponent.BaseActivity;
 import com.example.simplerichtext.R;
 
 public class CaptureBriefActivity extends BaseActivity implements
