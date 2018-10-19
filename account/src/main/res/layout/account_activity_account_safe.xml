@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white_100"
+    tools:context=".Activities.AccountSafeActivity">
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:paddingTop="24dp"
+        android:background="@color/account_main_color"
+        >
+        
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" 
+            android:id="@+id/iv_back"
+            android:src="@mipmap/account_ic_back_dark"
+            android:scaleType="center"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" 
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:layout_gravity="center"
+            android:text="@string/account_account_safe"
+            android:gravity="center"
+            />
+        
+    </FrameLayout>
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/color_white"
+        >
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_user_name"
+            android:textSize="14sp"
+            android:textColor="@color/color_second_text_color"
+            android:text="dsafds"
+            android:gravity="end"
+            android:layout_marginEnd="10dp"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:textSize="14sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_user_name"
+            android:layout_marginLeft="16dp"
+            />
+        
+    </FrameLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="17dp"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/color_white"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_phone"
+            android:textSize="14sp"
+            android:textColor="@color/color_second_text_color"
+            android:text="158****4001"
+            android:gravity="end"
+            android:paddingEnd="10dp"
+            android:drawableEnd="@mipmap/account_ic_more"
+            android:drawablePadding="6dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_user_name"
+            android:layout_marginLeft="16dp"
+            />
+
+    </FrameLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_change_password"
+        android:paddingLeft="16dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/color_text_color"
+        android:background="@color/color_white"
+        android:text="@string/account_change_password"
+        android:drawableEnd="@mipmap/account_ic_more"
+        />
+
+
+</LinearLayout>

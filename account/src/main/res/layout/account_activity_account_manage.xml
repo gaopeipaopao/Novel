@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/color_white_100"
-    tools:context=".Activities.MyCollectionActivity">
-
+    tools:context=".Activities.AccountManageActivity">
+    
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:paddingTop="24dp"
         android:background="@color/account_main_color"
         >
-
+        
         <ImageView
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="50dp" 
             android:id="@+id/iv_back"
             android:src="@mipmap/account_ic_back_dark"
             android:scaleType="center"
             />
-
+        
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/account_my_collection"
             android:textSize="16sp"
             android:textColor="@color/color_white"
-            android:layout_gravity="center"
+            android:text="@string/account_account_manage"
             android:gravity="center"
+            android:layout_gravity="center"
             />
-
+        
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_white_100"
+        android:id="@+id/recyclerview"
+        >
+
 
     </android.support.v7.widget.RecyclerView>
 

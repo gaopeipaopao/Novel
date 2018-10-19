@@ -3,9 +3,12 @@
     package="com.example.account">
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".MyInfoActivity" />
-        <activity android:name=".MyBriefActivity" />
-        <activity android:name=".MyCollectionActivity"></activity>
+        <activity android:name=".Activities.MyInfoActivity" />
+        <activity android:name=".Activities.MyBriefActivity" />
+        <activity android:name=".Activities.MyCollectionActivity" />
+        <activity android:name=".Activities.SettingActivity" />
+        <activity android:name=".Activities.AccountManageActivity" />
+        <activity android:name=".Activities.AccountSafeActivity"></activity>
     </application>
 
 </manifest>

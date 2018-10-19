@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white_100"
+    tools:context=".Activities.SettingActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:paddingTop="24dp"
+        android:background="@color/account_main_color"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/iv_back"
+            android:src="@mipmap/account_ic_back_dark"
+            android:scaleType="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:text="@string/account_setting"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_my_info"
+        android:textSize="14sp"
+        android:textColor="@color/color_text_color"
+        android:text="@string/account_my_info"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_white"
+        android:drawableEnd="@mipmap/account_ic_more"
+        android:paddingEnd="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_account_manage"
+        android:textSize="14sp"
+        android:textColor="@color/color_text_color"
+        android:text="@string/account_account_manage"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/color_white"
+        android:drawableEnd="@mipmap/account_ic_more"
+        android:drawablePadding="10dp"
+        android:paddingEnd="10dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_account_safe"
+        android:textSize="14sp"
+        android:textColor="@color/color_text_color"
+        android:text="@string/account_account_safe"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/color_white"
+        android:drawableEnd="@mipmap/account_ic_more"
+        android:drawablePadding="10dp"
+        android:paddingEnd="10dp"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/tv_dark"
+            android:textSize="14sp"
+            android:textColor="@color/color_text_color"
+            android:text="@string/account_dark"
+            android:paddingLeft="16dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
+            android:background="@color/color_white"
+            />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical|end"
+            android:id="@+id/iv_dark"
+            android:src="@mipmap/account_ic_dark_off"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="10dp"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tv_quit"
+        android:textSize="14sp"
+        android:textColor="@color/account_red"
+        android:text="@string/account_quit"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:background="@color/color_white"
+        android:layout_marginTop="15dp"
+        />
+
+
+</LinearLayout>

@@ -16,6 +16,17 @@
     <string name="account_edit_brief">编辑简介</string>
     <string name="account_my_brief">一句话介绍自己</string>
     <string name="account_my_collection">我的收藏</string>
+    <string name="account_comment">评论</string>
+    <string name="account_setting">设置</string>
+    <string name="account_my_info">个人资料</string>
+    <string name="account_account_manage">账号管理</string>
+    <string name="account_account_safe">账号与安全</string>
+    <string name="account_dark">夜间模式</string>
+    <string name="account_quit">退出</string>
+    <string name="account_add_account">添加账号</string>
+    <string name="account_quit_account">退出当前账号</string>
+    <string name="account_phone">手机号</string>
+    <string name="account_change_password">修改密码</string>
 
 
 </resources>
