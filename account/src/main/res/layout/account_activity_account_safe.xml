@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/color_text_color"
-            android:text="@string/account_user_name"
+            android:text="@string/account_phone"
             android:layout_marginLeft="16dp"
             />
 

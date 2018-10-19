@@ -38,9 +38,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.multidex
+
+    implementation project (':account')
     implementation project(':simplerichtext')
     implementation project(':lib_main')
     implementation project (':basecomponent')
-
 
 }

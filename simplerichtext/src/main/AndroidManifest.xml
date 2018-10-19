@@ -9,7 +9,7 @@
         <activity
             android:name=".RichTextView.RichTextActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".Base.BaseActivity" />
+
         <activity android:name=".Main.Activities.MyPublishActivity" />
         <activity android:name=".Add.AddActivity" />
         <activity android:name=".Main.Activities.NovelCaptureActivity" />

@@ -14,15 +14,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.style.IconMarginSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.lib_main.Base.BaseFragment;
 import com.example.lib_main.Main.Mine.MineInfor.MinePresenter;
 import com.example.lib_main.Main.Mine.MineInfor.MineView;
@@ -60,6 +63,11 @@ public class MineFragment extends BaseFragment<MinePresenter> implements MineVie
      */
     private CircleImageView topPicture;
 
+    private ImageView mMyWork;
+    private LinearLayout mClear;
+    private LinearLayout mSetting;
+
+
 
 
     /**
@@ -81,6 +89,12 @@ public class MineFragment extends BaseFragment<MinePresenter> implements MineVie
         backgroundText2 = (TextView) view.findViewById(R.id.background_text_id2);
         topPicture = (CircleImageView) view.findViewById(R.id.background_image_id);
 
+        mClear = (LinearLayout)view.findViewById(R.id.mine_clear);
+        mClear.setOnClickListener(this);
+        mMyWork = (ImageView)view.findViewById(R.id.mine_book);
+        mMyWork.setOnClickListener(this);
+        mSetting = (LinearLayout)view.findViewById(R.id.mine_set);
+        mSetting.setOnClickListener(this);
         return view;
     }
 
@@ -114,6 +128,16 @@ public class MineFragment extends BaseFragment<MinePresenter> implements MineVie
 //                }
 
 
+        }else if(v.getId() == R.id.mine_book){
+            ARouter.getInstance().build("/simple/myPublishActivity")
+                    .navigation();
+
+        }else if(v.getId() == R.id.mine_clear){
+
+
+        }else if(v.getId() == R.id.mine_set){
+            ARouter.getInstance().build("/account/SettingActivity")
+                    .navigation();
         }
     }
 

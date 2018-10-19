@@ -37,7 +37,7 @@
                     <ImageView
                         android:id="@+id/mine_book"
                         android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:src="@mipmap/mine_book" />
 
